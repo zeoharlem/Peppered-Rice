@@ -196,6 +196,27 @@
             //"sDom": "t" // just show table, no other controls
         });
         
+        //Customer Controller System
+        var getCustomer    = $('#getCustomers').DataTable({
+            responsive: true,
+            "processing": true,
+            "serverSide": true,
+            "ajax": "http://localhost/peprice/backend/order/getCustomers",
+            "columnDefs": [{
+                  "targets": -1,
+                  "data": null,
+                  "defaultContent": "<button type='button' class='btn btn-default ordernow'>Order Now</button>"
+              }]
+            //"sDom": "t" // just show table, no other controls
+        });
+        
+        //Click to set customer for order
+        $('#getCustomers tbody').on('click', 'button.ordernow', function(){
+            var dataRow = getCustomer.row($(this).parents('tr')).data();
+            var stringRowData   = {action : 'remove', register_id: dataRow[5]};
+            window.location.href    = 'http://localhost/peprice/backend/order/basket/'+dataRow[5];
+        });
+        
         // initialize FixedHeader
         var offsetTop = 0;
         if ($('.site-navbar').length > 0) {
