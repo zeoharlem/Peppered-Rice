@@ -3,96 +3,105 @@
 {% block head %}
 {% endblock %}
 {% block content %}
-<div class="body-content outer-top-xs">
+<!-- ========================================= MAIN ========================================= -->
+<main id="authentication" class="inner-bottom-md">
 	<div class="container">
-		
-        <div class="sign-in-page inner-bottom-sm">
-			<div class="row">
-				<!-- Sign-in -->			
-<div class="col-md-6 col-sm-6 sign-in">
-	<h4 class="">sign in</h4>
-	<p class="">Hello, Welcome!.</p>
-	<div class="social-sign-in outer-top-xs">
-		<a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
-		<a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
-	</div>
-	<form class="register-form outer-top-xs" role="form" method="post" action="{{url('login/')}}">
-		<div class="form-group">
-		    <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
-		    <input type="email" name="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" >
-		</div>
-	  	<div class="form-group">
-		    <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
-		    <input type="password" name="password" class="form-control unicase-form-control text-input" id="exampleInputPassword1" >
-		</div>
-		<div class="radio outer-xs">
-		  	<button type="submit" class="btn-upper btn-lg btn btn-primary checkout-page-button">Login To Place Order(s)</button>
-		  	<a href="#" class="forgot-password pull-right">Forgot your Password?</a>
-		</div>
-	  	
-	</form>					
-</div>
-<!-- Sign-in -->
+		<div class="row">
+			
+			<div class="col-md-6">
+				<section class="section sign-in inner-right-xs">
+					<h2 class="bordered">Sign In</h2>
+					<p>Hello, Welcome to your account</p>
 
-<!-- create a new account -->
-<div class="col-md-6 col-sm-6 create-new-account">
-	<h4 class="checkout-subtitle">or create an account</h4>
-	<p class="text title-tag-line">Create your own GMANZO account.</p>
-        {{flash.output()}}
-	<form class="register-form outer-top-xs" role="form" action="{{url('registration/')}}" method="post">
-		<div class="form-group">
-	    	<label class="info-title" for="exampleInputEmail2">First Name <span>*</span></label>
-	    	<input type="text" name="firstname" class="form-control unicase-form-control text-input" id="exampleInputEmail2" >
-	  	</div>
-		<div class="form-group">
-	    	<label class="info-title" for="exampleInputEmail2">Last Name <span>*</span></label>
-	    	<input type="text" name="lastname" class="form-control unicase-form-control text-input" id="exampleInputEmail2" >
-	  	</div>
-		<div class="form-group">
-	    	<label class="info-title" for="exampleInputEmail2">Email Address <span>*</span></label>
-	    	<input type="email" name="email" class="form-control unicase-form-control text-input" id="exampleInputEmail2" >
-	  	</div>
-		<div class="form-group">
-                
-                        <label class="info-title" for="exampleInputEmail2">Show Password &nbsp; &nbsp;<span><input type="checkbox" id="speed" value="option1"> *</span></label>
-                        <input type="password" name="password" placeholder="Type your password" class="form-control unicase-form-control text-input input-lg" id="exampleInputEmail2" >
-	  	</div>
-		<div class="form-group">
-	    	<label class="info-title" for="exampleInputEmail2">Phone Number <span>*</span></label>
-	    	<input type="number" name="phonenumber" class="form-control unicase-form-control text-input" id="exampleInputEmail2" >
-	  	</div>
-		<div class="form-group">
-	    	<label class="info-title" for="exampleInputEmail2">Home Address <span>*</span></label>
-	    	<textarea name="address" class="form-control unicase-form-control text-input" id="exampleInputEmail2"></textarea>
-	  	</div>
-	  	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
-	</form>
-	
-</div>	
-<!-- create a new account -->			</div><!-- /.row -->
-		</div><!-- /.sigin-in-->
+					<div class="social-auth-buttons">
+						<div class="row">
+							<div class="col-md-6">
+								<button class="btn-block btn-lg btn btn-facebook"><i class="fa fa-facebook"></i> Sign In with Facebook</button>
+							</div>
+						</div>
+					</div>
 
-		<!-- ============================================== BRANDS CAROUSEL ============================================== -->
-<div id="brands-carousel" class="logo-slider wow fadeInUp">
+					<form role="form" class="login-form cf-style-1" method="post" action="{{url('login/')}}">
+						<div class="field-row">
+                                                    <label>Email</label>
+                                                    <input type="text" class="le-input input-lg" name="email">
+                                                </div><!-- /.field-row -->
 
-		<h3 class="section-title">SHOPS | VENDORS</h3>
-		<div class="logo-slider-inner">	
-			<div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
-				
-                            {% for keys, values in vendors %}
-				<div class="item">
-					<a href="{{url('stores/browse?task='~values['vendor_id']~'&goto=1&display='~values['display_name'])}}" class="image">
-						<img data-echo="{{url('assets/images/vendor/'~values['vendor_logo'])}}" src="{{url('assets/images/blank.gif')}}" alt="">
-					</a>	
-				</div><!--/.item-->
-                            {% endfor %}
-				
-		    </div><!-- /.owl-carousel #logo-slider -->
-		</div><!-- /.logo-slider-inner -->
-	
-</div><!-- /.logo-slider -->
-<!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->
-</div>
+                                                <div class="field-row">
+                                                    <label>Password</label>
+                                                    <input type="password" class="le-input input-lg" name="password">
+                                                </div><!-- /.field-row -->
+
+                                                <div class="field-row clearfix">
+                                                        <span class="pull-left">
+                                                                <label class="content-color"><input type="checkbox" class="le-checbox auto-width inline"> <span class="bold">Remember me</span></label>
+                                                        </span>
+                                                        <span class="pull-right">
+                                                                <a href="#" class="content-color bold">Forgotten Password ?</a>
+                                                        </span>
+                                                </div>
+
+                                                <div class="buttons-holder">
+                                                    <button type="submit" class="le-button huge"> Sign In</button>
+                                                </div><!-- /.buttons-holder -->
+					</form><!-- /.cf-style-1 -->
+
+				</section><!-- /.sign-in -->
+			</div><!-- /.col -->
+
+			<div class="col-md-6">
+				<section class="section register inner-left-xs">
+					<h2 class="bordered">Create New Account</h2>
+
+					<form role="form" class="register-form cf-style-1" action="{{url('registration/')}}" method="post">
+						<div class="field-row">
+                                                    <label>First Name</label>
+                                                    <input type="text" name="firstname" class="le-input input-lg" placeholder="Type your First Name">
+                                                </div><!-- /.field-row -->
+						<div class="field-row">
+                                                    <label>Last Name</label>
+                                                    <input type="text" name="lastname" class="le-input input-lg" placeholder="Type your lastname">
+                                                </div><!-- /.field-row -->
+						<div class="field-row">
+                                                    <label>Email</label>
+                                                    <input type="email" name="email" class="le-input input-lg" placeholder="Enter your email here">
+                                                </div><!-- /.field-row -->
+						<div class="field-row">
+                                                    <label>Password</label>
+                                                    <input type="password" name="password" class="le-input input-lg" placeholder="Type your password">
+                                                </div><!-- /.field-row -->
+						<div class="field-row">
+                                                    <label>Phone Number</label>
+                                                    <input type="text" name="phonenumber" class="le-input input-lg" placeholder="Input your Phone Number">
+                                                </div><!-- /.field-row -->
+                                                
+						<div class="field-row">
+                                                    <label>Phone Number</label>
+                                                    <textarea name="address" class="le-input form-control input-lg"></textarea>
+                                                </div><!-- /.field-row -->
+                                                
+
+                        <div class="buttons-holder">
+                            <button type="submit" class="le-button huge">Sign Up</button>
+                        </div><!-- /.buttons-holder -->
+					</form>
+
+					<h2 class="semi-bold">Sign up today and you'll be able to :</h2>
+
+					<ul class="list-unstyled list-benefits">
+						<li><i class="fa fa-check primary-color"></i> Speed your way through the checkout</li>
+						<li><i class="fa fa-check primary-color"></i> Track your orders easily</li>
+						<li><i class="fa fa-check primary-color"></i> Keep a record of all your purchases</li>
+					</ul>
+
+				</section><!-- /.register -->
+
+			</div><!-- /.col -->
+
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+</main><!-- /.authentication -->
+<!-- ========================================= MAIN : END ========================================= -->		
 {% endblock %}
 
 

@@ -44,36 +44,36 @@ class ProductController extends BaseController{
             }
             foreach($this->session->get('cart_item') as $key => $value){
                 $subTotal[]     = $value['qty'] * $value['price'];
-                $stringBuilt    .= '<div class="cart-item product-summary"><div class="row">
-                                <div class="col-xs-4">
-                                        <div class="image">
-                                                <a href="detail.html"><img src="'.$value['image'].'" class="img-responsive" alt=""></a>
-                                        </div>
+                $stringBuilt    .= '<li>
+                    <div class="basket-item">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4 no-margin text-center">
+                                <div class="thumb"  style="width:50%; border:none;">
+                                    <img alt="" src="'.$value['image'].'">
                                 </div>
-                                <div class="col-xs-7">
-
-                                        <h3 class="name"><a href="index.php?page-detail">'.ucwords($value['name']).'</a></h3>
-                                        <div class="price">₦'.number_format($value['price'] * $value['qty'], 2).'</div>
-                                        <div class="qty"><small>('.$value['qty'].' x '.$value['price'].')</small></div>
-                                </div>
-                                <div class="col-xs-1 action">
-                                        <a href="#" id="remove_qty" title="'.$value['id'].'"><i class="fa fa-times"></i></a>
-                                </div>
-                        </div></div><!-- /.cart-item -->
-                <div class="clearfix"></div>';
+                            </div>
+                            <div class="col-xs-8 col-sm-8 no-margin">
+                                <div class="title">'.ucwords($value['name']).'</div>
+                                <div class="price">$'.number_format($value['price'] * $value['qty'], 2).'<small>('.$value['qty'].' x '.$value['price'].')</small></div>
+                            </div>
+                        </div>
+                        <a class="close-btn" href="#" title="'.$value['id'].'"></a>
+                    </div>
+                </li>';
             }
             $stringBuilt    .= '<hr>
-                    <div class="clearfix cart-total">
-                            <div class="pull-right">
-
-                                            <span class="text">Total :</span><span class="price">₦'.number_format(array_sum($subTotal), 2).'</span>
-
+                <li class="checkout">
+                    <div class="basket-item">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6">
+                                <a href="http://localhost/peprice/checkout" class="le-button inverse">View cart</a>
                             </div>
-                            <div class="clearfix"></div>
-
-                            <a href="http://localhost/gmanzomulti/checkout" class="btn btn-upper btn-primary m-t-20"><strong>View Cart</strong></a>	
-                            <button type="button" id="empty" class="btn btn-upper btn-danger m-t-20"><strong>Empty</strong> <i class="fa fa-trash"></i> </button>	
-                    </div><!-- /.cart-total-->';
+                            <div class="col-xs-12 col-sm-6">
+                                <a href="http://localhost/peprice/process" class="le-button">Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>';
             echo !empty($stringBuilt) ? $stringBuilt : 'Empty Shopping Basket(s)';
             $this->view->disable();
             exit;
@@ -172,10 +172,17 @@ class ProductController extends BaseController{
         
     }
     
+    public function grandTotalAction(){
+        echo $this->__getSubTotal();
+        exit();
+    }
+    
     public function __getSubTotal(){
         $total  = array();
-        foreach($this->session->get('cart_item') as $keys=>$values){
-            $total[]    =           $values['qty'] * $values['price'];
+        if($this->session->has('cart_item')){
+            foreach($this->session->get('cart_item') as $keys=>$values){
+                $total[]    =           $values['qty'] * $values['price'];
+            }
         }
         return array_sum($total);
     }

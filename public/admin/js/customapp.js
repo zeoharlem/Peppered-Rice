@@ -196,19 +196,6 @@
             //"sDom": "t" // just show table, no other controls
         });
         
-        var tableCustomer = $('#getCustomers').DataTable({
-          responsive: true,
-          "processing": true,
-          "serverSide": true,
-          "ajax": "http://localhost/peprice/backend/order/getCustomers",
-          "columnDefs": [{
-                "targets": -1,
-                "data": null,
-                "defaultContent": "<div class='btn-group'><button type='button' class='btn btn-default view' data-target='#examplePositionSidebar' data-toggle='modal'>View</button></div>"
-            }]
-          //"sDom": "t" // just show table, no other controls
-        });
-        
         // initialize FixedHeader
         var offsetTop = 0;
         if ($('.site-navbar').length > 0) {

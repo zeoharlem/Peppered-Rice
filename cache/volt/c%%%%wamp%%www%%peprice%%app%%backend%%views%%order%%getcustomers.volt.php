@@ -900,6 +900,7 @@
     </div>
 
     <div class="page-content">
+    <?= $this->flash->output() ?>
       
 <div class="panel">
         <header class="panel-heading">
@@ -915,8 +916,7 @@
                 <th>Email(s)</th>
                 <th>Phone Number</th>
                 <th>Address</th>
-                <th>Transaction(s)</th>
-                <th>Date(s)</th>
+                
                 <th>Action(s)</th>
               </tr>
             </thead>
@@ -927,8 +927,7 @@
                 <th>Email(s)</th>
                 <th>Phone Number</th>
                 <th>Address</th>
-                <th>Transaction(s)</th>
-                <th>Date(s)</th>
+                
                 <th>Action(s)</th>
               </tr>
             </tfoot>

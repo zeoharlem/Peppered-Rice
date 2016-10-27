@@ -13,8 +13,6 @@
   <?= $this->assets->outputJs('jsHeaders') ?>
   
   
-    
-
   <script>
     Breakpoints();
   </script>
@@ -886,44 +884,74 @@
     </div>
 
     <div class="page-content">
+    <?= $this->flash->output() ?>
       
-<!-- Example With Stats -->
+    <!-- Panel Inline Form -->
+      <div class="panel">
+        <header class="panel-heading">
+          <h3 class="panel-title">
+            <strong>Create Sub-Category(ies)</strong>
+          </h3>
+        </header>
+        <div class="panel-body">
           <div class="example-wrap">
-            <div class="example example-well">
-              <div class="page-header">
-                <h1 class="page-title">Customer(s)</h1>
-                <ol class="breadcrumb">
-                  <li><a href="../index.html">Home</a></li>
-                  <li class="active">You are Here</li>
-                </ol>
-                <div class="page-header-actions">
-                  <div class="row no-space width-250 hidden-xs">
-                    <div class="col-xs-4">
-                      <div class="counter">
-                        <span class="counter-number font-weight-medium">8371</span>
-                        <div class="counter-label">Purchases</div>
-                      </div>
-                    </div>
-                    <div class="col-xs-4">
-                      <div class="counter">
-                        <span class="counter-number font-weight-medium">1024</span>
-                        <div class="counter-label">Members</div>
-                      </div>
-                    </div>
-                    <div class="col-xs-4">
-                      <div class="counter">
-                        <span class="counter-number font-weight-medium">$38,823</span>
-                        <div class="counter-label">Today Profit</div>
-                      </div>
-                    </div>
-                  </div>
+            <h4 class="example-title">Basic Category Form Without Label</h4>
+            <div class="example">
+              <form class="form-inline" action="<?= $this->url->get('backend/products/subcategory') ?>" method="post">
+                <div class="form-group">
+                  <label class="sr-only" for="inputUnlabelUsername">Category Name</label>
+                  <input type="text" required name="sub_category_name" class="form-control" id="inputUnlabelUsername" placeholder="Category Name" autocomplete="off" name="category_name" />
                 </div>
-              </div>
+
+                <div class="form-group">
+                  <label class="sr-only" for="inputUnlabelPassword">Name</label>
+                  <select class="form-control" name="category_id">
+                  <?php foreach ($categories as $keyCat => $keyVar) { ?>
+                    <option value="<?= $keyVar['category_id'] ?>"><?= $keyVar['category_name'] ?></option>
+                  <?php } ?>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-outline">Submit Category</button>
+                </div>
+              </form>
+            </div>
+            <p>&nbsp;</p>
+              <table class="table table-hover dataTable table-striped width-full" data-plugin="dataTable" id="exampleSubCategory">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Category(ies)</th>
+                <th>Action(s)</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Category(ies)</th>
+                <th>Action(s)</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <?php foreach ($subcategory as $keys => $values) { ?>
+              <tr>
+                <td><?= $keys + 1 ?></td>
+                <td><?= $values->sub_category_name ?></td>
+                <td><?= $values->category->category_name ?></td>
+                <td>$553,536</td>
+              </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+
             </div>
           </div>
-          <!-- End Example With Stats -->
-
-<?= $this->getContent() ?>
+        </div>
+      </div>
+      <!-- End Panel Inline Form -->
 
 
     </div>

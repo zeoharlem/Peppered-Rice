@@ -15,4 +15,7 @@ namespace Multiple\Backend\Models;
 
 class Sales extends BaseModel{
     //put your code here
+    public function initialize(){
+        $this->allowEmptyStringValues(array('delivery_time'));
+    }
 }

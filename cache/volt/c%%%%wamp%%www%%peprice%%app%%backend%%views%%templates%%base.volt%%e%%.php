@@ -12,7 +12,7 @@ a:5:{i:0;s:459:"<!DOCTYPE html>
   <?= $this->assets->outputCss('headers') ?>
   <?= $this->assets->outputJs('jsHeaders') ?>
   
-  ";s:4:"head";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:57:"C:\wamp\www\peprice\app/backend/views/templates/base.volt";s:4:"line";i:15;}}i:1;s:43051:"
+  ";s:4:"head";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:57:"C:\wamp\www\peprice\app/backend/views/templates/base.volt";s:4:"line";i:15;}}i:1;s:43085:"
   <script>
     Breakpoints();
   </script>
@@ -884,9 +884,10 @@ a:5:{i:0;s:459:"<!DOCTYPE html>
     </div>
 
     <div class="page-content">
+    <?= $this->flash->output() ?>
       ";s:7:"content";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:16:"
         
-      ";s:4:"file";s:57:"C:\wamp\www\peprice\app/backend/views/templates/base.volt";s:4:"line";i:889;}}i:2;s:580:"
+      ";s:4:"file";s:57:"C:\wamp\www\peprice\app/backend/views/templates/base.volt";s:4:"line";i:890;}}i:2;s:580:"
     </div>
   </div>
   <!-- End Page -->

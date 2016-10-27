@@ -890,6 +890,7 @@ a.btn{
     </div>
 
     <div class="page-content">
+    <?= $this->flash->output() ?>
       
 <!-- Panel -->
       <div class="panel">
@@ -945,7 +946,7 @@ a.btn{
                     </table>
                 </form>
               </div>
-              <a href="<?= $this->url->get('backend/order/basket') ?>" class="btn btn-primary">Proceed To Order</a>
+              <a href="<?= $this->url->get('backend/order/getCustomers') ?>" class="btn btn-primary">Proceed To Order</a>
               </div>
               <!-- End Example Basic -->
             </div>

@@ -884,6 +884,7 @@
     </div>
 
     <div class="page-content">
+    <?= $this->flash->output() ?>
       
 <!-- Inline -->
   <style>

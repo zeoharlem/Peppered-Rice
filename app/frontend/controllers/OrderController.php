@@ -22,7 +22,8 @@ use Phalcon\Mvc\Model\Transaction\Failed;
 class OrderController extends BaseController{
     //put your code here
     private $_track;
-    const ACESS_TOKEN = 'e824c4f685bca92ed63ffd522a855f52';
+    //const ACESS_TOKEN = 'e824c4f685bca92ed63ffd522a855f52';
+    const ACESS_TOKEN = 'df6bb34d1342938032946e88cce350dcce17d58c2267a0c74474b933be45823a';
     const PARAMETER_MISSING = 100, ACTION_COMPLETE = 200, SHOW_ERROR_MESSAGE = 201;
     const INVALID_ACCESS_TOKEN = 101, ERROR_IN_EXECUTION = 404;
     
@@ -46,9 +47,7 @@ class OrderController extends BaseController{
         $dbError    = '';
         $tracker    = TRUE;
         $response   = new \Phalcon\Http\Response();
-        //var_dump($this->__getShopsTask('addedby')); exit;
         $track_id   = $this->request->getPost('trans_id');
-        //var_dump($this->request->getPost());        exit();
         
         if($this->request->isPost() && $this->request->isAjax()){
             if($this->session->has('cart_item') && !empty($_SESSION['cart_item'])){
@@ -59,14 +58,13 @@ class OrderController extends BaseController{
                     $order->setTransaction($transaction);
                     $default        = date('Y-m-d');
                     $this->__buildRequest(array(
-                        'trans_id'  => $track_id,
-                        'vendor_id' => $this->session->get('v_id')));
+                        'trans_id'  => $track_id, 'vendor_id' => 1));
                     
                     //Setup the order insert which is the post field
                     if($order->save($this->request->getPost()) == FALSE){
                         $tracker    = FALSE;
                         $transaction->rollback("Order(s) cannot be placed");
-                        $dbError    = $transaction->getMessages();
+                        $dbError    = $order->getMessages();
                     }
                     
                     //Setup the sales insert which is session.get(cart_item);
@@ -74,44 +72,108 @@ class OrderController extends BaseController{
                     $sales->setTransaction($transaction);
                     $this->__taskSessionAdd($track_id);
                     $vendorSales    = json_encode($this->session->get('cart_item'));
-                    $hourLater      = strtotime($_POST['delivery_time']) + 60 * 60; 
+                    $hourLater      = strtotime(date('Y-m-d H:i:s')) + 60 * 60; 
                     $startSales     = array(
                         'trans_id'      => $track_id,
-                        'date_of_order' => $this->request->getPost('date_of_order'),
+                        'date_of_order' => date('Y-m-d H:i:s'),
                         'item_sold'     => json_encode($this->session->get('cart_item')),
-                        'status'        => 'pending',
-                        'agent'         => '',
                         'delivery_time' => date('Y-m-d H:i:s', $hourLater),
-                        'vendor_id'     => $this->session->get('v_id')
+                        'status'        => 'pending',
+                        'agent'         => 17769,
+                        'vendor_id'     => 1
                     );
                     
                     if($sales->save($startSales) == FALSE){
                         $tracker    = FALSE;
-                        $transaction->rollback("Sale(s) cannot be created");
+                        $transaction->rollback("Sale(s) cannot be performed");
                         $dbError    = $transaction->getMessages();
                     }
                     $transaction->commit();
                 } catch (Failed $exc) {
+                    $tracker    = false;
                     $this->flash->error('error: '. $exc->getMessage());
                     $response->setJsonContent(array(
                         'status'    => $tracker,
                         'message'   => $exc->getMessage(),
-                        'dbaseerr'  => $transaction->getMessages()));
-                    
-                    //var_dump($order->getMessages());
+                        'dbaseerr'  => $order->getMessages()));
                     $exc->getTraceAsString();
                 }
             }
         }
         if($tracker){
+            $tasking        = array(
+                'team_id'   => 9896,
+                'agent_id'  => 17769,
+                //'agent_id'  => $track_id['fleet_id'],
+            );
+            $customer       = $this->request->getPost();
+            $customerRes    = $this->__createTask($tasking, $customer);
+            
             $response->setJsonContent(array(
                 'status'    => $tracker,
-                'data'      => $this->request->getPost()
+                'data'      => $this->request->getPost(),
+                'tookan'    => $customerRes
             ));
         }
         $response->setHeader('Content-Type', 'application/json');
         $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
         $response->send();
+    }
+    
+    /**
+     * using the API url v2
+     * $customer variable must be array
+     * array(email,lastname,phonenumber,address);
+     * @param type $team_id
+     * @param array $customer
+     * @return type
+     */
+    public function __createTask($task_id, array $customer){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://api.tookanapp.com/v2/create_task");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "{
+            \"api_key\": \"".self::ACESS_TOKEN."\",
+            \"order_id\": \"".$customer['trans_id']."\",
+            \"team_id\": \"".$task_id['team_id']."\",
+            \"auto_assignment\": \"0\",
+            \"job_description\": \"Delivery\",
+            \"customer_email\": \"".$customer['email']."\",
+            \"customer_username\": \"".$customer['lastname']." ".$customer['firstname']."\",
+            \"customer_phone\": \"".$customer['phonenumber']."\",
+            \"customer_address\": \"".$customer['address']."\",
+            \"latitude\": \"\",
+            \"longitude\": \"\",
+            \"job_delivery_datetime\": \"".date('m/d/Y H:i:s')." \",
+            \"has_pickup\": \"0\",
+            \"has_delivery\": \"1\",
+            \"layout_type\": \"0\",
+            \"tracking_link\": 1,
+            \"timezone\": \"+1\",
+            \"custom_field_template\": \"\",
+            \"meta_data\": [
+              {
+                \"label\": \"\",
+                \"data\": \"\"
+              }
+            ],
+            \"fleet_id\": \"".$task_id['agent_id']."\",
+            \"ref_images\": [
+              \"http://tookanapp.com/wp-content/uploads/2015/11/logo_dark.png\",
+              \"http://tookanapp.com/wp-content/uploads/2015/11/logo_dark.png\"
+            ],
+            \"notify\": 1,
+            \"tags\": \"\",
+            \"geofence\": 0
+        }");
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            "Content-Type: application/json"
+        ));
+        $response   = curl_exec($ch);
+        $returns    = json_decode($response, TRUE);
+        curl_close($ch); return $returns;
     }
     
     public function fixAssignTeamAction(){

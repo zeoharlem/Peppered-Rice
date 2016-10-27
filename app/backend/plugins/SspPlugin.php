@@ -62,7 +62,7 @@ class SspPlugin extends Plugin {
 	/**
 	 * Database connection
 	 *
-	 * Obtain an PHP PDO connection from a connection details array
+	 * Obtain an PHP \PDO connection from a connection details array
 	 *
 	 *  @param  array $conn SQL connection details. The array should have
 	 *    the following properties
@@ -70,7 +70,7 @@ class SspPlugin extends Plugin {
 	 *     * db   - database name
 	 *     * user - user name
 	 *     * pass - user password
-	 *  @return resource PDO connection
+	 *  @return resource \PDO connection
 	 */
 	static function db ( $conn )
 	{
@@ -155,7 +155,7 @@ class SspPlugin extends Plugin {
 	 *
 	 *  @param  array $request Data sent to server by DataTables
 	 *  @param  array $columns Column information array
-	 *  @param  array $bindings Array of values for PDO bindings, used in the
+	 *  @param  array $bindings Array of values for \PDO bindings, used in the
 	 *    sql_exec() function
 	 *  @return string SQL where clause
 	 */
@@ -174,7 +174,7 @@ class SspPlugin extends Plugin {
 				$column = $columns[ $columnIdx ];
 
 				if ( $requestColumn['searchable'] == 'true' ) {
-					$binding = self::bind( $bindings, '%'.$str.'%', PDO::PARAM_STR );
+					$binding = self::bind( $bindings, '%'.$str.'%', \PDO::PARAM_STR );
 					$globalSearch[] = "`".$column['db']."` LIKE ".$binding;
 				}
 			}
@@ -191,7 +191,7 @@ class SspPlugin extends Plugin {
 
 				if ( $requestColumn['searchable'] == 'true' &&
 				 $str != '' ) {
-					$binding = self::bind( $bindings, '%'.$str.'%', PDO::PARAM_STR );
+					$binding = self::bind( $bindings, '%'.$str.'%', \PDO::PARAM_STR );
 					$columnSearch[] = "`".$column['db']."` LIKE ".$binding;
 				}
 			}
@@ -226,7 +226,7 @@ class SspPlugin extends Plugin {
 	 * sending back to the client.
 	 *
 	 *  @param  array $request Data sent to server by DataTables
-	 *  @param  array|PDO $conn PDO connection resource or connection parameters array
+	 *  @param  array|\PDO $conn \PDO connection resource or connection parameters array
 	 *  @param  string $table SQL table to query
 	 *  @param  string $primaryKey Primary key of the table
 	 *  @param  array $columns Column information array
@@ -294,7 +294,7 @@ class SspPlugin extends Plugin {
 	 *   particular records (for example, restricting by a login id).
 	 *
 	 *  @param  array $request Data sent to server by DataTables
-	 *  @param  array|PDO $conn PDO connection resource or connection parameters array
+	 *  @param  array|\PDO $conn \PDO connection resource or connection parameters array
 	 *  @param  string $table SQL table to query
 	 *  @param  string $primaryKey Primary key of the table
 	 *  @param  array $columns Column information array
@@ -392,7 +392,7 @@ class SspPlugin extends Plugin {
 				array( \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION )
 			);
 		}
-		catch (PDOException $e) {
+		catch (\PDOException $e) {
 			self::fatal(
 				"An error occurred while connecting to the database. ".
 				"The error reported by the server was: ".$e->getMessage()
@@ -407,7 +407,7 @@ class SspPlugin extends Plugin {
 	 * Execute an SQL query on the database
 	 *
 	 * @param  resource $db  Database handler
-	 * @param  array    $bindings Array of PDO binding values from bind() to be
+	 * @param  array    $bindings Array of \PDO binding values from bind() to be
 	 *   used for safely escaping strings. Note that this can be given as the
 	 *   SQL query string if no bindings are required.
 	 * @param  string   $sql SQL query to execute.
@@ -435,7 +435,7 @@ class SspPlugin extends Plugin {
 		try {
 			$stmt->execute();
 		}
-		catch (PDOException $e) {
+		catch (\PDOException $e) {
 			self::fatal( "An SQL error occurred: ".$e->getMessage() );
 		}
 
@@ -466,12 +466,12 @@ class SspPlugin extends Plugin {
 	}
 
 	/**
-	 * Create a PDO binding key which can be used for escaping variables safely
+	 * Create a \PDO binding key which can be used for escaping variables safely
 	 * when executing a query with sql_exec()
 	 *
 	 * @param  array &$a    Array of bindings
 	 * @param  *      $val  Value to bind
-	 * @param  int    $type PDO field type
+	 * @param  int    $type \PDO field type
 	 * @return string       Bound key to be used in the SQL where this parameter
 	 *   would be used.
 	 */

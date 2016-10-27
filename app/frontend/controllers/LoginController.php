@@ -27,7 +27,7 @@ class LoginController extends BaseController{
                     $this->__registerSession($register);
                     $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
                     $this->flash->success('You are welcome! '.$register->firstname);
-                    $this->response->redirect('order/?token='.uniqid());
+                    $this->response->redirect('dashboard/?token='.uniqid());
                     return;
                 }
             }

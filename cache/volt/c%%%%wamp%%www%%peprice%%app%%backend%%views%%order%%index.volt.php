@@ -900,6 +900,7 @@
     </div>
 
     <div class="page-content">
+    <?= $this->flash->output() ?>
       
 <div class="panel">
         <header class="panel-heading">

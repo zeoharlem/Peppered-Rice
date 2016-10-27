@@ -26,7 +26,6 @@ class Permission extends \Phalcon\Mvc\User\Plugin{
     protected $_publicResources = array(
         'index'     => ['*'],
         'stores'    => ['*'],
-        'setlocal'  => ['*'],
         'login'     => ['*'],
         'checkout'  => ['*'],
         'product'   => ['*'],
@@ -37,7 +36,8 @@ class Permission extends \Phalcon\Mvc\User\Plugin{
     protected $_userResources = array(
         'dashboard'     => ['*'],
         'order'         => ['*'],
-        'products'      => ['*']
+        'agents'        => ['*'],
+        'password'      => ['*']
     );
     
     protected $_adminResources = array(

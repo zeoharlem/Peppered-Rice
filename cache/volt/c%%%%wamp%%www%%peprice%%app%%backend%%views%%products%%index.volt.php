@@ -492,13 +492,13 @@
               </a>
               <ul class="site-menu-sub">
                 <li class="site-menu-item">
-                  <a data-slug="layout-grids" href="#" class="animsition-link">
+                  <a data-slug="layout-grids" href="<?= $this->url->get('backend/customer') ?>" class="animsition-link">
                     <i aria-hidden="true" class="site-menu-icon "></i>
                     <span class="site-menu-title">Registration Scaffolding</span>
                   </a>
                 </li>
                 <li class="site-menu-item">
-                  <a data-slug="layout-headers" href="<?= $this->url->get('backend/customer') ?>" class="animsition-link">
+                  <a data-slug="layout-headers" href="<?= $this->url->get('backend/customer/show') ?>" class="animsition-link">
                     <i aria-hidden="true" class="site-menu-icon "></i>
                     <span class="site-menu-title">Manage Customer(s)</span>
                   </a>
@@ -884,6 +884,7 @@
     </div>
 
     <div class="page-content">
+    <?= $this->flash->output() ?>
       
 <!-- Panel Basic -->
       <div class="panel">

@@ -31,7 +31,7 @@ class BaseController extends Controller{
                 ->addCss('http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800', true);
         
         $this->view->setVar('url', $this->__locateString());
-        
+        $this->view->setVar('category', \Multiple\Frontend\Models\Category::find()->toArray());
         //Create | add the javascript script link
         $this->assets->collection('jsHeaders')
                 ->addJs('assets/vendor/modernizr/modernizr.js')

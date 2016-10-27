@@ -93,7 +93,7 @@ class OrderController extends BaseController{
                 array('db' => 'email', 'dt' => 2),
                 array('db' => 'phonenumber', 'dt' => 3),
                 array('db' => 'address', 'dt' => 4),
-                array('db' => 'register_id', 'dt' => 7),
+                array('db' => 'register_id', 'dt' => 5),
             );
             $response->setJsonContent(
                     \Multiple\Backend\Plugins\SspPlugin::simple(
@@ -253,7 +253,7 @@ class OrderController extends BaseController{
         }
     }
     
-    public function basketAction(){
+    public function basketAction($id=''){
         $this->assets->collection('headers')->addCss(
                 'admin/vendor/bootstrap-sweetalert/sweet-alert.css');
         $this->assets->collection('footers')->addJs(
@@ -265,6 +265,21 @@ class OrderController extends BaseController{
         }
         else{
             $this->view->setVar('errors', $this->__getAgents());
+        }
+        if(!empty($id) || !is_null($id)){
+            $customer   = \Multiple\Backend\Models\Register::find(
+                    'register_id='.$id)->getLast();
+            if($customer != FALSE){
+                $this->view->setVar('customer', $customer);
+                $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
+                return;
+            }
+            else{
+                $this->flash->error('Customer Not Found');
+                $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
+                $this->response->redirect('order/getCustomers?task=error');
+                return;
+            }
         }
         $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
         return;
@@ -421,60 +436,141 @@ class OrderController extends BaseController{
         $dbError    = '';
         $tracker    = TRUE;
         $response   = new \Phalcon\Http\Response();
-        $track_id   = $this->request->getPost('trans_id');
-        try{
-            $this->__buildRequest(array(
-                        'trans_id'  => $track_id,
-                        'vendor_id' => $this->session->get('v_id')));
-            //start the order transaction
-            $transManager   = new \Phalcon\Mvc\Model\Transaction\Manager();
-            $transaction    = $transManager->get();
-            $orderNow       = new \Multiple\Backend\Models\Order();
-            $orderNow->setTransaction($transaction);
-            if(!$orderNow->save($this->request->getPost())){
-                $tracker    = FALSE;
-                $transaction->rollback('Order Cannot be Placed');
-                $dbError    = $transaction->getMessages();
-            }
-            $sales          = new \Multiple\Backend\Models\Sales();
-            $sales->setTransaction($transaction);
-            $startSales     = array(
-                        'trans_id'      => $track_id,
-                        'date_of_order' => $this->request->getPost('date_of_order'),
-                        'item_sold'     => json_encode($this->session->get('cart_item')),
-                        'status'        => 'pending',
-                        'agent'         => '',
-                        'delivery_time' => date('Y-m-d H:i:s'),
-                        'vendor_id'     => $this->session->get('v_id')
-                    );
-            
-            $this->__setKeyTask($track_id);
-            $vendor = json_encode($this->session->get('cart_item'));
-            
-            if(!$sales->save($startSales)){
-                $transaction->rollback('Unable to make sales');
-            }
-            $transaction->commit();
-        } catch (\Phalcon\Mvc\Model\Transaction\Failed $ex) {
-            $this->flash->error('error: '. $exc->getMessage());
-            $response->setJsonContent(array(
-                'status'    => $tracker,
-                'message'   => $exc->getMessage(),
-                'dbaseerr'  => $transaction->getMessages()));
+        //$track_id   = $this->request->getPost('order');
+        parse_str($this->request->getPost('order'), $track_id);
+        if($this->request->isAjax() && $this->request->isPost()){
+            try{
+                $this->__buildRequest(array(
+                    'vendor_id' => $this->session->get('auth')['codename']));
+                
+                $track_id['vendor_id']  = $this->session->get('auth')['codename'];
+                $transManager   = new \Phalcon\Mvc\Model\Transaction\Manager();
+                $transaction    = $transManager->get();
+                $orderNow       = new \Multiple\Backend\Models\Order();
+                $orderNow->setTransaction($transaction);
+                if(!$orderNow->save($track_id)){
+                    $tracker    = FALSE;
+                    $transaction->rollback('Order Cannot be Placed');
+                    $dbError    = $transaction->getMessages();
+                }
+                
+                $sales          = new \Multiple\Backend\Models\Sales();
+                $sales->setTransaction($transaction);
+                $startSales     = array(
+                            'date_of_order' => date('Y-m-d H:i:s'),
+                            'trans_id'      => $track_id['trans_id'],
+                            'vendor_id'     => $this->session->get('auth')['codename'],
+                            'item_sold'     => json_encode($this->session->get('cart_item')),
+                            'agent'         => $track_id['fleet_id'],
+                            'delivery_time' => '',
+                            'status'        => 'processed',
+                        );
 
-            //var_dump($order->getMessages());
-            $exc->getTraceAsString();
+                $this->__setKeyTask($track_id['trans_id']);
+                $vendor = json_encode($this->session->get('cart_item'));
+
+                if(!$sales->save($startSales)){
+                    //var_dump($sales->getMessages()); exit;
+                    $transaction->rollback('Unable to make sales');
+                }
+                $transaction->commit();
+            } catch (\Phalcon\Mvc\Model\Transaction\Failed $exc) {
+                $tracker    = false;
+                $this->flash->error('error: '. $exc->getMessage());
+                $response->setJsonContent(array(
+                    'status'    => $tracker,
+                    'message'   => $exc->getMessage(),
+                    'dbaseerr'  => $transaction->getMessages()));
+
+                //var_dump($order->getMessages());
+                $exc->getTraceAsString();
+            }
+            if($tracker){
+                $tasking         = array(
+                    'team_id'   => 9896,
+                    'agent_id'  => $track_id['fleet_id'],
+                );
+                $customer       = $track_id;
+                $customerRes    = $this->__createTask($tasking, $customer);
+                $response->setJsonContent(array(
+                    'status'    => $tracker,
+                    'posted'    => $track_id,
+                    'data'      => $customerRes
+                ));
+            }
+            $response->setHeader('Content-Type', 'application/json');
+            $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
+            $response->send();
+            return;
         }
-        if($tracker){
-            $response->setJsonContent(array(
-                'status'    => $tracker,
-                'data'      => $this->request->getPost()
-            ));
+        else{
+            $this->response->redirect('order/?task='.
+                    $this->component->helper->makeRandomString(15));
+            $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
+            return;
         }
-        $response->setHeader('Content-Type', 'application/json');
-        $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
-        $response->send();
+    }
+    
+    public function orderTrackerAction(){
+        $config = array(
+            "host"  => "localhost",
+            "user"  => "root",
+            "pass"  => "",
+            "db"    => "bucketmanager"
+        );
+        $response   = new \Phalcon\Http\Response();
+        $primaryKey = 'j_id'; $table = 'job';
+        if($this->request->isGet() && $this->request->isAjax()){
+            $columns    = array(
+                array('db' => 'job_id', 'dt' => 0),
+                array('db' => 'trans_id', 'dt' => 1),
+                array('db' => 'job_hash', 'dt' => 2),
+                array('db' => 'customer_name', 'dt' => 3),
+                array('db' => 'customer_address', 'dt' => 4),
+                array('db' => 'tracking_link', 'dt' => 5),
+                array('db' => 'job_token', 'dt' => 6),
+                array('db' => 'j_id', 'dt' => 7),
+            );
+            $response->setJsonContent(
+                    \Multiple\Backend\Plugins\SspPlugin::simple(
+                            $_GET, $config, $table, $primaryKey, $columns));
+            $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
+            $response->setHeader('Content-Type', 'application/json');
+            $response->send();
+            exit();
+        }
+        $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
         return;
+    }
+    
+    public function jobAction(){
+        $response   = new \Phalcon\Http\Response();
+        if($this->request->isAjax() && $this->request->isPost()){
+            $jobTrack   = array(
+                'trans_id'          => $this->request->getPost('trans_id'),
+                'job_id'            => $this->request->getPost('data')['job_id'],
+                'job_hash'          => $this->request->getPost('data')['job_hash'],
+                'customer_name'     => $this->request->getPost('data')['customer_name'],
+                'customer_address'  => $this->request->getPost('data')['customer_address'],
+                'tracking_link'     => $this->request->getPost('data')['tracking_link'],
+                'job_token'         => $this->request->getPost('data')['job_token'],
+            );
+            $job    = new \Multiple\Backend\Models\Job();
+            if($job->create($jobTrack) != false){
+                $response->setJsonContent(array(
+                    'status'    => 'OK'
+                ));
+            }
+            else{
+                $response->setJsonContent(array(
+                    'status'    => 'ERROR'
+                ));
+            }
+            $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
+            $response->setHeader('Content-Type', 'application/json');
+            $response->send();
+            exit();
+        }
     }
     
     private function __getAgents(){

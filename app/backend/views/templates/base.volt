@@ -884,6 +884,7 @@
     </div>
 
     <div class="page-content">
+    {{flash.output()}}
       {% block content %}
         
       {% endblock %}

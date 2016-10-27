@@ -17,33 +17,30 @@ use Multiple\Frontend\Models\Vendor,
     Multiple\Frontend\Models\Category,
     Multiple\Frontend\Models\Products;
 
+use Multiple\Frontend\Models\Admin;
+
 class IndexController extends BaseController{
     //put your code here
     public function initialize() {
         parent::initialize();
         \Phalcon\Tag::appendTitle('Welcome');
-        $this->view->setVar('vendors', $this->__getVendor(10));
+        $this->view->setVar('agents', $this->__getAgents(10));
     }
     
     public function indexAction(){
         $category   = Category::find()->toArray();
-        $available  = Category::find(array('limit'=>6))->toArray();
-        $keysflow   = array('electronics','automobile','women','men','kids','digits');
-        //shuffle($keysflow);
-        //Products::__convert('{"type":"vendor","id":"1"}');
+        $available  = Products::find(array(
+            'category'=>2,'limit'=>8,'order' => 'RAND()'))->toArray();
         $this->view->setVars(array(
-            'keysflow'      => $keysflow,
             'category'      => $category,
             'available'     => $available,
             'helper'        => $this->component->helper,
-            'electronics'   => Products::find('category=1')->toArray(),
-            'automobile'    => Products::find('category=2')->toArray(),
-            'women'         => Products::find('category=3')->toArray(),
-            'men'           => Products::find('category=4')->toArray(),
-            'kids'          => Products::find('category=5')->toArray(),
-            'digits'        => Products::find('category=6')->toArray(),
-            'products'      => Products::find(array('limit'=>20,
+            'products'      => Products::find(array('limit'=>8,
                 'order' => 'RAND()'))->toArray(),
+            'package'       => Products::find(array(
+                'sub_category_id'=>1,'limit'=>3,'order' => 'RAND()')),
+            'singles'       => Products::find(array(
+                'sub_category_id'=>3,'order' => 'RAND()'))->getFirst()
         ));
         $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_LAYOUT);
         return;
@@ -57,9 +54,9 @@ class IndexController extends BaseController{
         
     }
     
-    private function __getVendor($limit=''){
-        return !empty($limit) ? Vendor::find(array(
-            'limit' => $limit, 'order' => 'RAND()'))->toArray() :
-            Vendor::find(array('order' => 'RAND()'))->toArray();
+    private function __getAgents($limit=''){
+        return !empty($limit) ? Admin::find(array(
+            'limit' => $limit, 'order' => 'RAND()'))->toArray() : 
+            Admin::find(array('order' => 'RAND()'))->toArray();
     }
 }

@@ -1,4 +1,4 @@
-a:5:{i:0;s:605:"
+a:5:{i:0;s:552:"
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,14 +9,14 @@ a:5:{i:0;s:605:"
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <meta name="keywords" content="MediaCenter, Template, eCommerce">
+        <meta name="keywords" content="eCommerce">
         <meta name="robots" content="all">
 
-        <title>MediaCenter - Responsive eCommerce Template</title>
+        <title>Peppered Rice</title>
 
         <?= $this->assets->outputCss('headers') ?>
             
-        ";s:4:"head";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:58:"C:\wamp\www\peprice\app/frontend/views/templates/base.volt";s:4:"line";i:19;}}i:1;s:16333:"
+        ";s:4:"head";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:58:"C:\wamp\www\peprice\app/frontend/views/templates/base.volt";s:4:"line";i:19;}}i:1;s:8857:"
         
 
 <body>
@@ -25,49 +25,15 @@ a:5:{i:0;s:605:"
     <div class="container">
         <div class="col-xs-12 col-sm-6 no-margin">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#change-colors">Change Colors</a>
-
-                    <ul class="dropdown-menu" role="menu">
-                        <li role="presentation"><a role="menuitem" class="changecolor green-text" tabindex="-1" href="#" title="Green color">Green</a></li>
-                        <li role="presentation"><a role="menuitem" class="changecolor blue-text" tabindex="-1" href="#" title="Blue color">Blue</a></li>
-                        <li role="presentation"><a role="menuitem" class="changecolor red-text" tabindex="-1" href="#" title="Red color">Red</a></li>
-                        <li role="presentation"><a role="menuitem" class="changecolor orange-text" tabindex="-1" href="#" title="Orange color">Orange</a></li>
-                        <li role="presentation"><a role="menuitem" class="changecolor navy-text" tabindex="-1" href="#" title="Navy color">Navy</a></li>
-                        <li role="presentation"><a role="menuitem" class="changecolor dark-green-text" tabindex="-1" href="#" title="Darkgreen color">Dark Green</a></li>
-                    </ul>
-                </li>
-                <li><a href="index.php?page=blog">Blog</a></li>
+                <li><a href="index.php?page=blog">News</a></li>
                 <li><a href="index.php?page=faq">FAQ</a></li>
                 <li><a href="index.php?page=contact">Contact</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#pages">Pages</a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index-2.html">Home Alt</a></li>
-                        <li><a href="category-grid.html">Category - Grid/List</a></li>
-                        <li><a href="category-grid-2.html">Category 2 - Grid/List</a></li>
-                        <li><a href="single-product.html">Single Product</a></li>
-                        <li><a href="single-product-sidebar.html">Single Product with Sidebar</a></li>
-                        <li><a href="cart.html">Shopping Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="blog-fullwidth.html">Blog Full Width</a></li>
-                        <li><a href="blog-post.html">Blog Post</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="terms.html">Terms &amp; Conditions</a></li>
-                        <li><a href="authentication.html">Login/Register</a></li>
-                    </ul>
-                </li>
             </ul>
         </div><!-- /.col -->
 
         <div class="col-xs-12 col-sm-6 no-margin">
             <ul class="right">
-                <li class="dropdown">
+            <!--    <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#change-language">English</a>
                     <ul class="dropdown-menu" role="menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Turkish</a></li>
@@ -85,6 +51,7 @@ a:5:{i:0;s:605:"
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Dollar (US)</a></li>
                     </ul>
                 </li>
+                -->
                 <li><a href="authentication">Register</a></li>
                 <li><a href="authentication">Login</a></li>
             </ul>
@@ -98,7 +65,7 @@ a:5:{i:0;s:605:"
         <div class="col-xs-12 col-md-3 logo-holder">
             <!-- ============================================================= LOGO ============================================================= -->
 <div class="logo">
-    <a href="#">
+    <a href="<?= $this->url->get('index?task=simple&log=version') ?>">
         <img alt="logo" src="<?= $this->url->get('assets/images/logo.png') ?>" />
     </a>
 </div><!-- /.logo -->
@@ -122,13 +89,10 @@ a:5:{i:0;s:605:"
             <ul class="categories-filter animate-dropdown">
                 <li class="dropdown">
 
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="category-grid.html">all categories</a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">all categories</a>
 
                     <ul class="dropdown-menu" role="menu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">laptops</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">tv &amp; audio</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">gadgets</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">cameras</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="<?= $this->url->get('category/?cat=') ?>">laptops</a></li>
 
                     </ul>
                 </li>
@@ -144,12 +108,12 @@ a:5:{i:0;s:605:"
         <div class="col-xs-12 col-md-3 top-cart-row no-margin">
             <div class="top-cart-row-container">
     <div class="wishlist-compare-holder">
-        <div class="wishlist ">
+        <!--<div class="wishlist ">
             <a href="#"><i class="fa fa-heart"></i> wishlist <span class="value">(21)</span> </a>
         </div>
         <div class="compare">
             <a href="#"><i class="fa fa-exchange"></i> compare <span class="value">(2)</span> </a>
-        </div>
+        </div>-->
     </div>
 
     <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
@@ -157,86 +121,22 @@ a:5:{i:0;s:605:"
         
         <div class="basket">
             
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="basketMouth">
                 <div class="basket-item-count">
-                    <span class="count">3</span>
-                    <img src="assets/images/icon-cart.png" alt="">
+                    <span class="count">0</span>
+                    <img src="<?= $this->url->get('assets/images/icon-cart.png') ?>" alt="">
                 </div>
 
                 <div class="total-price-basket"> 
                     <span class="lbl">your cart:</span>
                     <span class="total-price">
-                        <span class="sign">$</span><span class="value">3219,00</span>
+                        <span class="sign">$</span><span class="value">0</span>
                     </span>
                 </div>
             </a>
 
-            <ul class="dropdown-menu">
-                <li>
-                    <div class="basket-item">
-                        <div class="row">
-                            <div class="col-xs-4 col-sm-4 no-margin text-center">
-                                <div class="thumb">
-                                    <img alt="" src="assets/images/products/product-small-01.jpg">
-                                </div>
-                            </div>
-                            <div class="col-xs-8 col-sm-8 no-margin">
-                                <div class="title">Blueberry</div>
-                                <div class="price">$270.00</div>
-                            </div>
-                        </div>
-                        <a class="close-btn" href="#"></a>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="basket-item">
-                        <div class="row">
-                            <div class="col-xs-4 col-sm-4 no-margin text-center">
-                                <div class="thumb">
-                                    <img alt="" src="assets/images/products/product-small-01.jpg">
-                                </div>
-                            </div>
-                            <div class="col-xs-8 col-sm-8 no-margin">
-                                <div class="title">Blueberry</div>
-                                <div class="price">$270.00</div>
-                            </div>
-                        </div>
-                        <a class="close-btn" href="#"></a>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="basket-item">
-                        <div class="row">
-                            <div class="col-xs-4 col-sm-4 no-margin text-center">
-                                <div class="thumb">
-                                    <img alt="" src="assets/images/products/product-small-01.jpg">
-                                </div>
-                            </div>
-                            <div class="col-xs-8 col-sm-8 no-margin">
-                                <div class="title">Blueberry</div>
-                                <div class="price">$270.00</div>
-                            </div>
-                        </div>
-                        <a class="close-btn" href="#"></a>
-                    </div>
-                </li>
-
-
-                <li class="checkout">
-                    <div class="basket-item">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6">
-                                <a href="cart" class="le-button inverse">View cart</a>
-                            </div>
-                            <div class="col-xs-12 col-sm-6">
-                                <a href="checkout" class="le-button">Checkout</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
+            <ul class="dropdown-menu menu-drop" id="mycart">
+                
             </ul>
         </div><!-- /.basket -->
     </div><!-- /.top-cart-holder -->
@@ -264,41 +164,12 @@ a:5:{i:0;s:605:"
                         <ul class="dropdown-menu">
                             <li><div class="yamm-content">
     <div class="row">
-       <div class="col-xs-12 col-sm-4">
-            <h2>Laptops &amp; Notebooks</h2>
+       <div class="col-xs-12 col-sm-12">
+            <h2>Food &AMP; Packages</h2>
             <ul>
-                <li><a href="#">Power Supplies Power</a></li>
-                <li><a href="#">Power Supply Testers Sound </a></li>
-                <li><a href="#">Sound Cards (Internal)</a></li>
-                <li><a href="#">Video Capture &amp; TV Tuner Cards</a></li>
-                <li><a href="#">Other</a></li>
-            </ul>
-        </div><!-- /.col -->
-
-        <div class="col-xs-12 col-sm-4">
-            <h2>Computers &amp; Laptops</h2>
-            <ul>
-                <li><a href="#">Computer Cases &amp; Accessories</a></li>
-                <li><a href="#">CPUs, Processors</a></li>
-                <li><a href="#">Fans, Heatsinks &amp; Cooling</a></li>
-                <li><a href="#">Graphics, Video Cards</a></li>
-                <li><a href="#">Interface, Add-On Cards</a></li>
-                <li><a href="#">Laptop Replacement Parts</a></li>
-                <li><a href="#">Memory (RAM)</a></li>
-                <li><a href="#">Motherboards</a></li>
-                <li><a href="#">Motherboard &amp; CPU Combos</a></li>
-                <li><a href="#">Motherboard Components &amp; Accs</a></li>
-            </ul>
-        </div><!-- /.col -->
-
-        <div class="col-xs-12 col-sm-4">
-            <h2>Dekstop Parts</h2>
-            <ul>
-                <li><a href="#">Power Supplies Power</a></li>
-                <li><a href="#">Power Supply Testers Sound</a></li>
-                <li><a href="#">Sound Cards (Internal)</a></li>
-                <li><a href="#">Video Capture &amp; TV Tuner Cards</a></li>
-                <li><a href="#">Other</a></li>
+            <?php foreach ($category as $keys => $values) { ?>
+                <li><a href="#"><?= ucwords($values['category_name']) ?></a></li>
+            <?php } ?>
             </ul>
         </div><!-- /.col -->
     </div><!-- /.row -->
@@ -307,26 +178,26 @@ a:5:{i:0;s:605:"
                     </li>
                             
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Order / Cart</a>
+                        <a href="<?= $this->url->get('checkout') ?>">Order / Cart</a>
                     </li>
                             
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Sign In</a>
+                        <a href="<?= $this->url->get('checkout/process') ?>">Sign In</a>
                     </li>
                     
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">News &amp; Events</a>
+                        <a href="<?= $this->url->get('newsEvents') ?>">News &amp; Events</a>
                         
                     </li>
                     
                     
-                    <li class="dropdown yamm-fw">
-                        <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Agents &amp; Dispatchers</a>
-                    </li><!-- /.yamm-fw -->
+                    <li class="dropdown">
+                        <a href="<?= $this->url->get('agents') ?>">Agents &amp; Dispatchers</a>
+                    </li>
                     
                     
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Contact Us</a>
+                        <a href="<?= $this->url->get('contacts') ?>">Contact Us</a>
                     </li>
                 </ul><!-- /.navbar-nav -->
             </div><!-- /.navbar-collapse -->
@@ -338,7 +209,7 @@ a:5:{i:0;s:605:"
 </header>
 
 
-";s:7:"content";N;i:2;s:8397:"
+";s:7:"content";N;i:2;s:8501:"
 
 
 <!-- ========================================= TOP BRANDS ========================================= -->
@@ -522,10 +393,10 @@ a:5:{i:0;s:605:"
             <div class="col-xs-12 col-sm-6 no-margin">
                 <div class="payment-methods ">
                     <ul>
-                        <li><img alt="" src="assets/images/payments/payment-visa.png"></li>
-                        <li><img alt="" src="assets/images/payments/payment-master.png"></li>
-                        <li><img alt="" src="assets/images/payments/payment-paypal.png"></li>
-                        <li><img alt="" src="assets/images/payments/payment-skrill.png"></li>
+                        <li><img alt="" src="<?= $this->url->get('assets/images/payments/payment-visa.png') ?>"></li>
+                        <li><img alt="" src="<?= $this->url->get('assets/images/payments/payment-master.png') ?>"></li>
+                        <li><img alt="" src="<?= $this->url->get('assets/images/payments/payment-paypal.png') ?>"></li>
+                        <li><img alt="" src="<?= $this->url->get('assets/images/payments/payment-skrill.png') ?>"></li>
                     </ul>
                 </div><!-- /.payment-methods -->
             </div>

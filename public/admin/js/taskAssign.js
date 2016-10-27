@@ -5,7 +5,7 @@
  */
 
 $(document).ready(function(){
-    $('#sweetAlertReply').on("click", function() {
+    $('.sweetAlertReply').on("click", function() {
         var agentName   = $(this).attr('data-title');
         var taskAgent   = $(this).attr('data-agent');
         swal({
@@ -21,23 +21,11 @@ $(document).ready(function(){
           },
           function(isConfirm) {
               if(isConfirm){
-                  $.ajax({
-                      url: "http://localhost/peprice/backend/order/assign",
-                      type: "POST",
-                      data: {
-                          fleet_id: taskAgent,
-                      },
-                      dataType: "json",
-                      error: function(){
-                          
-                      },
-                      success: function(){
-                          
-                      }
-                  });
-                  swal("Deleted!",
-                  "Your imaginary file has been deleted!",
-                  "success");
+                  swal("Agent Confirmed!",
+                  agentName.toUpperCase()+" assigned! CLick Order Now","success");
+                  $('input[name=fleet_id]').val(taskAgent);
+                  $('#agent_name').text(agentName.toUpperCase());
+                  $('#agent_stack').addClass('show');
               }
               else{
                   swal("Cancelled", "Your imaginary file is safe :)",
@@ -46,7 +34,39 @@ $(document).ready(function(){
           });
     });
     
-    $()
+    $('#orderNow').click(function(e){
+        var taskAgent   = $('input[name=fleet_id]').val();
+        if($.trim(taskAgent).length > 0){
+            $.ajax({
+                url: "http://localhost/peprice/backend/order/orderNow",
+                type: "POST",
+                data: {
+                    order: $('#postOrderNow').serialize(),
+                },
+                dataType: "json",
+                error: function(){
+                    window.alert("Error: Unable to Post")
+                },
+                success: function(response){
+                    if(response.status == true){
+                        $.post('http://localhost/peprice/backend/order/job', 
+                        {trans_id:response.posted.trans_id, data:response.data.data}, function(j){
+                            var js  = $.parseJSON(JSON.stringify(j));
+                            if(js.status == 'OK'){
+                                window.location.href = 'http://localhost/peprice/backend/order/tracker?track=1'
+                            }
+                            else{
+                                window.alert("Job returned not uploaded");
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        else{
+            alert('Agent Not Assigned');
+        }
+    })
     
     $('.delete_product').click(function(e){
         e.preventDefault();
