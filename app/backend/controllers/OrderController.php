@@ -209,7 +209,8 @@ class OrderController extends BaseController{
     }
     
     public function trackerAction(){
-        
+        $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
+        return;
     }
     
     /**
