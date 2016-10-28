@@ -695,7 +695,7 @@
                   </a>
                 </li>
                 <li class="site-menu-item">
-                  <a data-slug="forms-advanced" href="#" class="animsition-link">
+                  <a data-slug="forms-advanced" href="<?= $this->url->get('backend/order/orderTracker') ?>" class="animsition-link">
                     <i aria-hidden="true" class="site-menu-icon "></i>
                     <span class="site-menu-title">Order Status</span>
                   </a>

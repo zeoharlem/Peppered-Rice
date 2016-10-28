@@ -217,6 +217,27 @@
             window.location.href    = 'http://localhost/peprice/backend/order/basket/'+dataRow[5];
         });
         
+        //Customer Controller System
+        var orderTracker    = $('#orderTracker').DataTable({
+            responsive: true,
+            "processing": true,
+            "serverSide": true,
+            "ajax": "http://localhost/peprice/backend/order/orderTracker",
+            "columnDefs": [{
+                  "targets": -1,
+                  "data": null,
+                  "defaultContent": "<button type='button' class='btn btn-default monitor'>Monitor</button>"
+              }]
+            //"sDom": "t" // just show table, no other controls
+        });
+        
+        //Click to set customer for order
+        $('#orderTracker tbody').on('click', 'button.monitor', function(){
+            var dataRow     = orderTracker.row($(this).parents('tr')).data();
+            var windowTab   = window.open(dataRow[5], '_blank');
+            windowTab.focus();
+        });
+        
         // initialize FixedHeader
         var offsetTop = 0;
         if ($('.site-navbar').length > 0) {

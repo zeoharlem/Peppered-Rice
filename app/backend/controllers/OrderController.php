@@ -527,7 +527,7 @@ class OrderController extends BaseController{
             "db"    => "bucketmanager"
         );
         $response   = new \Phalcon\Http\Response();
-        $primaryKey = 'j_id'; $table = 'job';
+        $primaryKey = 'j_id'; $table = 'jobs';
         if($this->request->isGet() && $this->request->isAjax()){
             $columns    = array(
                 array('db' => 'job_id', 'dt' => 0),
