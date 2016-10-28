@@ -52,8 +52,10 @@ $(document).ready(function(){
                         $.post('http://localhost/peprice/backend/order/job', 
                         {trans_id:response.posted.trans_id, data:response.data.data}, function(j){
                             var js  = $.parseJSON(JSON.stringify(j));
+                            var rp  = response.data.data;
                             if(js.status == 'OK'){
-                                window.location.href = 'http://localhost/peprice/backend/order/tracker?track=1'
+                                window.location.href = 'http://localhost/peprice/backend/order/tracker?job_id='
+                                        +rp.job_id+'&track='+rp.tracking_link
                             }
                             else{
                                 window.alert("Job returned not uploaded");

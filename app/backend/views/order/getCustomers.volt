@@ -53,7 +53,7 @@
         </div>
       </div>
 
-<!-- Modal -->
+<!-- 
 <div class="modal fade" id="examplePositionSidebar" aria-hidden="true" aria-labelledby="examplePositionSidebar"
 role="dialog" tabindex="-1">
   <div class="modal-dialog modal-sidebar modal-sm">
@@ -72,6 +72,5 @@ role="dialog" tabindex="-1">
       </div>
     </div>
   </div>
-</div>
-<!-- End Modal -->
+</div> -->
 {% endblock %}

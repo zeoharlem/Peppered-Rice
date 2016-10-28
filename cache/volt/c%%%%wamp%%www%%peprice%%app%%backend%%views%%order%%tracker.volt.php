@@ -905,57 +905,12 @@
 <div class="panel">
         <header class="panel-heading">
           <div class="panel-actions"></div>
-          <h3 class="panel-title"><strong>Customers Available</strong></h3>
+          <h3 class="panel-title"><strong>JOB TASK</strong></h3>
         </header>
         <div class="panel-body">
-          <table class="table table-hover dataTable table-striped width-full" data-plugin="dataTable" id="getCustomers">
-            <thead>
-              <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email(s)</th>
-                <th>Phone Number</th>
-                <th>Address</th>
-                
-                <th>Action(s)</th>
-              </tr>
-            </thead>
-            <tfoot>
-              <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email(s)</th>
-                <th>Phone Number</th>
-                <th>Address</th>
-                
-                <th>Action(s)</th>
-              </tr>
-            </tfoot>
-            
-          </table>
+          <div class="alert alert-success alert-lg">Job ID #<?= $job_id ?> as been created successfully. <strong>Monitor <a href="<?= $tr ?>" target="_blank">from here</a></strong></div>
         </div>
-      </div>
-
-<!-- 
-<div class="modal fade" id="examplePositionSidebar" aria-hidden="true" aria-labelledby="examplePositionSidebar"
-role="dialog" tabindex="-1">
-  <div class="modal-dialog modal-sidebar modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-        <h4 class="modal-title">Transaction Number(<span></span>)</h4>
-      </div>
-      <div class="modal-body">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div> -->
+</div>
 
     </div>
   </div>

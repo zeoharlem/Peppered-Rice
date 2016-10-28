@@ -511,6 +511,14 @@ class OrderController extends BaseController{
         }
     }
     
+    public function trackerAction(){
+        $query  = $this->request->getQuery();
+        $this->view->setVar('job_id', $this->request->getQuery('job_id'));
+        $this->view->setVar('tr', $this->request->getQuery('tracking_link'));
+        $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
+        return;
+    }
+    
     public function orderTrackerAction(){
         $config = array(
             "host"  => "localhost",

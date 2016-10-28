@@ -15,6 +15,6 @@ namespace Multiple\Backend\Models;
  */
 class Job extends BaseModel{
     public function initialize(){
-        
+        $this->setSource('jobs');
     }
 }
