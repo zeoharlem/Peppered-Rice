@@ -195,7 +195,7 @@
                     
                     <li class="dropdown">
                         <a href="<?= $this->url->get('agents') ?>">Agents &amp; Dispatchers</a>
-                    </li><!-- /.yamm-fw -->
+                    </li>
                     
                     
                     <li class="dropdown">
