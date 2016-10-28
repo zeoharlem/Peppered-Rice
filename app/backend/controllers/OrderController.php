@@ -208,6 +208,10 @@ class OrderController extends BaseController{
         return;
     }
     
+    public function trackerAction(){
+        
+    }
+    
     /**
      * display the carts from the basket
      */
