@@ -208,11 +208,6 @@ class OrderController extends BaseController{
         return;
     }
     
-    public function trackerAction(){
-        $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
-        return;
-    }
-    
     /**
      * display the carts from the basket
      */
