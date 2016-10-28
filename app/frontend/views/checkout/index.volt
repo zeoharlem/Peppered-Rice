@@ -8,6 +8,7 @@
         <!-- ========================================= CONTENT ========================================= -->
         <div class="col-xs-12 col-md-9 items-holder no-margin">
             <div style="height:30px;"></div>
+            <div class="alert alert-success hide" id="show-updated">Menu Cart Updated Successfully</div>
             {% if session.has('cart_item') %}
             
             {% for keys, values in cart_item %}
@@ -47,12 +48,12 @@
                         <div class="price">
                             ${{values['price']*values['qty']}}.00
                         </div>
-                        <a class="close-btn cancel" href="#" id="{{values['id']}}"></a>
+                        <a class="close-btn cancel_tr" href="#" id="{{values['id']}}"></a>
                     </div>
                 </div><!-- /.cart-item -->
             {% endfor %}
 <p>&nbsp;</p>
-        <button class="le-button big" id="updateShoppingCart" href="{{url('checkout/process')}}" >Update Shopping Cart</button>
+        <button class="le-button big" id="updateShoppingCart" >Update Shopping Cart</button>
         </div>
         <!-- ========================================= CONTENT : END ========================================= -->
 

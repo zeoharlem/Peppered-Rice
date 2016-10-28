@@ -18,7 +18,6 @@
             
         
 
-
         
 
 <body>
@@ -212,310 +211,105 @@
 
 
 
-     <div id="top-banner-and-menu" class="homepage2">
-    <div class="container">
-        <div class="col-xs-12">
-            <!-- ========================================== SECTION – HERO ========================================= -->
-            
-<div id="hero">
-    <div id="owl-main" class="owl-carousel height-lg owl-inner-nav owl-ui-lg">
-        
-        <div class="item" style="background-image: url(assets/images/sliders/slider02.jpg);">
-            <div class="container-fluid">
-                <div class="caption vertical-center text-left right" style="padding-right:0;">
-                    <div class="big-text fadeInDown-1">
-                        Save up to a<span class="big"><span class="sign">$</span>400</span>
-                    </div>
+<!-- ========================================= MAIN ========================================= -->
+<main id="authentication" class="inner-bottom-md">
+	<div class="container">
+		<div class="row">
+			
+			<div class="col-md-6">
+				<section class="section sign-in inner-right-xs">
+					<h2 class="bordered">Sign In</h2>
+					<p>Hello, Welcome to your account</p>
 
-                    <div class="excerpt fadeInDown-2">
-                        Package Rice &amp; Beans<br>
-                        &amp; correct meat<br>
-                        spiced
-                    </div>
-                    <div class="small fadeInDown-2">
-                        terms and conditions apply
-                    </div>
-                    <div class="button-holder fadeInDown-3">
-                        <a href="javascript:void(0)" class="big le-button ">shop now</a>
-                    </div>
-                </div><!-- /.caption -->
-            </div><!-- /.container-fluid -->
-        </div><!-- /.item -->
+					<div class="social-auth-buttons">
+						<div class="row">
+							<div class="col-md-6">
+								<button class="btn-block btn-lg btn btn-facebook"><i class="fa fa-facebook"></i> Sign In with Facebook</button>
+							</div>
+						</div>
+					</div>
 
-        <div class="item" style="background-image: url(assets/images/sliders/slider04.jpg);">
-            <div class="container-fluid">
-                <div class="caption vertical-center text-left left" style="padding-left:7%;">
-                    <div class="big-text fadeInDown-1">
-                        Want a<span class="big"><span class="sign">$</span>200</span>Discount?
-                    </div>
+					<form role="form" class="login-form cf-style-1" method="post" action="<?= $this->url->get('login/') ?>">
+						<div class="field-row">
+                                                    <label>Email</label>
+                                                    <input type="text" class="le-input input-lg" name="email">
+                                                </div><!-- /.field-row -->
 
-                    <div class="excerpt fadeInDown-2">
-                        on our packaged foods
-                    </div>
-                    <div class="small fadeInDown-2">
-                        terms and conditions apply
-                    </div>
-                    <div class="button-holder fadeInDown-3">
-                        <a href="javascript:void(0)" class="big le-button ">check menu</a>
-                    </div>
-                </div><!-- /.caption -->
-            </div><!-- /.container-fluid -->
-        </div><!-- /.item -->
+                                                <div class="field-row">
+                                                    <label>Password</label>
+                                                    <input type="password" class="le-input input-lg" name="password">
+                                                </div><!-- /.field-row -->
 
-    </div><!-- /.owl-carousel -->
-</div>
-            
-<!-- ========================================= SECTION – HERO : END ========================================= -->       </div>
-    </div>
-</div><!-- /.homepage2 -->
+                                                <div class="field-row clearfix">
+                                                        <span class="pull-left">
+                                                                <label class="content-color"><input type="checkbox" class="le-checbox auto-width inline"> <span class="bold">Remember me</span></label>
+                                                        </span>
+                                                        <span class="pull-right">
+                                                                <a href="#" class="content-color bold">Forgotten Password ?</a>
+                                                        </span>
+                                                </div>
 
-<!-- ========================================= HOME BANNERS ========================================= -->
-<section id="banner-holder" class="wow fadeInUp">
-    <div class="container">
-        <div class="col-xs-12 col-lg-6 no-margin banner">
-            <a href="category-grid-2">
-                <div class="banner-text theblue">
-                    <h1>New Life</h1>
-                    <span class="tagline">View All Products</span>
-                </div>
-                <img class="banner-image" alt="" src="assets/images/blank.gif" data-echo="<?= $this->url->get('assets/images/banners/banner-narrow-01.jpg') ?>" />
-            </a>
-        </div>
-        <div class="col-xs-12 col-lg-6 no-margin text-right banner">
-            <a href="category-grid-2">
-                <div class="banner-text right">
-                    <h1>Time &amp; Style</h1>
-                    <span class="tagline">View All Food Packages</span>
-                </div>
-                <img class="banner-image" alt="" src="assets/images/blank.gif" data-echo="<?= $this->url->get('assets/images/banners/banner-narrow-02.jpg') ?>" />
-            </a>
-        </div>
-    </div><!-- /.container -->
-</section><!-- /#banner-holder -->
-<!-- ========================================= HOME BANNERS : END ========================================= -->
-<div id="products-tab" class="wow fadeInUp">
-    <div class="container">
-        <div class="tab-holder">
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" >
-                <li class="active"><a href="#featured" data-toggle="tab">All</a></li>
-                <li><a href="#new-arrivals" data-toggle="tab">Recommended</a></li>
-                <!--<li><a href="#top-sales" data-toggle="tab">Starters</a></li>-->
-            </ul>
+                                                <div class="buttons-holder">
+                                                    <button type="submit" class="le-button huge"> Sign In</button>
+                                                </div><!-- /.buttons-holder -->
+					</form><!-- /.cf-style-1 -->
 
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div class="tab-pane active" id="featured">
-                    <div class="product-grid-holder">
-                    <?php foreach ($products as $keys => $values) { ?>
-                        <div class="col-sm-4 col-md-3  no-margin product-item-holder hover">
-                            <div class="product-item">
-                                <div class="ribbon red"><span>selling</span></div> 
-                                <div class="image">
-                                    <img alt="" id="item<?= $keys + 1 ?>_img" src="<?= $this->url->get('assets/images/blank.gif') ?>" data-echo="<?= $this->url->get('assets/uploads/' . $values['front_image']) ?>" />
-                                    <input type="hidden" id="item<?= $keys + 1 ?>_name" value="<?= ucwords($values['title']) ?>">
-                                    <input type="hidden" id="item<?= $keys + 1 ?>_price" value="<?= $values['sale_price'] ?>">
-                                    <input type="hidden" id="item<?= $keys + 1 ?>_pro_id" value="<?= $values['product_id'] ?>">
-                                </div>
-                                <div class="body">
-                                    <div class="label-discount green"></div>
-                                    <div class="title">
-                                        <a href="javascript:void(0)"><?= ucwords($values['title']) ?></a>
-                                    </div>
-                                    <div class="brand">Peppered Rice</div>
-                                </div>
-                                <div class="prices">
-                                    <div class="price-prev">$0.00</div>
-                                    <div class="price-current pull-right">$<?= $values['sale_price'] ?></div>
-                                </div>
+				</section><!-- /.sign-in -->
+			</div><!-- /.col -->
 
-                                <div class="hover-area">
-                                    <div class="add-cart-button">
-                                        <a href="javascript:void(0)" class="le-button addToCart" id="item<?= $keys + 1 ?>">add to cart</a>
-                                    </div>
-                                    <div class="wish-compare">
-                                        <p>&nbsp;</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?>
-                    </div>
-                    <div class="loadmore-holder text-center">
-                        <a class="btn-loadmore" href="#">
-                            <i class="fa fa-plus"></i>
-                            VIEW ALL</a>
-                    </div> 
+			<div class="col-md-6">
+				<section class="section register inner-left-xs">
+					<h2 class="bordered">Create New Account</h2>
 
-                </div>
-                <div class="tab-pane" id="new-arrivals">
-                    <div class="product-grid-holder">
-                        
-                        <?php foreach ($available as $keys => $values) { ?>
-                        <div class="col-sm-4 col-md-3  no-margin product-item-holder hover">
-                            <div class="product-item">
-                                <div class="ribbon red"><span>selling</span></div> 
-                                <div class="image">
-                                    <img alt="" src="<?= $this->url->get('assets/uploads/' . $values['front_image']) ?>" />
-                                    <input type="hidden" id="item<?= $keys + 1 ?>_name" value="<?= ucwords($values['title']) ?>">
-                                    <input type="hidden" id="item<?= $keys + 1 ?>_price" value="<?= $values['sale_price'] ?>">
-                                    <input type="hidden" id="item<?= $keys + 1 ?>_pro_id" value="<?= $values['product_id'] ?>">
-                                </div>
-                                <div class="body">
-                                    <div class="label-discount green"></div>
-                                    <div class="title">
-                                        <a href="javascript:void(0)"><?= ucwords($values['title']) ?></a>
-                                    </div>
-                                    <div class="brand">Peppered Rice</div>
-                                </div>
-                                <div class="prices">
-                                    <div class="price-prev">$0.00</div>
-                                    <div class="price-current pull-right">$<?= $values['sale_price'] ?></div>
-                                </div>
+					<form role="form" class="register-form cf-style-1" action="<?= $this->url->get('registration/') ?>" method="post">
+						<div class="field-row">
+                                                    <label>First Name</label>
+                                                    <input type="text" name="firstname" class="le-input input-lg" placeholder="Type your First Name">
+                                                </div><!-- /.field-row -->
+						<div class="field-row">
+                                                    <label>Last Name</label>
+                                                    <input type="text" name="lastname" class="le-input input-lg" placeholder="Type your lastname">
+                                                </div><!-- /.field-row -->
+						<div class="field-row">
+                                                    <label>Email</label>
+                                                    <input type="email" name="email" class="le-input input-lg" placeholder="Enter your email here">
+                                                </div><!-- /.field-row -->
+						<div class="field-row">
+                                                    <label>Password</label>
+                                                    <input type="password" name="password" class="le-input input-lg" placeholder="Type your password">
+                                                </div><!-- /.field-row -->
+						<div class="field-row">
+                                                    <label>Phone Number</label>
+                                                    <input type="text" name="phonenumber" class="le-input input-lg" placeholder="Input your Phone Number">
+                                                </div><!-- /.field-row -->
+                                                
+						<div class="field-row">
+                                                    <label>Phone Number</label>
+                                                    <textarea name="address" class="le-input form-control input-lg"></textarea>
+                                                </div><!-- /.field-row -->
+                                                
 
-                                <div class="hover-area">
-                                    <div class="add-cart-button">
-                                        <a href="javascript:void(0)" class="le-button addToCart" id="item<?= $keys + 1 ?>">add to cart</a>
-                                    </div>
-                                    <div class="wish-compare">
-                                        <p>&nbsp;</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?>
+                        <div class="buttons-holder">
+                            <button type="submit" class="le-button huge">Sign Up</button>
+                        </div><!-- /.buttons-holder -->
+					</form>
 
-                    </div>
-                    <div class="loadmore-holder text-center">
-                        <a class="btn-loadmore" href="#">
-                            <i class="fa fa-plus"></i>
-                            VIEW ALL</a>
-                    </div> 
+					<h2 class="semi-bold">Sign up today and you'll be able to :</h2>
 
-                </div>
+					<ul class="list-unstyled list-benefits">
+						<li><i class="fa fa-check primary-color"></i> Speed your way through the checkout</li>
+						<li><i class="fa fa-check primary-color"></i> Track your orders easily</li>
+						<li><i class="fa fa-check primary-color"></i> Keep a record of all your purchases</li>
+					</ul>
 
-                
-        </div>
-    </div>
-</div>
+				</section><!-- /.register -->
 
-<!-- ========================================= BEST SELLERS ========================================= -->
-<section id="bestsellers" class="color-bg wow fadeInUp">
-    <div class="container">
-        <h1 class="section-title">Package List(s)</h1>
+			</div><!-- /.col -->
 
-        <div class="product-grid-holder medium">
-            <div class="col-xs-12 col-md-7 no-margin">
-                
-                <div class="row no-margin">
-                    <?php foreach ($package as $keys => $values) { ?>
-                    <div class="col-xs-12 col-sm-4 no-margin product-item-holder size-medium hover">
-                        <div class="product-item">
-                            <div class="image">
-                                <img alt="" src="<?= $this->url->get('assets/images/blank.gif') ?>" data-echo="<?= $this->url->get('assets/uploads/' . $values->front_image) ?>" />
-                            </div>
-                            <div class="body">
-                                <div class="label-discount clear"></div>
-                                <div class="title">
-                                    <a href="javascript:void(0)"><?= ucwords($values->title) ?></a>
-                                </div>
-                                <div class="brand">Peppered Rice</div>
-                            </div>
-                            <div class="prices">
-                                <div class="price-current text-right">$<?= $values->sale_price ?></div>
-                            </div>
-                            <div class="hover-area">
-                                <div class="add-cart-button">
-                                    <a href="javascript:void(0)" class="le-button addToCart" id="item<?= $keys + 1 ?>">Add to cart</a>
-                                </div>
-                                <div class="wish-compare">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.product-item-holder -->
-                    <?php } ?>
-                </div><!-- /.row -->
-                
-                <div class="row no-margin">
-                    <?php foreach ($package as $keys => $values) { ?>
-                    <div class="col-xs-12 col-sm-4 no-margin product-item-holder size-medium hover">
-                        <div class="product-item">
-                            <div class="image">
-                                <img alt="" src="<?= $this->url->get('assets/images/blank.gif') ?>" data-echo="<?= $this->url->get('assets/uploads/' . $values->front_image) ?>" />
-                            </div>
-                            <div class="body">
-                                <div class="label-discount clear"></div>
-                                <div class="title">
-                                    <a href="javascript:void(0)"><?= ucwords($values->title) ?></a>
-                                </div>
-                                <div class="brand">Peppered Rice</div>
-                            </div>
-                            <div class="prices">
-
-                                <div class="price-current text-right">$<?= $values->sale_price ?></div>
-                            </div>
-                            <div class="hover-area">
-                                <div class="add-cart-button">
-                                    <a href="javascript:void(0)" class="le-button addToCart" id="item<?= $keys + 1 ?>">Add to cart</a>
-                                </div>
-                                <div class="wish-compare">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.product-item-holder -->
-                    <?php } ?>
-
-                </div><!-- /.row -->
-            </div><!-- /.col -->
-            <div class="col-xs-12 col-md-5 no-margin">
-                <div class="product-item-holder size-big single-product-gallery small-gallery">
-                    
-                    <div id="best-seller-single-product-slider" class="single-product-slider owl-carousel">
-                        <div class="single-product-gallery-item" id="slide1">
-                            <a data-rel="prettyphoto" href="images/products/product-gallery-01.jpg">
-                                <img alt="" src="<?= $this->url->get('assets/images/blank.gif') ?>" data-echo="<?= $this->url->get('assets/uploads/' . $singles->front_image) ?>" />
-                            </a>
-                        </div><!-- /.single-product-gallery-item -->
-
-                        <div class="single-product-gallery-item" id="slide2">
-                            <a data-rel="prettyphoto" href="images/products/product-gallery-01.jpg">
-                                <img alt="" src="<?= $this->url->get('assets/images/blank.gif') ?>" data-echo="<?= $this->url->get('assets/uploads/' . $singles->front_image) ?>" />
-                            </a>
-                        </div><!-- /.single-product-gallery-item -->
-
-                        <div class="single-product-gallery-item" id="slide3">
-                            <a data-rel="prettyphoto" href="javascript:void(0)">
-                                <img alt="" src="<?= $this->url->get('assets/images/blank.gif') ?>" data-echo="<?= $this->url->get('assets/uploads/' . $singles->front_image) ?>" />
-                            </a>
-                        </div><!-- /.single-product-gallery-item -->
-                    </div><!-- /.single-product-slider -->
-
-                    <div class="gallery-thumbs clearfix">
-                        
-                    </div><!-- /.gallery-thumbs -->
-
-                    <div class="body">
-                        <div class="label-discount clear"></div>
-                        <div class="title">
-                            <a href="javascript:void(0)"><?= ucwords($singles->title) ?></a>
-                        </div>
-                        <div class="brand">Peppered Rice</div>
-                    </div>
-                    <div class="prices text-right">
-                        <div class="price-current inline">$<?= $singles->sale_price ?></div>
-                        <a href="javascript:void(0)" class="le-button big inline addToCart" id="item0">add to cart</a>
-                    </div>
-                </div><!-- /.product-item-holder -->
-            </div><!-- /.col -->
-
-        </div><!-- /.product-grid-holder -->
-    </div><!-- /.container -->
-</section><!-- /#bestsellers -->
-<!-- ========================================= BEST SELLERS : END ========================================= -->
-</div>
-
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+</main><!-- /.authentication -->
+<!-- ========================================= MAIN : END ========================================= -->		
 
 
 

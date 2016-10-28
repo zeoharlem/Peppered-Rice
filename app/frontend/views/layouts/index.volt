@@ -20,9 +20,9 @@
                     </div>
 
                     <div class="excerpt fadeInDown-2">
-                        on selected laptops<br>
-                        &amp; desktop pcs or<br>
-                        smartphones
+                        Package Rice &amp; Beans<br>
+                        &amp; correct meat<br>
+                        spiced
                     </div>
                     <div class="small fadeInDown-2">
                         terms and conditions apply
@@ -42,13 +42,13 @@
                     </div>
 
                     <div class="excerpt fadeInDown-2">
-                        on desktop pcs
+                        on our packaged foods
                     </div>
                     <div class="small fadeInDown-2">
                         terms and conditions apply
                     </div>
                     <div class="button-holder fadeInDown-3">
-                        <a href="javascript:void(0)" class="big le-button ">shop now</a>
+                        <a href="javascript:void(0)" class="big le-button ">check menu</a>
                     </div>
                 </div><!-- /.caption -->
             </div><!-- /.container-fluid -->

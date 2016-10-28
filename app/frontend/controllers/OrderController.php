@@ -108,16 +108,29 @@ class OrderController extends BaseController{
             );
             $customer       = $this->request->getPost();
             $customerRes    = $this->__createTask($tasking, $customer);
+            $trans_id       = array('trans_id' => $customer['trans_id']);
+            $customerJob    = $this->jobFlow($trans_id + $customerRes['data']);
             
             $response->setJsonContent(array(
                 'status'    => $tracker,
                 'data'      => $this->request->getPost(),
-                'tookan'    => $customerRes
+                'tookan'    => $customerRes,
+                'job'       => $customerJob
             ));
         }
         $response->setHeader('Content-Type', 'application/json');
         $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
         $response->send();
+    }
+    
+    /**
+     * Mind you this method must be used with a post request
+     * @return type
+     */
+    public function jobFlow($jobTrack){
+        $response   = new \Phalcon\Http\Response();
+        $job    = new \Multiple\Frontend\Models\Job();
+        return $job->create($jobTrack);
     }
     
     /**

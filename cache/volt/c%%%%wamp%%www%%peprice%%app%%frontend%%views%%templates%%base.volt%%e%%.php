@@ -16,7 +16,7 @@ a:5:{i:0;s:552:"
 
         <?= $this->assets->outputCss('headers') ?>
             
-        ";s:4:"head";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:58:"C:\wamp\www\peprice\app/frontend/views/templates/base.volt";s:4:"line";i:19;}}i:1;s:8857:"
+        ";s:4:"head";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:58:"C:\wamp\www\peprice\app/frontend/views/templates/base.volt";s:4:"line";i:19;}}i:1;s:8913:"
         
 
 <body>
@@ -52,8 +52,8 @@ a:5:{i:0;s:552:"
                     </ul>
                 </li>
                 -->
-                <li><a href="authentication">Register</a></li>
-                <li><a href="authentication">Login</a></li>
+                <li><a href="<?= $this->url->get('checkout/process') ?>">Register</a></li>
+                <li><a href="<?= $this->url->get('checkout/process') ?>">Login</a></li>
             </ul>
         </div><!-- /.col -->
     </div><!-- /.container -->

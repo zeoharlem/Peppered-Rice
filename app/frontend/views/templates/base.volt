@@ -52,8 +52,8 @@
                     </ul>
                 </li>
                 -->
-                <li><a href="authentication">Register</a></li>
-                <li><a href="authentication">Login</a></li>
+                <li><a href="{{url('checkout/process')}}">Register</a></li>
+                <li><a href="{{url('checkout/process')}}">Login</a></li>
             </ul>
         </div><!-- /.col -->
     </div><!-- /.container -->

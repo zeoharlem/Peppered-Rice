@@ -57,7 +57,7 @@ class ProductController extends BaseController{
                                 <div class="price">$'.number_format($value['price'] * $value['qty'], 2).'<small>('.$value['qty'].' x '.$value['price'].')</small></div>
                             </div>
                         </div>
-                        <a class="close-btn" href="#" title="'.$value['id'].'"></a>
+                        <a class="close-btn cancel" href="#" title="'.$value['id'].'"></a>
                     </div>
                 </li>';
             }
@@ -69,7 +69,7 @@ class ProductController extends BaseController{
                                 <a href="http://localhost/peprice/checkout" class="le-button inverse">View cart</a>
                             </div>
                             <div class="col-xs-12 col-sm-6">
-                                <a href="http://localhost/peprice/process" class="le-button">Checkout</a>
+                                <a href="http://localhost/peprice/checkout/process" class="le-button">Checkout</a>
                             </div>
                         </div>
                     </div>
@@ -173,7 +173,7 @@ class ProductController extends BaseController{
     }
     
     public function grandTotalAction(){
-        echo $this->__getSubTotal();
+        echo number_format($this->__getSubTotal(), 2);
         exit();
     }
     
