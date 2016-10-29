@@ -53,8 +53,8 @@
                     </ul>
                 </li>
                 -->
-                <li><a href="authentication">Register</a></li>
-                <li><a href="authentication">Login</a></li>
+                <li><a href="<?= $this->url->get('checkout/process') ?>">Register</a></li>
+                <li><a href="<?= $this->url->get('checkout/process') ?>">Login</a></li>
             </ul>
         </div><!-- /.col -->
     </div><!-- /.container -->
@@ -314,73 +314,44 @@
 
 
 <!-- ========================================= TOP BRANDS ========================================= -->
-<section id="top-brands" class="wow fadeInUp">
-    <div class="container">
-        <div class="carousel-holder" >
-            
-            <div class="title-nav">
-                <h1>Agents &amp; Dispatchers</h1>
-                <div class="nav-holder">
-                    <a href="#prev" data-target="#owl-brands" class="slider-prev btn-prev fa fa-angle-left"></a>
-                    <a href="#next" data-target="#owl-brands" class="slider-next btn-next fa fa-angle-right"></a>
-                </div>
-            </div><!-- /.title-nav -->
-            
-            <div id="owl-brands" class="owl-carousel brands-carousel">
-                
-                <div class="carousel-item">
-                    <a href="#">
-                        <img alt="" src="assets/images/brands/brand-01.jpg" />
-                    </a>
-                </div><!-- /.carousel-item -->
-                
-                <div class="carousel-item">
-                    <a href="#">
-                        <img alt="" src="assets/images/brands/brand-02.jpg" />
-                    </a>
-                </div><!-- /.carousel-item -->
-                
-                <div class="carousel-item">
-                    <a href="#">
-                        <img alt="" src="assets/images/brands/brand-03.jpg" />
-                    </a>
-                </div><!-- /.carousel-item -->
-                
-                <div class="carousel-item">
-                    <a href="#">
-                        <img alt="" src="assets/images/brands/brand-04.jpg" />
-                    </a>
-                </div><!-- /.carousel-item -->
+<section id="recently-reviewd" class="wow fadeInUp">
+	<div class="container">
+		<div class="carousel-holder hover">
+			
+			<div class="title-nav">
+				<h2 class="h1">Dispatchers &amp; Team</h2>
+				<div class="nav-holder">
+					<a href="#prev" data-target="#owl-recently-viewed" class="slider-prev btn-prev fa fa-angle-left"></a>
+					<a href="#next" data-target="#owl-recently-viewed" class="slider-next btn-next fa fa-angle-right"></a>
+				</div>
+			</div><!-- /.title-nav -->
 
-                <div class="carousel-item">
-                    <a href="#">
-                        <img alt="" src="assets/images/brands/brand-01.jpg" />
-                    </a>
-                </div><!-- /.carousel-item -->
+			<div id="owl-recently-viewed" class="owl-carousel product-grid-holder">
+                                <?php foreach ($taskAgents->data as $keys => $values) { ?>
+				<div class="no-margin carousel-item product-item-holder size-small hover">
+					<div class="product-item">
+						
+						<div class="image" style="width:194px; height:143px; overflow:hidden;">
+							<img alt="" src="<?= $values->fleet_image ?>" />
+						</div>
+						<div class="body">
+							<div class="title">
+								<a href="single-product.html"><?= ucwords($values->username) ?></a>
+							</div>
+							<div class="brand" style="text-transform:lowercase !important;"><?= $values->email ?></div>
+						</div>
+						<div class="prices">
+							<div class="price-current text-right"><?= $values->phone ?></div>
+						</div>
+					</div><!-- /.product-item -->
+				</div><!-- /.product-item-holder -->
+                                <?php } ?>
+                                
+			</div><!-- /#recently-carousel -->
 
-                <div class="carousel-item">
-                    <a href="#">
-                        <img alt="" src="assets/images/brands/brand-02.jpg" />
-                    </a>
-                </div><!-- /.carousel-item -->
-
-                <div class="carousel-item">
-                    <a href="#">
-                        <img alt="" src="assets/images/brands/brand-03.jpg" />
-                    </a>
-                </div><!-- /.carousel-item -->
-
-                <div class="carousel-item">
-                    <a href="#">
-                        <img alt="" src="assets/images/brands/brand-04.jpg" />
-                    </a>
-                </div><!-- /.carousel-item -->
-
-            </div><!-- /.brands-caresoul -->
-
-        </div><!-- /.carousel-holder -->
-    </div><!-- /.container -->
-</section><!-- /#top-brands -->
+		</div><!-- /.carousel-holder -->
+	</div><!-- /.container -->
+</section><!-- /#recently-reviewd -->
 <!-- ========================================= TOP BRANDS : END ========================================= -->
 
 <footer id="footer" class="color-bg">

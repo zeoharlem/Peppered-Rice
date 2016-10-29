@@ -43,7 +43,7 @@ $(document).ready(function(){
             success: function(response){
                 cartStackFlow().getCartFlowId();
                 if(response.status == true){
-                    var urlTask = $.param(response.data.data);
+                    var urlTask = $.param(response.tookan.data);
                     window.location.href = 'http://localhost/dashboard/taskHalf?'+urlTask;
                 }
                 else{
@@ -133,6 +133,7 @@ $(document).ready(function(){
         var tracker = $(this).attr('id');
         cartStackFlow().setCartFlowId(tracker);
         cartStackFlow().getCartFlowId();
+        cartStackFlow().getTotalAmount();
     });
 
     $('#basketMouth').on('click', function(evt){
@@ -274,31 +275,7 @@ var cartStackFlow   = function(){
     }
 }
 
-$.get('http://localhost/peprice/order/getAgents', function(data, textStatus){
+$.get('http://localhost/peprice/agents/getAgents', function(data, textStatus){
     var jsonString  = $.parseJSON(JSON.stringify(data));
-    if(jsonString.status == true){
-        var fleetFlow   = [];
-        var textsFlow   = '';
-        for(var n in jsonString.data){
-            if(jsonString.data[n].hasOwnProperty("fleets")){
-                for(var i = 0; i < jsonString.data[n].fleets.length; i++){
-                    var fleetStack  = jsonString.data[n].fleets[i];
-                    fleetFlow.push(jsonString.data[n].fleets[i].fleet_name);
-                    textsFlow   += '<div class="clearfix address">';
-                    if(fleetStack.is_available == 1){
-                        textsFlow   += '<span class="contact-i"><i class="fa fa-bicycle"></i></span>';
-                        textsFlow   += '<span class="contact-span">'+jsonString.data[n].fleets[i].
-                        fleet_name.toUpperCase()+'  <span class="badge pull-right"><small>ON</small></span></div>';
-                    }
-                    else{
-                        textsFlow   += '<span class="contact-i"><i class="fa fa-bell-slash"></i></span>';
-                        textsFlow   += '<span class="contact-span">'+jsonString.data[n].fleets[i].
-                        fleet_name.toUpperCase()+'  <span class="badge pull-right"><small>OFF</small></span></div>';
-                    }
-                    //textsFlow   += '<span class="contact-i"><i class="fa fa-map-marker"></i></span>';
-                }
-            }
-        }
-        $('#list_agents').html(textsFlow);
-    }
+    
 })

@@ -33,6 +33,10 @@ class AgentsController extends BaseController{
         return;
     }
     
+    public function getAgentsAction(){
+        
+    }
+    
     /**
      * 
      * @param type $url
