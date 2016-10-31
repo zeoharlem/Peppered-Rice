@@ -77,10 +77,10 @@ class OrderController extends BaseController{
                         'trans_id'      => $track_id,
                         'date_of_order' => date('Y-m-d H:i:s'),
                         'item_sold'     => json_encode($this->session->get('cart_item')),
+                        'vendor_id'     => $this->session->get('auth')['codename'],
                         'delivery_time' => date('Y-m-d H:i:s', $hourLater),
                         'status'        => 'pending',
-                        'agent'         => 17769,
-                        'vendor_id'     => 1
+                        'agent'         => 20396,
                     );
                     
                     if($sales->save($startSales) == FALSE){

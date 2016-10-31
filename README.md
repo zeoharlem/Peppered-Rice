@@ -1,2 +1,0 @@
-# pepperedrice
-food delivery program

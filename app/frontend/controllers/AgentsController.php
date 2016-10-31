@@ -37,6 +37,39 @@ class AgentsController extends BaseController{
         
     }
     
+    public function createAction(){
+        if($this->request->isPost()){
+            $agents = new \Multiple\Frontend\Models\Admin();
+            /**$jsonString = "{
+                \"api_key\": \"".self::ACESS_TOKEN."\",
+                \"email\": \"".$this->request->getPost('email')."\",
+                \"name\": \"".$this->request->getPost('firstname')."\",
+                \"phone\": \"".$this->request->getPost('phone')."\",
+                \"transport_type\": \"1\",
+                \"transport_desc\": \"auto\",
+                \"license\": \"demo\",
+                \"color\": \"blue\",
+                \"timezone\": \"1\",
+                \"team_id\": \"9896\",
+                \"password\": \"".$this->component->helper->makeRandomString(4)."\"
+                \"username\": \"".$this->request->getPost('username')."\",
+                \"first_name\": \"".$this->request->getPost('firstname')."\",
+                \"last_name\": \"".$this->request->getPost('lastname')."\"
+            }";
+            $agentResponse  = $this->__curlRequestTask(
+                    'https://api.tookanapp.com/v2/add_agent', $jsonString);
+            $decodeResponse = json_decode($agentResponse);**/
+            
+            if($agents->create($this->request->getPost())){
+                $this->flash->success('Agent Created Successfully');
+                $this->response->redirect('getAgents?flow='.$this->component
+                        ->helper->makeRandomString(20));
+            }
+        }
+        $this->view->setTemplateAfter('dashboard');
+        return;
+    }
+    
     /**
      * 
      * @param type $url

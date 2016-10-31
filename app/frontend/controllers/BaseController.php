@@ -62,8 +62,10 @@ class BaseController extends Controller{
     }
     
     public function __dataTableJsCss(){
-        $this->assets->collection('footers')
-                ->addJs('assets/js/datatables/jquery.dataTables.js');
+        $this->assets->collection('headers')->addCss(
+                'assets/js/datatables/datatables.css');
+        $this->assets->collection('footers')->addJs(
+                'assets/js/datatables/jquery.dataTables.js');
     }
     
     protected function __crossOriginPolicy(){
