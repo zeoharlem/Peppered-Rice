@@ -190,12 +190,6 @@
                         
                     </li>
                     
-                    
-                    <li class="dropdown">
-                        <a href="{{url('agents')}}">Agents &amp; Dispatchers</a>
-                    </li>
-                    
-                    
                     <li class="dropdown">
                         <a href="{{url('contacts')}}">Contact Us</a>
                     </li>
@@ -226,21 +220,19 @@
 			</div><!-- /.title-nav -->
 
 			<div id="owl-recently-viewed" class="owl-carousel product-grid-holder">
-                                {% for keys, values in taskAgents.data %}
-				<div class="no-margin carousel-item product-item-holder size-small hover">
+                                {% for keys, values in taskAgents %}
+				<div class="no-margin carousel-item  size-small hover" style="border:1px solid #ccc; padding:15px;">
 					<div class="product-item">
 						
-						<div class="image" style="width:194px; height:143px; overflow:hidden;">
-							<img alt="" src="{{values.fleet_image}}" />
-						</div>
+						
 						<div class="body">
 							<div class="title">
-								<a href="single-product.html">{{values.username | capitalize}}</a>
+								<a href="single-product.html">{{values.firstname | capitalize}} {{values.lastname | capitalize}}</a>
 							</div>
-							<div class="brand" style="text-transform:lowercase !important;">{{values.email}}</div>
+							<div class="brand" style="text-transform:lowercase !important;"><small>{{values.email}}</small></div>
 						</div>
 						<div class="prices">
-							<div class="price-current text-right">{{values.phone}}</div>
+							<div class="price-current text-right"><small><strong>{{values.phone}}</strong></small></div>
 						</div>
 					</div><!-- /.product-item -->
 				</div><!-- /.product-item-holder -->
@@ -396,7 +388,7 @@
             "columnDefs": [{
                   "targets": -1,
                   "data": null,
-                  "defaultContent": "<button type='button' class='btn btn-default ordernow'><small>View Now</small></button>"
+                  "defaultContent": "<button type='button' class='btn btn-default btn-danger ordernow'><small>Track Now</small></button>"
               }]
             //"sDom": "t" // just show table, no other controls
         });
@@ -404,8 +396,14 @@
         //Click to set customer for order
         $('#getCustomers tbody').on('click', 'button.ordernow', function(){
             var dataRow = getCustomer.row($(this).parents('tr')).data();
-            var stringRowData   = {action : 'remove', register_id: dataRow[5]};
-            //window.location.href    = 'http://localhost/peprice/backend/order/basket/'+dataRow[5];
+            var stringRowData   = {action : 'remove', register_id: dataRow[6]};
+            if(dataRow[6].length == 0 || dataRow[6] == ''){
+                window.alert("Seems tracking link is not available");
+            }
+            else{
+                var windowL = window.open(dataRow[6], '_blank');
+                windowL.focus();
+            }
         });
         
         //Customer Controller System
@@ -477,7 +475,7 @@
         for(var i in taskStringFlow){
             tableFlow += '<tr style="border:none !important;">'+
                 '<td style="border:none !important;">'+taskStringFlow[i].name+'</td>'+
-                '<td style="border:none !important;"><img src="'+taskStringFlow[i].image+'" class="img img-responsive" style="width:60%;" /></td>'+
+                '<td style="border:none !important;"><img src="'+taskStringFlow[i].image+'" class="img img-responsive" style="width:10%;" /></td>'+
                 '<td style="border:none !important;">'+taskStringFlow[i].qty+'</td>'+
                 '<td style="border:none !important;">'+taskStringFlow[i].price+'</td>'+
                 '<td style="border:none !important;">'+parseInt(taskStringFlow[i].qty) * parseInt(taskStringFlow[i].price)+'</td>'+

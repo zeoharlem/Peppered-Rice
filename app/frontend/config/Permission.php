@@ -31,6 +31,8 @@ class Permission extends \Phalcon\Mvc\User\Plugin{
         'product'   => ['*'],
         'category'  => ['*'],
         'registration'  => ['*'],
+        'logout'    => ['*'],
+        'order'     => ['test']
     );
     
     protected $_userResources = array(

@@ -32,7 +32,8 @@ class BaseController extends Controller{
         
         $this->view->setVar('url', $this->__locateString());
         $this->view->setVar('category', \Multiple\Frontend\Models\Category::find()->toArray());
-        $this->view->setVar('taskAgents', json_decode($this->component->helper->getAgents()));
+        //$this->view->setVar('taskAgents', json_decode($this->component->helper->getAgents()));
+        $this->view->setVar('taskAgents', \Multiple\Frontend\Models\Admin::find());
         //$agents = json_decode($this->component->helper->getAgents());
         //var_dump($agents->data.fleet_image); exit;
         //Create | add the javascript script link

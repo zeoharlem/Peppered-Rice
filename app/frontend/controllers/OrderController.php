@@ -347,6 +347,36 @@ class OrderController extends BaseController{
     }
     
     /**
+     * This is for testing purpose
+     * can be deleted for production purpose
+     */
+    public function testAction(){
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, "https://api.tookanapp.com/v2/get_available_agents
+        ");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+        curl_setopt($ch, CURLOPT_POST, TRUE);
+
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "{
+          \"api_key\": \"2b997be77e2cc22becfd4c66426ef504\",
+          \"latitude\": \"30.2221\",
+          \"longitude\": \"70.4242\"
+        }");
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+          "Content-Type: application/json"
+        ));
+
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        var_dump($response);
+    }
+    
+    /**
      * 
      * @param type $url
      * @param string $token

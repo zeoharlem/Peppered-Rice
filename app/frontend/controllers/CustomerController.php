@@ -41,7 +41,12 @@ class CustomerController extends BaseController{
                 array('db' => 'date_of_order', 'dt' => 3),
                 array('db' => 'delivery_time', 'dt' => 4),
                 array('db' => 'status', 'dt' => 5),
-                array('db' => 'vendor_id', 'dt' => 6),
+                array('db' => 'trans_id', 'dt' => 6, 
+                    'formatter' => function($d, $row){
+                        $track = \Multiple\Frontend\Models\Job::find(
+                                'trans_id="'.$d.'"')->getLast();
+                    return $track ? $track->tracking_link : '';
+                }),
             );
             $whereAll    = 'vendor_id='.$this->_codename;
             $response->setJsonContent(

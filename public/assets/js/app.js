@@ -206,8 +206,17 @@ var cartStackFlow   = function(){
                     item_price: tagPrice,
                     action: 'add'
                 },
+                beforeSend: function(){
+                    $('#'+id).text('Wait! Adding Item');
+                },
                 success: function(response){
                     $('.count').html(response);
+                },
+                complete: function(xhr, status){
+                    //window.alert(JSON.stringify(status));
+                    if(xhr.readyState == 4 && xhr.status == 200 && xhr.statusText == 'OK'){
+                        $('#'+id).text('Add To Cart');
+                    }
                 }
             });
         },
@@ -241,6 +250,9 @@ var cartStackFlow   = function(){
                 url:    'http://localhost/peprice/product/showCart',
                 data:   {
                     showcart: true
+                },
+                beforeSend: function(){
+                    $('#mycart').html('Please Wait...');
                 },
                 success:function(response){
                     $('#mycart').html(response);
