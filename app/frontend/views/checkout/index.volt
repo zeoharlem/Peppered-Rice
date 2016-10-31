@@ -79,7 +79,7 @@
                         </li>
                     </ul>
                     <div class="buttons-holder">
-                        <a class="le-button big" href="{{url('checkout/process')}}" >checkout</a>
+                        <a class="le-button big" href="{{url('dashboard?token=')}}" >checkout</a>
                         <a class="simple-link block" href="{{url('category')}}" >continue shopping</a>
                     </div>
                 </div>

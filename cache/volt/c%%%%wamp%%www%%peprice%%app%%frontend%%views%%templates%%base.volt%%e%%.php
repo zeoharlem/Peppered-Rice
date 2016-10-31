@@ -209,7 +209,7 @@ a:5:{i:0;s:552:"
 </header>
 
 
-";s:7:"content";N;i:2;s:12591:"
+";s:7:"content";N;i:2;s:12625:"
 
 
 <!-- ========================================= TOP BRANDS ========================================= -->
@@ -396,7 +396,7 @@ a:5:{i:0;s:552:"
             "columnDefs": [{
                   "targets": -1,
                   "data": null,
-                  "defaultContent": "<button type='button' class='btn btn-default ordernow'>View Now</button>"
+                  "defaultContent": "<button type='button' class='btn btn-default ordernow'><small>View Now</small></button>"
               }]
             //"sDom": "t" // just show table, no other controls
         });
@@ -477,7 +477,7 @@ a:5:{i:0;s:552:"
         for(var i in taskStringFlow){
             tableFlow += '<tr style="border:none !important;">'+
                 '<td style="border:none !important;">'+taskStringFlow[i].name+'</td>'+
-                '<td style="border:none !important;"><img src="'+taskStringFlow[i].image+'" class="img img-responsive" /></td>'+
+                '<td style="border:none !important;"><img src="'+taskStringFlow[i].image+'" class="img img-responsive" style="width:60%;" /></td>'+
                 '<td style="border:none !important;">'+taskStringFlow[i].qty+'</td>'+
                 '<td style="border:none !important;">'+taskStringFlow[i].price+'</td>'+
                 '<td style="border:none !important;">'+parseInt(taskStringFlow[i].qty) * parseInt(taskStringFlow[i].price)+'</td>'+
