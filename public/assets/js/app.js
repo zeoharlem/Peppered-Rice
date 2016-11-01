@@ -40,15 +40,21 @@ $(document).ready(function(){
             type:   'POST',
             url:    'http://localhost/peprice/order/start',
             data:   serialFormFlow,
+            beforeSend: function(){
+                window.alert('Please Wait! Redirecting...');
+            },
             success: function(response){
                 cartStackFlow().getCartFlowId();
                 if(response.status == true){
                     var urlTask = $.param(response.tookan.data);
-                    window.location.href = 'http://localhost/dashboard/taskHalf?'+urlTask;
+                    window.location.href = 'http://localhost/peprice/dashboard/taskHalf?'+urlTask;
                 }
                 else{
                     alert(response.data.message);
                 }
+            },
+            complete: function(){
+                
             }
         });
     });
