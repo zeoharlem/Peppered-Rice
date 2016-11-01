@@ -157,6 +157,19 @@ class Module implements ModuleDefinitionInterface{
         //Custom Dispatcher (Overides the Default)
         $di->set('dispatcher', function() use ($di){
             $eventsManager = $di->getShared('eventsManager');
+            //Missing File Error 404 an 505
+            $eventsManager->attach("dispatch:beforeException", function($vent, $dispatch, $exception){
+                switch($exception->getCode()){
+                    case \Phalcon\Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
+                    case \Phalcon\Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
+                        $dispatch->forward(array(
+                            'controller'    => 'error',
+                            'action'        => 'show404'
+                        ));
+                        return false;
+                }
+            });
+            
             //Custom ACL Class
             $permission = new Config\Permission();
             //Listen for events from the permission class
