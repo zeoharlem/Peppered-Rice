@@ -15,4 +15,22 @@ namespace Multiple\Frontend\Controllers;
  */
 class ErrorController extends BaseController{
     //put your code here
+    public function initialize() {
+        parent::initialize();
+        \Phalcon\Tag::appendTitle('Error Page');
+    }
+    
+//    public function indexAction(){
+//        $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
+//    }
+    
+    public function show404Action(){
+        $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
+        return;
+    }
+    
+    public function show505Action(){
+        $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
+        return;
+    }
 }

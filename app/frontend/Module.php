@@ -16,8 +16,10 @@ namespace Multiple\Frontend;
 use Phalcon\Loader;
 use Phalcon\Config\Adapter\Ini as ConfigIni;
 use Phalcon\DiInterface;
-use Phalcon\Mvc\Dispatcher;
+use Phalcon\Mvc\Dispatcher as MvcDispatcher;
 use Phalcon\Mvc\ModuleDefinitionInterface;
+use Phalcon\Mvc\Dispatcher\Exception as DispatcherException;
+use Phalcon\Dispatcher;
 
 class Module implements ModuleDefinitionInterface{
     
@@ -158,10 +160,20 @@ class Module implements ModuleDefinitionInterface{
         $di->set('dispatcher', function() use ($di){
             $eventsManager = $di->getShared('eventsManager');
             //Missing File Error 404 an 505
-            $eventsManager->attach("dispatch:beforeException", function($vent, $dispatch, $exception){
+            $eventsManager->attach("dispatch:beforeException", function($event, $dispatch, $exception){
+                if($exception instanceof DispatcherException){
+                    $dispatch->forward(array(
+                        'controller'    => 'error',
+                        'action'        => 'show404'
+                    ));
+                    return false;
+                }
+                //echo Dispatcher::EXCEPTION_CYCLIC_ROUTING; exit;
                 switch($exception->getCode()){
-                    case \Phalcon\Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
-                    case \Phalcon\Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
+                    case Dispatcher::EXCEPTION_INVALID_HANDLER:
+                    case Dispatcher::EXCEPTION_ACTION_NOT_FOUND:
+                    case Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
+                    case Dispatcher::EXCEPTION_CYCLIC_ROUTING:
                         $dispatch->forward(array(
                             'controller'    => 'error',
                             'action'        => 'show404'
@@ -177,11 +189,13 @@ class Module implements ModuleDefinitionInterface{
             $eventsManager->attach('dispatch', Plugins\LoggersPlugin::getLoggerInst());
             $eventsManager->attach('dispatch', Plugins\ExceptionsPlugin::getExceptionInst());
 
-            $dispatcher = new Dispatcher();
+            $dispatcher = new MvcDispatcher();
             $dispatcher->setDefaultNamespace("Multiple\Frontend\Controllers\\");
+            
+            //Bind the eventsManager to the Dispatcher
             $dispatcher->setEventsManager($eventsManager);
             return $dispatcher;
-        });
+        }, true);
     }
 
 //put your code here

@@ -13,6 +13,6 @@ namespace Multiple\Frontend\Controllers;
  *
  * @author Theophilus Alamu <theophilus.alamu at gmail.com>
  */
-class CustomersController {
+class CustomersController extends BaseController{
     //put your code here
 }

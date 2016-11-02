@@ -3,7 +3,8 @@
 {% block head %}
 {% endblock %}
 {% block content %}
-<!-- ============================================================= HEADER : END ============================================================= -->		<section id="cart-page">
+<!-- ============================================================= HEADER : END ============================================================= -->
+<section id="cart-page">
     <div class="container">
         <!-- ========================================= CONTENT ========================================= -->
         <div class="col-xs-12 col-md-9 items-holder no-margin">
@@ -99,9 +100,10 @@
         </div><!-- /.sidebar -->
 
         <!-- ========================================= SIDEBAR : END ========================================= -->
-    </div>
-</section>
+    
 {% else %}
 <div class="alert alert-warning"><strong>Cart is empty(0). Go Shopping Now.</strong></div>
-{% endif %}	
+{% endif %}
+</div>
+</section>	
 {% endblock %}

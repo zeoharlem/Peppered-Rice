@@ -95,7 +95,7 @@ class ProductsController extends BaseController{
             "host"  => "localhost",
             "user"  => "root",
             "pass"  => "",
-            "db"    => "bucketmanager"
+            "db"    => "pepperedrice"
         );
         //var_dump($config); exit;
         $response   = new \Phalcon\Http\Response();

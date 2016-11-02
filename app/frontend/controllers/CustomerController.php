@@ -28,7 +28,7 @@ class CustomerController extends BaseController{
             "host"  => "localhost",
             "user"  => "root",
             "pass"  => "",
-            "db"    => "bucketmanager"
+            "db"    => "pepperedrice"
         );
         $this->__tableDataCssJs();
         $response   = new \Phalcon\Http\Response();
@@ -67,7 +67,7 @@ class CustomerController extends BaseController{
             "host"  => "localhost",
             "user"  => "root",
             "pass"  => "",
-            "db"    => "bucketmanager"
+            "db"    => "pepperedrice"
         );
         $this->__tableDataCssJs();
         $quantity   = array(); $pricing = array();

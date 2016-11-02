@@ -107,7 +107,7 @@ class CustomerController extends BaseController{
             "host"  => "localhost",
             "user"  => "root",
             "pass"  => "",
-            "db"    => "bucketmanager"
+            "db"    => "pepperedrice"
         );
         $response   = new \Phalcon\Http\Response();
         $primaryKey = 'register_id'; $table = 'register';

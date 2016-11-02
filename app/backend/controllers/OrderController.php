@@ -43,7 +43,7 @@ class OrderController extends BaseController{
             "host"  => "localhost",
             "user"  => "root",
             "pass"  => "",
-            "db"    => "bucketmanager"
+            "db"    => "pepperedrice"
         );
         $response   = new \Phalcon\Http\Response();
         $primaryKey = 'order_id'; $table = 'order';
@@ -82,7 +82,7 @@ class OrderController extends BaseController{
             "host"  => "localhost",
             "user"  => "root",
             "pass"  => "",
-            "db"    => "bucketmanager"
+            "db"    => "pepperedrice"
         );
         $response   = new \Phalcon\Http\Response();
         $primaryKey = 'register_id'; $table = 'register';
@@ -524,7 +524,7 @@ class OrderController extends BaseController{
             "host"  => "localhost",
             "user"  => "root",
             "pass"  => "",
-            "db"    => "bucketmanager"
+            "db"    => "pepperedrice"
         );
         $response   = new \Phalcon\Http\Response();
         $primaryKey = 'j_id'; $table = 'jobs';
@@ -659,7 +659,7 @@ class OrderController extends BaseController{
             "host"  => "localhost",
             "user"  => "root",
             "pass"  => "",
-            "db"    => "bucketmanager"
+            "db"    => "pepperedrice"
         );
         //var_dump($config); exit;
         $response   = new \Phalcon\Http\Response();

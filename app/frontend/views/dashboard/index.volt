@@ -78,7 +78,7 @@
                 </form>
             </div><!-- /.billing-address -->
 
-
+            {% if this.session.has('cart_item') %}
             <section id="your-order">
                 <h2 class="border h1">your order</h2>
                 <form>
@@ -100,7 +100,7 @@
                     {% endfor %}
                 </form>
             </section><!-- /#your-order -->
-
+            {% endif %}
             <div id="total-area" class="row no-margin">
                 <div class="col-xs-12 col-lg-4 col-lg-offset-8 no-margin-right">
                     <div id="subtotal-holder">

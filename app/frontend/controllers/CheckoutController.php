@@ -54,6 +54,17 @@ class CheckoutController extends BaseController{
         return;
     }
     
+    public function beforeExecuteRoute(\Phalcon\Dispatcher $dispatcher){
+        if($dispatcher->getActionName() == 'process'){
+            if($this->session->has('auth')){
+                $dispatcher->forward(array(
+                    'controller'    => 'dashboard',
+                    'action'        => 'index'
+                ));
+            }
+        }
+    }
+    
     public function cartShowAction(){
         $counter    = 0;
         $response   = new \Phalcon\Http\Response();
