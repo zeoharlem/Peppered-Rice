@@ -13,7 +13,6 @@
  */
 namespace Multiple\Frontend\Controllers;
 
-use Phalcon\Mvc\View;
 use Multiple\Frontend\Models\Products;
 use Multiple\Frontend\Models\Category;
 
@@ -24,24 +23,17 @@ class CategoryController extends BaseController{
     public function initialize() {
         parent::initialize();
         \Phalcon\Tag::appendTitle('Categories');
-        $category   = Category::find()->toArray();
         $this->view->setVar('helper', $this->component->helper);
-        $this->view->setVar('category', $category);
+        $this->view->setVar('category', Category::find()->toArray());
+        //var_dump(\VoltHelpers\Helpers::paginationPath()); exit;
+        //var_dump(\TableSort\Sort::sortIcon('sdsdf'));exit;
     }
     
     public function indexAction($id = ''){
-        $category   = null;
-        $category   = !empty($id) ? $id : $this->request->getQuery('cat');
-        $products   = Products::find('category="'.$category.'"')->toArray();
-        if($products){
-            $this->view->setVar('categoryName', 
-                    Category::findFirstByCategory_id($category));
-            $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
-            $this->view->setVar('products', $products);
-            return;
-        }
-        $this->view->setRenderLevel(View::LEVEL_NO_RENDER);
-        $this->response->redirect('index?task=move');
+        $params = $this->request->getQuery();
+        $this->view->pager  = Products::getList($params);
+        $this->view->catName    = Category::findFirstByCategory_id($params['cat']);
+        $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
         return;
     }
 }

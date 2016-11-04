@@ -1,4 +1,4 @@
-a:5:{i:0;s:552:"
+a:5:{i:0;s:567:"
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,14 +9,14 @@ a:5:{i:0;s:552:"
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <meta name="keywords" content="eCommerce">
+        <meta name="keywords" content="eCommerce, peppered rice">
         <meta name="robots" content="all">
 
         <title>Peppered Rice</title>
 
         <?= $this->assets->outputCss('headers') ?>
             
-        ";s:4:"head";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:58:"C:\wamp\www\peprice\app/frontend/views/templates/base.volt";s:4:"line";i:19;}}i:1;s:8686:"
+        ";s:4:"head";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:58:"C:\wamp\www\peprice\app/frontend/views/templates/base.volt";s:4:"line";i:19;}}i:1;s:8957:"
         
 
 <body>
@@ -25,9 +25,9 @@ a:5:{i:0;s:552:"
     <div class="container">
         <div class="col-xs-12 col-sm-6 no-margin">
             <ul>
-                <li><a href="index.php?page=blog">News</a></li>
-                <li><a href="index.php?page=faq">FAQ</a></li>
-                <li><a href="index.php?page=contact">Contact</a></li>
+                <li><a href="<?= $this->url->get('newsEvent') ?>">News</a></li>
+                <li><a href="<?= $this->url->get('faq') ?>">FAQ</a></li>
+                <li><a href="<?= $this->url->get('contact') ?>">Contact</a></li>
             </ul>
         </div><!-- /.col -->
 
@@ -77,7 +77,7 @@ a:5:{i:0;s:552:"
         <i class="fa fa-phone"></i> (+800) 123 456 7890
     </div>
     <div class="contact inline">
-        <i class="fa fa-envelope"></i> contact@<span class="le-color">oursupport.com</span>
+        <i class="fa fa-envelope"></i> support@<span class="le-color">pepperedrice.com</span>
     </div>
 </div><!-- /.contact-row -->
 <!-- ============================================================= SEARCH AREA ============================================================= -->
@@ -92,8 +92,9 @@ a:5:{i:0;s:552:"
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">all categories</a>
 
                     <ul class="dropdown-menu" role="menu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="<?= $this->url->get('category/?cat=') ?>">laptops</a></li>
-
+                        <?php foreach ($category as $keys => $values) { ?>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="<?= $this->url->get('category/?cat=' . $values['category_id']) ?>"><?= ucwords($values['category_name']) ?></a></li>
+                        <?php } ?>
                     </ul>
                 </li>
             </ul>
@@ -168,7 +169,7 @@ a:5:{i:0;s:552:"
             <h2>Food &AMP; Packages</h2>
             <ul>
             <?php foreach ($category as $keys => $values) { ?>
-                <li><a href="#"><?= ucwords($values['category_name']) ?></a></li>
+                <li><a href="<?= $this->url->get('category/?cat=' . $values['category_id']) ?>"><?= ucwords($values['category_name']) ?></a></li>
             <?php } ?>
             </ul>
         </div><!-- /.col -->

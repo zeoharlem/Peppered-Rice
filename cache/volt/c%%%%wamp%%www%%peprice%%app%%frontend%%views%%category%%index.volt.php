@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <meta name="keywords" content="eCommerce">
+        <meta name="keywords" content="eCommerce, peppered rice">
         <meta name="robots" content="all">
 
         <title>Peppered Rice</title>
@@ -26,9 +26,9 @@
     <div class="container">
         <div class="col-xs-12 col-sm-6 no-margin">
             <ul>
-                <li><a href="index.php?page=blog">News</a></li>
-                <li><a href="index.php?page=faq">FAQ</a></li>
-                <li><a href="index.php?page=contact">Contact</a></li>
+                <li><a href="<?= $this->url->get('newsEvent') ?>">News</a></li>
+                <li><a href="<?= $this->url->get('faq') ?>">FAQ</a></li>
+                <li><a href="<?= $this->url->get('contact') ?>">Contact</a></li>
             </ul>
         </div><!-- /.col -->
 
@@ -78,7 +78,7 @@
         <i class="fa fa-phone"></i> (+800) 123 456 7890
     </div>
     <div class="contact inline">
-        <i class="fa fa-envelope"></i> contact@<span class="le-color">oursupport.com</span>
+        <i class="fa fa-envelope"></i> support@<span class="le-color">pepperedrice.com</span>
     </div>
 </div><!-- /.contact-row -->
 <!-- ============================================================= SEARCH AREA ============================================================= -->
@@ -93,8 +93,9 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">all categories</a>
 
                     <ul class="dropdown-menu" role="menu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="<?= $this->url->get('category/?cat=') ?>">laptops</a></li>
-
+                        <?php foreach ($category as $keys => $values) { ?>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="<?= $this->url->get('category/?cat=' . $values['category_id']) ?>"><?= ucwords($values['category_name']) ?></a></li>
+                        <?php } ?>
                     </ul>
                 </li>
             </ul>
@@ -169,7 +170,7 @@
             <h2>Food &AMP; Packages</h2>
             <ul>
             <?php foreach ($category as $keys => $values) { ?>
-                <li><a href="#"><?= ucwords($values['category_name']) ?></a></li>
+                <li><a href="<?= $this->url->get('category/?cat=' . $values['category_id']) ?>"><?= ucwords($values['category_name']) ?></a></li>
             <?php } ?>
             </ul>
         </div><!-- /.col -->
@@ -205,105 +206,127 @@
 
 
 
-<!-- ========================================= MAIN ========================================= -->
-<main id="authentication" class="inner-bottom-md">
-	<div class="container">
-		<div class="row">
-			
-			<div class="col-md-6">
-				<section class="section sign-in inner-right-xs">
-					<h2 class="bordered">Sign In</h2>
-					<p>Hello, Welcome to your account</p>
+<div class="container">
+<div class="col-xs-12 col-sm-9 no-margin wide sidebar">
 
-					<div class="social-auth-buttons">
-						<div class="row">
-							<div class="col-md-6">
-								<button class="btn-block btn-lg btn btn-facebook"><i class="fa fa-facebook"></i> Sign In with Facebook</button>
-							</div>
-						</div>
-					</div>
+<section id="gaming">
+    <div class="grid-list-products">
+        <h2 class="section-title"><?= ucwords($catName->category_name) ?></h2>
+        
+        <div class="control-bar">
+            
+            
+            <div id="item-count" class="le-select">
+                <select>
+                    <option value="24">24 per page</option>
+                    <option value="32">32 per page</option>
+                    <option value="48">48 per page</option>
+                </select>
+            </div>
 
-					<form role="form" class="login-form cf-style-1" method="post" action="<?= $this->url->get('login/') ?>">
-						<div class="field-row">
-                                                    <label>Email</label>
-                                                    <input type="text" class="le-input input-lg" name="email">
-                                                </div><!-- /.field-row -->
+            <div class="grid-list-buttons">
+                <ul>
+                    <li class="grid-list-button-item active"><a data-toggle="tab" href="#grid-view"><i class="fa fa-th-large"></i> Grid</a></li>
+                    <li class="grid-list-button-item "><a data-toggle="tab" href="#list-view"><i class="fa fa-th-list"></i> List</a></li>
+                </ul>
+            </div>
+        </div><!-- /.control-bar -->
+                                
+        <div class="tab-content">
+            <div id="grid-view" class="products-grid fade tab-pane in active">
+                
+                <div class="product-grid-holder">
+                    <div class="row no-margin">
+                        
+                        <?php foreach ($pager->getPaginate()->items as $keys => $values) { ?>
+                        <div class="col-xs-12 col-sm-4 no-margin product-item-holder hover">
+                            <div class="product-item">
+                                <div class="ribbon red"><span>sale</span></div> 
+                                <div class="image">
+                                    <img alt="" id="item<?= $keys + 1 ?>_img" src="<?= $this->url->get('assets/images/blank.gif') ?>" data-echo="<?= $this->url->get('assets/uploads/' . $values->front_image) ?>" />
+                                    <input type="hidden" id="item<?= $keys + 1 ?>_name" value="<?= ucwords($values->title) ?>">
+                                    <input type="hidden" id="item<?= $keys + 1 ?>_price" value="<?= $values->sale_price ?>">
+                                    <input type="hidden" id="item<?= $keys + 1 ?>_pro_id" value="<?= $values->product_id ?>">
+                                </div>
+                                <div class="body">
+                                    
+                                    <div class="title">
+                                        <a href="javascript:void(0)"><?= ucwords($values->title) ?></a>
+                                    </div>
+                                    <div class="brand">Peppered Rice</div>
+                                </div>
+                                <div class="prices">
+                                    <div class="price-prev">$0.00</div>
+                                    <div class="price-current pull-right">$<?= $values->sale_price ?></div>
+                                </div>
+                                <div class="hover-area">
+                                    <div class="add-cart-button">
+                                        <a href="javascript:void(0)" class="le-button addToCart" id="item<?= $keys + 1 ?>">add to cart</a>
+                                    </div>
+                                    
+                                </div>
+                            </div><!-- /.product-item -->
+                        </div><!-- /.product-item-holder -->
+                            <?php } ?>
 
-                                                <div class="field-row">
-                                                    <label>Password</label>
-                                                    <input type="password" class="le-input input-lg" name="password">
-                                                </div><!-- /.field-row -->
+                    </div><!-- /.row -->
+                </div><!-- /.product-grid-holder -->
+                
+                <?= $this->partial('partials/pagination', ['page' => $pager->getPaginate(), 'limit' => $pager->getLimit()]) ?>
 
-                                                <div class="field-row clearfix">
-                                                        <span class="pull-left">
-                                                                <label class="content-color"><input type="checkbox" class="le-checbox auto-width inline"> <span class="bold">Remember me</span></label>
-                                                        </span>
-                                                        <span class="pull-right">
-                                                                <a href="#" class="content-color bold">Forgotten Password ?</a>
-                                                        </span>
-                                                </div>
+            </div><!-- /.products-grid #grid-view -->
 
-                                                <div class="buttons-holder">
-                                                    <button type="submit" class="le-button huge"> Sign In</button>
-                                                </div><!-- /.buttons-holder -->
-					</form><!-- /.cf-style-1 -->
+            <div id="list-view" class="products-grid fade tab-pane ">
+                <div class="products-list">
+                    <?php foreach ($pager->getPaginate()->items as $keys => $values) { ?>
+                    <div class="product-item product-item-holder">
+                        <div class="ribbon red"><span>selling</span></div> 
+                        <div class="row">
+                            <div class="no-margin col-xs-12 col-sm-4 image-holder">
+                                <div class="image">
+                                    <img alt="" id="item<?= $keys + 1 ?>_img" src="<?= $this->url->get('assets/images/blank.gif') ?>" data-echo="<?= $this->url->get('assets/uploads/' . $values->front_image) ?>" />
+                                    <input type="hidden" id="item<?= $keys + 1 ?>_name" value="<?= ucwords($values->title) ?>">
+                                    <input type="hidden" id="item<?= $keys + 1 ?>_price" value="<?= $values->sale_price ?>">
+                                    <input type="hidden" id="item<?= $keys + 1 ?>_pro_id" value="<?= $values->product_id ?>">
+                                </div>
+                            </div><!-- /.image-holder -->
+                            <div class="no-margin col-xs-12 col-sm-5 body-holder">
+                                <div class="body">
+                                    <div class="label-discount green"></div>
+                                    <div class="title">
+                                        <a href="javascript:void(0);"><?= $values->title ?></a>
+                                    </div>
+                                    <div class="brand">Peppered Rice</div>
+                                    <div class="excerpt">
+                                        <p><?= ucwords($values->description) ?></p>
+                                    </div>
+                                    <!--<div class="addto-compare">
+                                        <a class="btn-add-to-compare" href="#">add to compare list</a>
+                                    </div>-->
+                                </div>
+                            </div><!-- /.body-holder -->
+                            <div class="no-margin col-xs-12 col-sm-3 price-area">
+                                <div class="right-clmn">
+                                    <div class="price-current">$<?= $values->sale_price ?></div>
+                                    <div class="price-prev">$0.00</div>
+                                    <div class="availability"><label>availability:</label><span class="available">  in stock</span></div>
+                                    <a href="javascript:void(0)" class="le-button addToCart" id="item<?= $keys + 1 ?>">add to cart</a>
+                                    
+                                </div>
+                            </div><!-- /.price-area -->
+                        </div><!-- /.row -->
+                    </div><!-- /.product-item -->
+                    <?php } ?>
+                </div><!-- /.products-list -->
 
-				</section><!-- /.sign-in -->
-			</div><!-- /.col -->
+                <?= $this->partial('partials/pagination', ['page' => $pager->getPaginate(), 'limit' => $pager->getLimit()]) ?>
 
-			<div class="col-md-6">
-				<section class="section register inner-left-xs">
-					<h2 class="bordered">Create New Account</h2>
+        </div><!-- /.tab-content -->
+    </div><!-- /.grid-list-products -->
 
-					<form role="form" class="register-form cf-style-1" action="<?= $this->url->get('registration/') ?>" method="post">
-						<div class="field-row">
-                                                    <label>First Name</label>
-                                                    <input type="text" name="firstname" class="le-input input-lg" placeholder="Type your First Name">
-                                                </div><!-- /.field-row -->
-						<div class="field-row">
-                                                    <label>Last Name</label>
-                                                    <input type="text" name="lastname" class="le-input input-lg" placeholder="Type your lastname">
-                                                </div><!-- /.field-row -->
-						<div class="field-row">
-                                                    <label>Email</label>
-                                                    <input type="email" name="email" class="le-input input-lg" placeholder="Enter your email here">
-                                                </div><!-- /.field-row -->
-						<div class="field-row">
-                                                    <label>Password</label>
-                                                    <input type="password" name="password" class="le-input input-lg" placeholder="Type your password">
-                                                </div><!-- /.field-row -->
-						<div class="field-row">
-                                                    <label>Phone Number</label>
-                                                    <input type="text" name="phonenumber" class="le-input input-lg" placeholder="Input your Phone Number">
-                                                </div><!-- /.field-row -->
-                                                
-						<div class="field-row">
-                                                    <label>Phone Number</label>
-                                                    <textarea name="address" class="le-input form-control input-lg"></textarea>
-                                                </div><!-- /.field-row -->
-                                                
-
-                        <div class="buttons-holder">
-                            <button type="submit" class="le-button huge">Sign Up</button>
-                        </div><!-- /.buttons-holder -->
-					</form>
-
-					<h2 class="semi-bold">Sign up today and you'll be able to :</h2>
-
-					<ul class="list-unstyled list-benefits">
-						<li><i class="fa fa-check primary-color"></i> Speed your way through the checkout</li>
-						<li><i class="fa fa-check primary-color"></i> Track your orders easily</li>
-						<li><i class="fa fa-check primary-color"></i> Keep a record of all your purchases</li>
-					</ul>
-
-				</section><!-- /.register -->
-
-			</div><!-- /.col -->
-
-		</div><!-- /.row -->
-	</div><!-- /.container -->
-</main><!-- /.authentication -->
-<!-- ========================================= MAIN : END ========================================= -->		
+</section><!-- /#gaming -->     
+</div>
+</div>    
 
 
 

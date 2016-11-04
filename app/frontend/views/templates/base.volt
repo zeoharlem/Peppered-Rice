@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <meta name="keywords" content="eCommerce">
+        <meta name="keywords" content="eCommerce, peppered rice">
         <meta name="robots" content="all">
 
         <title>Peppered Rice</title>
@@ -25,9 +25,9 @@
     <div class="container">
         <div class="col-xs-12 col-sm-6 no-margin">
             <ul>
-                <li><a href="index.php?page=blog">News</a></li>
-                <li><a href="index.php?page=faq">FAQ</a></li>
-                <li><a href="index.php?page=contact">Contact</a></li>
+                <li><a href="{{url('newsEvent')}}">News</a></li>
+                <li><a href="{{url('faq')}}">FAQ</a></li>
+                <li><a href="{{url('contact')}}">Contact</a></li>
             </ul>
         </div><!-- /.col -->
 
@@ -77,7 +77,7 @@
         <i class="fa fa-phone"></i> (+800) 123 456 7890
     </div>
     <div class="contact inline">
-        <i class="fa fa-envelope"></i> contact@<span class="le-color">oursupport.com</span>
+        <i class="fa fa-envelope"></i> support@<span class="le-color">pepperedrice.com</span>
     </div>
 </div><!-- /.contact-row -->
 <!-- ============================================================= SEARCH AREA ============================================================= -->
@@ -92,8 +92,9 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">all categories</a>
 
                     <ul class="dropdown-menu" role="menu">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('category/?cat=')}}">laptops</a></li>
-
+                        {% for keys,values in category %}
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{url('category/?cat='~values['category_id'])}}">{{values['category_name'] | capitalize}}</a></li>
+                        {% endfor %}
                     </ul>
                 </li>
             </ul>
@@ -168,7 +169,7 @@
             <h2>Food &AMP; Packages</h2>
             <ul>
             {% for keys,values in category %}
-                <li><a href="#">{{values['category_name'] | capitalize}}</a></li>
+                <li><a href="{{url('category/?cat='~values['category_id'])}}">{{values['category_name'] | capitalize}}</a></li>
             {% endfor %}
             </ul>
         </div><!-- /.col -->

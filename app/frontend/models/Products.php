@@ -14,6 +14,7 @@
 namespace Multiple\Frontend\Models;
 
 use Phalcon\Mvc\Model\Validator;
+use Phalcon\Paginator\Adapter\QueryBuilder as PaginatorQueryBuilder;
 
 class Products extends BaseModel{
     //put your code here
@@ -65,6 +66,23 @@ class Products extends BaseModel{
     public static function __getNextAddress($string, $key=''){
         $stackProduct   = Products::__convert($string, $key);
         return $stackProduct;
+    }
+
+    public static function getList($params){
+        //Query default values
+        $sort = $params['sort'] ?: 'r.title';
+        $order = $params['order'] ?: 'ASC';
+        $page   = (int) $params['page'] ?: 1;
+        $limit  = $params['limit'] ?: 4;
+        
+        //Create the builder paging query
+        $builder    = \Phalcon\Di::getDefault()
+                ->getModelsManager()->createBuilder()
+                ->from(array('r' => 'Multiple\Frontend\Models\Products'))
+                ->where('r.category = '.$params['cat'])->orderBy("$sort $order");
+        $paginator  = new PaginatorQueryBuilder(array(
+            'builder' => $builder, 'limit' => $limit, 'page' => $page));
+        return $paginator;
     }
 
     public function validation(){
