@@ -18,7 +18,18 @@ $(document).ready(function(e){
                 window.location.reload();
             }
         });
-    })
+    });
+    
+    //This emptys the shopping cart basket
+    $(document).on('click', '#emptyTask', function(evt){
+        evt.preventDefault();
+        var dataRowString   = {action: 'empty'};
+        $.post('http://localhost/peprice/backend/order/addToCart', dataRowString, function(text){
+            if(parseInt(text) == 0){
+                window.location.reload();
+            }
+        })
+    });
 })
 
 //'.shown.bs.modal'

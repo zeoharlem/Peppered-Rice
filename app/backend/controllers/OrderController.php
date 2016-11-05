@@ -230,7 +230,7 @@ class OrderController extends BaseController{
                                     <div class="price">₦'.number_format($value['price'] * $value['qty'], 2).'</div>
                                 </div>
                                 <div class="col-xs-1 action">
-                                        <a href="#" id="remove_qty" title="'.$value['id'].'"><i class="icon wb-power"></i></a>
+                                        <a href="#" class="remove_qty" title="'.$value['id'].'">delete</a>
                                 </div>
                         </div></div><!-- /.cart-item -->
                 <div class="clearfix"></div>';
@@ -244,8 +244,8 @@ class OrderController extends BaseController{
                             </div>
                             <div class="clearfix"></div>
 
-                            <a href="http://localhost/gmanzomulti/checkout" class="btn btn-upper btn-primary m-t-20"><strong>View Cart</strong></a>	
-                            <button type="button" id="empty" class="btn btn-upper btn-danger m-t-20"><strong>Empty</strong> <i class="fa fa-trash"></i> </button>	
+                            <a href="http://localhost/peprice/backend/order/baskets" class="btn btn-upper btn-primary m-t-20"><strong>View Cart</strong></a>	
+                            <button type="button" id="emptyTask" class="btn btn-upper btn-danger m-t-20"><strong>Empty Now</strong> </button>	
                     </div><!-- /.cart-total-->';
             echo !empty($stringBuilt) ? $stringBuilt : 'Empty Shopping Basket(s)';
             $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);

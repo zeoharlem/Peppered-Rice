@@ -41,7 +41,8 @@ $(document).ready(function(){
             url:    'http://localhost/peprice/order/start',
             data:   serialFormFlow,
             beforeSend: function(){
-                window.alert('Please Wait! Redirecting...');
+                //window.alert('Please Wait! Redirecting...');
+                $('#myModalRedirect').modal({backdrop: 'static', keyboard: false})  
             },
             success: function(response){
                 cartStackFlow().getCartFlowId();

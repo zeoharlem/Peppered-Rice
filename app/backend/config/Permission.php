@@ -39,7 +39,8 @@ class Permission extends \Phalcon\Mvc\User\Plugin{
         'customer'      => ['*'],
         'products'      => ['*'],
         'order'         => ['*'],
-        'vendor'        => ['*']
+        'agents'        => ['*'],
+        'vendor'        => ['*'],
     );
     
     protected $_adminResources = array(

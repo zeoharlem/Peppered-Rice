@@ -18,7 +18,7 @@
               
             </ul>
           <div class="panel-actions">
-            <a href="{{url('backend/order/baskets')}}" class="btn btn-lg btn-default"><small>View Basket</small></a><a href="" class="btn btn-lg btn-danger"><small>Empty Basket</small></a>
+            <a href="{{url('backend/order/baskets')}}" class="btn btn-lg btn-default"><small>View Basket</small></a>
             
           
         </div>

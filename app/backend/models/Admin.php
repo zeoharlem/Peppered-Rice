@@ -13,39 +13,39 @@
  */
 namespace Multiple\Backend\Models;
 
-use Phalcon\Mvc\Model\Validator;
+use Phalcon\Validation\Validator;
 
 class Admin extends BaseModel{
     //put your code here
-    const ErrorTypePO   = 'PresenceOf';
-    const ErrorTypeICA  = 'InvalidCreateAttempt';
-    const ErrorTypeIUA  = 'InvalidUpdateAttempt';
+    public $password;
+    public $codename;
     
-    public function getMessages($filter=NULL) {
-        $messages   = array();
-        foreach(parent::getMessages() as $message){
-            switch ($message->getType()) {
-                case self::ErrorTypeICA:
-                    $messages[] = 'The record cannot be created because it already exists';
-                    break;
-                case self::ErrorTypeIUA:
-                    $messages[] = 'The record cannot be updated because it doesn\'t exist';
-                    break;
-                case self::ErrorTypePO:
-                    $messages[] = 'The field ' . $message->getField() . ' is mandatory';
-                    break;
-            }
-        }
+    public function initialize(){
+        
     }
     
+    public function beforeValidationOnCreate(){
+        $this->codename = $this->getDI()->getComponent()->helper->makeRandomInts(10);
+    }
+
+
     public function validation(){
-        $this->validate(new Validator\Uniqueness(array(
-            "fields"    => "username",
-            "message"   => "Email Already Existed"
+        $validator  = new \Phalcon\Validation();
+        $validator->add('phone', new Validator\Uniqueness(array(
+            'models'    => $this,
+            'message'   => 'Phone already existed'
         )));
-        
-        if($this->validationHasFailed()){
-            return false;
-        }
+        $validator->add('agent_id', new Validator\Uniqueness(array(
+            'models'    => $this,
+            'message'   => 'Agent ID already existed'
+        )));
+        $validator->add('email', new Validator\Uniqueness(array(
+            'models'    => $this,
+            'message'   => 'Email Address already existed'
+        )));
+        $security       = new \Phalcon\Security();
+        $password       = $this->getDI()->getRequest()->getPost('password');
+        $this->password = $security->hash($password);
+        return $this->validate($validator);
     }
 }

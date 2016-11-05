@@ -22,6 +22,12 @@
           "sDom": "t" // just show table, no other controls
         });
         
+        var agentList = $('#agentList').DataTable({
+          responsive: true,
+          "bPaginate": false,
+          "sDom": "t" // just show table, no other controls
+        });
+        
         var tablePage = $('#examplePageHeader').DataTable({
           "responsive": true,
           "processing": true,
@@ -92,15 +98,20 @@
         
         //Click to Add To cart
         $('#exampleOrderPro tbody').on('click', 'button.addto', function(){
+            var thisFlow    = $(this);
+            $(this).text('Please Wait...');
             var dataRow = tableOrderPro.row($(this).parents('tr')).data();
             var qtyStrRow       = $(this).closest('tr').children('td').eq(5);
             var newQtyRow       = qtyStrRow.find('input').val();
             var stringRowData   = {
                 action : 'add', item_product: dataRow[6], qty: newQtyRow
             }
-            $.post("http://localhost/peprice/backend/order/addToCart", stringRowData, function(d){
+            $.post("http://localhost/peprice/backend/order/addToCart", stringRowData, function(d,success,xhr){
                 var stringJSON  = $.parseJSON(JSON.stringify(d));
-                $('span#cart_id').text('('+d+')');
+                if(xhr.status == 200 && xhr.statusText == 'OK'){
+                    thisFlow.text('Add To Cart');
+                    $('span#cart_id').text('('+d+')');
+                }
             })
             //alert(dataRow[0] + "'id is:" + dataRow[6]);
             
@@ -124,11 +135,11 @@
             })
         });
         
-        $(document).on('click','#remove_qty', function(evt){
+        $(document).on('click','.remove_qty', function(evt){
             evt.preventDefault();
             var dataRowString   = {action: 'remove', item_product:$(this).attr('title')};
             //alert(JSON.stringify(dataRowString));
-            $.post('http://localhost/peprice/backend/order/showCart', dataRowString, function(text){
+            $.post('http://localhost/peprice/backend/order/addToCart', dataRowString, function(text){
                 $('#exampleSplitDropdown1').html(text);
             })
         });

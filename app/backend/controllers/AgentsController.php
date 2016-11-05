@@ -33,17 +33,18 @@ class AgentsController extends BaseController{
     }
     
     public function indexAction(){
-        $url    = "";
-        if($this->request->isPost() && !$this->request->isAjax()){
+        if($this->request->isPost()){
             $agents = new \Multiple\Backend\Models\Admin();
-            if($agents->save($this->request->getPost())){
-                $returns    = $this->__curlRequestTask($url, $jsonString);
-                $arrayRes   = json_decode($returns);
-                if($arrayRes['message'] == self::ACTION_COMPLETE){
-                    $this->flash->success('Agent Created Successfully');
-                    $this->response->redirect('index?task=agent&view=success');
-                    $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
-                }
+            if($agents->create($this->request->getPost())){
+                $this->flash->success('Agent Created Successfully');
+                $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
+                $this->response->redirect('backend/agents/?task=agent&view=success');
+                return;
+            }
+            else{
+                $this->component->helper->getErrorMsgs($this,'backend/agents/?task');
+                $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
+                return;
             }
         }
         $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
@@ -80,9 +81,10 @@ class AgentsController extends BaseController{
         $this->__curlRequestTask($url, $jsonString);
     }
     
-    public function listAgentAction(){
+    public function agentsAction(){
         $agents = \Multiple\Backend\Models\Admin::find();
         $agents->setHydrateMode(\Phalcon\Mvc\Model\Resultset::HYDRATE_OBJECTS);
-        $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
+        $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
+        $this->view->agentList  = $agents;
     }
 }
