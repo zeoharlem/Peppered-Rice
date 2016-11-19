@@ -16,7 +16,7 @@ a:5:{i:0;s:567:"
 
         <?= $this->assets->outputCss('headers') ?>
             
-        ";s:4:"head";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:58:"C:\wamp\www\peprice\app/frontend/views/templates/base.volt";s:4:"line";i:19;}}i:1;s:8957:"
+        ";s:4:"head";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:" ";s:4:"file";s:58:"C:\wamp\www\peprice\app/frontend/views/templates/base.volt";s:4:"line";i:19;}}i:1;s:8955:"
         
 
 <body>
@@ -74,7 +74,7 @@ a:5:{i:0;s:567:"
         <div class="col-xs-12 col-md-6 top-search-holder no-margin">
             <div class="contact-row">
     <div class="phone inline">
-        <i class="fa fa-phone"></i> (+800) 123 456 7890
+        <i class="fa fa-phone"></i> +234 803 859 6978
     </div>
     <div class="contact inline">
         <i class="fa fa-envelope"></i> support@<span class="le-color">pepperedrice.com</span>
@@ -204,7 +204,7 @@ a:5:{i:0;s:567:"
 </header>
 
 
-";s:7:"content";N;i:2;s:13510:"
+";s:7:"content";N;i:2;s:13464:"
 
 
 <!-- ========================================= TOP BRANDS ========================================= -->
@@ -228,7 +228,7 @@ a:5:{i:0;s:567:"
 						
 						<div class="body">
 							<div class="title">
-								<a href="single-product.html"><?= ucwords($values->firstname) ?> <?= ucwords($values->lastname) ?></a>
+								<a href="#"><?= ucwords($values->firstname) ?> <?= ucwords($values->lastname) ?></a>
 							</div>
 							<div class="brand" style="text-transform:lowercase !important;"><small><?= $values->email ?></small></div>
 						</div>
@@ -273,14 +273,14 @@ a:5:{i:0;s:567:"
     <p class="regular-bold"> Feel free to contact us via phone,email or just send us mail.</p>
     
     <p>
-        17 Princess Road, London, Greater London NW1 8JR, UK
-        1-888-8MEDIA (1-888-892-9953)
+        Bodija outlet: 6, Odeku close, Bodija, Ibadan. Delivery hotline-
+        +234 803 859 6978
     </p>
     
     <div class="social-icons">
         <h3>Get in touch</h3>
         <ul>
-            <li><a href="http://facebook.com/transvelo" class="fa fa-facebook"></a></li>
+            <li><a href="#" class="fa fa-facebook"></a></li>
             <li><a href="#" class="fa fa-twitter"></a></li>
             <li><a href="#" class="fa fa-pinterest"></a></li>
             <li><a href="#" class="fa fa-linkedin"></a></li>

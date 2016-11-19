@@ -76,7 +76,7 @@
         <div class="col-xs-12 col-md-6 top-search-holder no-margin">
             <div class="contact-row">
     <div class="phone inline">
-        <i class="fa fa-phone"></i> (+800) 123 456 7890
+        <i class="fa fa-phone"></i> +234 803 859 6978
     </div>
     <div class="contact inline">
         <i class="fa fa-envelope"></i> support@<span class="le-color">pepperedrice.com</span>
@@ -207,7 +207,7 @@
 
 
 
-     <div id="top-banner-and-menu" class="homepage2">
+     <div id="top-banner-and-menu" class="homepage2" style="background: url(assets/images/backfull.jpg) no-repeat;">
     <div class="container">
         <div class="col-xs-12">
             <!-- ========================================== SECTION – HERO ========================================= -->
@@ -215,15 +215,16 @@
 <div id="hero">
     <div id="owl-main" class="owl-carousel height-lg owl-inner-nav owl-ui-lg">
         
-        <div class="item" style="background-image: url(assets/images/sliders/slider02.jpg);">
+        <div class="item" style="background:none !important;">
             <div class="container-fluid">
+                <img src="<?= $this->url->get('assets/images/slide2.png') ?>" class="caption vertical-center text-left left" style="margin-top:-100px;" />
                 <div class="caption vertical-center text-left right" style="padding-right:0;">
                     <div class="big-text fadeInDown-1">
-                        Save up to a<span class="big"><span class="sign">$</span>400</span>
+                        <span class="small">Door to </span><span class="big">DOOR</span>Deliveries
                     </div>
 
                     <div class="excerpt fadeInDown-2">
-                        Package Rice &amp; Beans<br>
+                        Packaged Rice &amp; Beans<br>
                         &amp; correct meat<br>
                         spiced
                     </div>
@@ -231,17 +232,18 @@
                         terms and conditions apply
                     </div>
                     <div class="button-holder fadeInDown-3">
-                        <a href="javascript:void(0)" class="big le-button ">shop now</a>
+                        <a href="javascript:void(0)" class="big le-button ">Order Now</a>
                     </div>
                 </div><!-- /.caption -->
             </div><!-- /.container-fluid -->
         </div><!-- /.item -->
 
-        <div class="item" style="background-image: url(assets/images/sliders/slider04.jpg);">
+        <div class="item" style="background:none !important;">
             <div class="container-fluid">
+                <img src="<?= $this->url->get('assets/images/homedelivery.png') ?>" class="caption vertical-center text-right right" style="margin-top:-100px;" />
                 <div class="caption vertical-center text-left left" style="padding-left:7%;">
                     <div class="big-text fadeInDown-1">
-                        Want a<span class="big"><span class="sign">$</span>200</span>Discount?
+                        Want a<span class="big"><span class="sign">&#8358;</span>200</span>Discount?
                     </div>
 
                     <div class="excerpt fadeInDown-2">
@@ -320,8 +322,8 @@
                                     <div class="brand">Peppered Rice</div>
                                 </div>
                                 <div class="prices">
-                                    <div class="price-prev">$0.00</div>
-                                    <div class="price-current pull-right">$<?= $values['sale_price'] ?></div>
+                                    <div class="price-prev">&#8358;0.00</div>
+                                    <div class="price-current pull-right">&#8358;<?= $values['sale_price'] ?></div>
                                 </div>
 
                                 <div class="hover-area">
@@ -364,8 +366,8 @@
                                     <div class="brand">Peppered Rice</div>
                                 </div>
                                 <div class="prices">
-                                    <div class="price-prev">$0.00</div>
-                                    <div class="price-current pull-right">$<?= $values['sale_price'] ?></div>
+                                    <div class="price-prev">&#8358;0.00</div>
+                                    <div class="price-current pull-right">&#8358;<?= $values['sale_price'] ?></div>
                                 </div>
 
                                 <div class="hover-area">
@@ -417,7 +419,7 @@
                                 <div class="brand">Peppered Rice</div>
                             </div>
                             <div class="prices">
-                                <div class="price-current text-right">$<?= $values->sale_price ?></div>
+                                <div class="price-current text-right">&#8358;<?= $values->sale_price ?></div>
                             </div>
                             <div class="hover-area">
                                 <div class="add-cart-button">
@@ -448,7 +450,7 @@
                             </div>
                             <div class="prices">
 
-                                <div class="price-current text-right">$<?= $values->sale_price ?></div>
+                                <div class="price-current text-right">&#8358;<?= $values->sale_price ?></div>
                             </div>
                             <div class="hover-area">
                                 <div class="add-cart-button">
@@ -499,7 +501,7 @@
                         <div class="brand">Peppered Rice</div>
                     </div>
                     <div class="prices text-right">
-                        <div class="price-current inline">$<?= $singles->sale_price ?></div>
+                        <div class="price-current inline">&#8358;<?= $singles->sale_price ?></div>
                         <a href="javascript:void(0)" class="le-button big inline addToCart" id="item0">add to cart</a>
                     </div>
                 </div><!-- /.product-item-holder -->
@@ -535,7 +537,7 @@
 						
 						<div class="body">
 							<div class="title">
-								<a href="single-product.html"><?= ucwords($values->firstname) ?> <?= ucwords($values->lastname) ?></a>
+								<a href="#"><?= ucwords($values->firstname) ?> <?= ucwords($values->lastname) ?></a>
 							</div>
 							<div class="brand" style="text-transform:lowercase !important;"><small><?= $values->email ?></small></div>
 						</div>
@@ -580,14 +582,14 @@
     <p class="regular-bold"> Feel free to contact us via phone,email or just send us mail.</p>
     
     <p>
-        17 Princess Road, London, Greater London NW1 8JR, UK
-        1-888-8MEDIA (1-888-892-9953)
+        Bodija outlet: 6, Odeku close, Bodija, Ibadan. Delivery hotline-
+        +234 803 859 6978
     </p>
     
     <div class="social-icons">
         <h3>Get in touch</h3>
         <ul>
-            <li><a href="http://facebook.com/transvelo" class="fa fa-facebook"></a></li>
+            <li><a href="#" class="fa fa-facebook"></a></li>
             <li><a href="#" class="fa fa-twitter"></a></li>
             <li><a href="#" class="fa fa-pinterest"></a></li>
             <li><a href="#" class="fa fa-linkedin"></a></li>

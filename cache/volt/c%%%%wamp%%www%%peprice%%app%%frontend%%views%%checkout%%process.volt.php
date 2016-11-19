@@ -75,7 +75,7 @@
         <div class="col-xs-12 col-md-6 top-search-holder no-margin">
             <div class="contact-row">
     <div class="phone inline">
-        <i class="fa fa-phone"></i> (+800) 123 456 7890
+        <i class="fa fa-phone"></i> +234 803 859 6978
     </div>
     <div class="contact inline">
         <i class="fa fa-envelope"></i> support@<span class="le-color">pepperedrice.com</span>
@@ -329,7 +329,7 @@
 						
 						<div class="body">
 							<div class="title">
-								<a href="single-product.html"><?= ucwords($values->firstname) ?> <?= ucwords($values->lastname) ?></a>
+								<a href="#"><?= ucwords($values->firstname) ?> <?= ucwords($values->lastname) ?></a>
 							</div>
 							<div class="brand" style="text-transform:lowercase !important;"><small><?= $values->email ?></small></div>
 						</div>
@@ -374,14 +374,14 @@
     <p class="regular-bold"> Feel free to contact us via phone,email or just send us mail.</p>
     
     <p>
-        17 Princess Road, London, Greater London NW1 8JR, UK
-        1-888-8MEDIA (1-888-892-9953)
+        Bodija outlet: 6, Odeku close, Bodija, Ibadan. Delivery hotline-
+        +234 803 859 6978
     </p>
     
     <div class="social-icons">
         <h3>Get in touch</h3>
         <ul>
-            <li><a href="http://facebook.com/transvelo" class="fa fa-facebook"></a></li>
+            <li><a href="#" class="fa fa-facebook"></a></li>
             <li><a href="#" class="fa fa-twitter"></a></li>
             <li><a href="#" class="fa fa-pinterest"></a></li>
             <li><a href="#" class="fa fa-linkedin"></a></li>
