@@ -70,7 +70,7 @@
             <a href="category-grid-2">
                 <div class="banner-text theblue">
                     <h1>New Life</h1>
-                    <span class="tagline">View All Products</span>
+                    <span class="tagline">View All Menus</span>
                 </div>
                 <img class="banner-image" alt="" src="assets/images/blank.gif" data-echo="{{url('assets/images/banners/banner-narrow-01.jpg')}}" />
             </a>
