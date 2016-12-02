@@ -163,7 +163,8 @@ class ProductsController extends BaseController{
                     $uploads    = array(
                         'added_by'      => json_encode($addedBy),
                         'front_image'   => $time.'_'.$file[0]->getName(),
-                        'category'      => (int) $category->category_id
+                        'category'      => (int) $category->category_id,
+                        'vendor_id'     => $this->session->get('auth')['admin_id']
                     );
                     $mergeArr   = array_merge($uploads, $this->request->getPost());
                     if($products->create($mergeArr)){
@@ -188,7 +189,7 @@ class ProductsController extends BaseController{
                 return;
             }
         }
-        $this->view->setRenderLevel(Phalcon\Mvc\View::LEVEL_NO_RENDER);
+        $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
         $this->response->redirect('backend/products/show?task=load');
         return;
     }

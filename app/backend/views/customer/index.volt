@@ -41,7 +41,7 @@
                       <div class="media-body">
                         <h4 class="media-heading">
                           {{values.firstname | upper ~' '~values.lastname | upper}}
-                          <small>Last Access: 1 hour ago</small>
+                          <small></small>
                         </h4>
                         <p>
                           <i aria-hidden="true" class="icon icon-color wb-map"></i>                          {{values.address | capitalize}}

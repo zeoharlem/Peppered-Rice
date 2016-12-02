@@ -10,7 +10,7 @@
             <!-- ========================================== SECTION – HERO ========================================= -->
             
 <div id="hero">
-    <div id="owl-main" class="owl-carousel height-md owl-inner-nav owl-ui-md">
+    <div id="owl-main" class="owl-carousel height-lg owl-inner-nav owl-ui-lg">
         
         <div class="item" style="background:none !important;">
             <div class="container-fluid">
@@ -93,11 +93,8 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" >
                 <li class="active"><a href="#featured" data-toggle="tab">All</a></li>
-                <li><a href="#new-arrivals" data-toggle="tab">Regular 1 Pack</a></li>
-                <li><a href="#top-sales" data-toggle="tab">Regular 2 Pack</a></li>
-                <li><a href="#top-sales" data-toggle="tab">Regular 3 Pack</a></li>
-                <li><a href="#top-sales" data-toggle="tab">Executive Pack</a></li>
-                <li><a href="#top-sales" data-toggle="tab"><strong>Breakfast</strong></a></li>
+                <li><a href="#new-arrivals" data-toggle="tab">Recommended</a></li>
+                <!--<li><a href="#top-sales" data-toggle="tab">Starters</a></li>-->
             </ul>
 
             <!-- Tab panes -->
@@ -195,186 +192,122 @@
         </div>
     </div>
 </div>
+
+<!-- ========================================= BEST SELLERS ========================================= -->
+<section id="bestsellers" class="color-bg wow fadeInUp">
+    <div class="container">
+        <h1 class="section-title">Package List(s)</h1>
+
+        <div class="product-grid-holder medium">
+            <div class="col-xs-12 col-md-7 no-margin">
+                
+                <div class="row no-margin">
+                    {% for keys,values in package %}
+                    <div class="col-xs-12 col-sm-4 no-margin product-item-holder size-medium hover">
+                        <div class="product-item">
+                            <div class="image">
+                                <img alt="" src="{{url('assets/images/blank.gif')}}" data-echo="{{url('assets/uploads/'~values.front_image)}}" />
+                            </div>
+                            <div class="body">
+                                <div class="label-discount clear"></div>
+                                <div class="title">
+                                    <a href="javascript:void(0)">{{values.title | capitalize}}</a>
+                                </div>
+                                <div class="brand">Peppered Rice</div>
+                            </div>
+                            <div class="prices">
+                                <div class="price-current text-right">&#8358;{{values.sale_price}}</div>
+                            </div>
+                            <div class="hover-area">
+                                <div class="add-cart-button">
+                                    <a href="javascript:void(0)" class="le-button addToCart" id="item{{keys+1}}">Add to cart</a>
+                                </div>
+                                <div class="wish-compare">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.product-item-holder -->
+                    {% endfor %}
+                </div><!-- /.row -->
+                
+                <div class="row no-margin">
+                    {% for keys,values in package %}
+                    <div class="col-xs-12 col-sm-4 no-margin product-item-holder size-medium hover">
+                        <div class="product-item">
+                            <div class="image">
+                                <img alt="" src="{{url('assets/images/blank.gif')}}" data-echo="{{url('assets/uploads/'~values.front_image)}}" />
+                            </div>
+                            <div class="body">
+                                <div class="label-discount clear"></div>
+                                <div class="title">
+                                    <a href="javascript:void(0)">{{values.title | capitalize}}</a>
+                                </div>
+                                <div class="brand">Peppered Rice</div>
+                            </div>
+                            <div class="prices">
+
+                                <div class="price-current text-right">&#8358;{{values.sale_price}}</div>
+                            </div>
+                            <div class="hover-area">
+                                <div class="add-cart-button">
+                                    <a href="javascript:void(0)" class="le-button addToCart" id="item{{keys+1}}">Add to cart</a>
+                                </div>
+                                <div class="wish-compare">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.product-item-holder -->
+                    {% endfor %}
+
+                </div><!-- /.row -->
+            </div><!-- /.col -->
+            <div class="col-xs-12 col-md-5 no-margin">
+                <div class="product-item-holder size-big single-product-gallery small-gallery">
+                    
+                    <div id="best-seller-single-product-slider" class="single-product-slider owl-carousel">
+                        <div class="single-product-gallery-item" id="slide1">
+                            <a data-rel="prettyphoto" href="images/products/product-gallery-01.jpg">
+                                <img alt="" src="{{url('assets/images/blank.gif')}}" data-echo="{{url('assets/uploads/'~singles.front_image)}}" />
+                            </a>
+                        </div><!-- /.single-product-gallery-item -->
+
+                        <div class="single-product-gallery-item" id="slide2">
+                            <a data-rel="prettyphoto" href="images/products/product-gallery-01.jpg">
+                                <img alt="" src="{{url('assets/images/blank.gif')}}" data-echo="{{url('assets/uploads/'~singles.front_image)}}" />
+                            </a>
+                        </div><!-- /.single-product-gallery-item -->
+
+                        <div class="single-product-gallery-item" id="slide3">
+                            <a data-rel="prettyphoto" href="javascript:void(0)">
+                                <img alt="" src="{{url('assets/images/blank.gif')}}" data-echo="{{url('assets/uploads/'~singles.front_image)}}" />
+                            </a>
+                        </div><!-- /.single-product-gallery-item -->
+                    </div><!-- /.single-product-slider -->
+
+                    <div class="gallery-thumbs clearfix">
+                        
+                    </div><!-- /.gallery-thumbs -->
+
+                    <div class="body">
+                        <div class="label-discount clear"></div>
+                        <div class="title">
+                            <a href="javascript:void(0)">{{singles.title | capitalize}}</a>
+                        </div>
+                        <div class="brand">Peppered Rice</div>
+                    </div>
+                    <div class="prices text-right">
+                        <div class="price-current inline">&#8358;{{singles.sale_price}}</div>
+                        <a href="javascript:void(0)" class="le-button big inline addToCart" id="item0">add to cart</a>
+                    </div>
+                </div><!-- /.product-item-holder -->
+            </div><!-- /.col -->
+
+        </div><!-- /.product-grid-holder -->
+    </div><!-- /.container -->
+</section><!-- /#bestsellers -->
+<!-- ========================================= BEST SELLERS : END ========================================= -->
 </div>
 
-<!-- ========================================= TOP BRANDS : END ========================================= -->	<!-- ============================================================= FOOTER ============================================================= -->
-<footer id="footer" class="color-bg">
-<div class="container">
-<div class="row no-margin widgets-row">
-<div class="col-xs-12  col-sm-4 no-margin-left">
-<!-- ============================================================= FEATURED PRODUCTS ============================================================= -->
-<div class="widget">
-<h2>Featured products</h2>
-<div class="body">
-<ul>
-<li>
-<div class="row">
-<div class="col-xs-12 col-sm-9 no-margin">
-<a href="index.php?page=single-product">Netbook Acer Travel B113-E-10072</a>
-<div class="price">
-<div class="price-prev">$2000</div>
-<div class="price-current">$1873</div>
-</div>
-</div>
-<div class="col-xs-12 col-sm-3 no-margin">
-<a href="#" class="thumb-holder">
-<img alt="" src="assets/images/blank.gif.pagespeed.ce.2JdGiI2i2V.gif" data-echo="assets/images/products/product-small-01.jpg" pagespeed_url_hash="3686187641" data-pagespeed-onload="pagespeed.CriticalImages.checkImageForCriticality(this);" onload="var elem=this;if (this==window) elem=document.body;elem.setAttribute('data-pagespeed-loaded', 1)"/>
-</a>
-</div>
-</div>
-</li>
-<li>
-<div class="row">
-<div class="col-xs-12 col-sm-9 no-margin">
-<a href="index.php?page=single-product">PowerShot Elph 115 16MP Digital Camera</a>
-<div class="price">
-<div class="price-prev">$2000</div>
-<div class="price-current">$1873</div>
-</div>
-</div>
-<div class="col-xs-12 col-sm-3 no-margin">
-<a href="#" class="thumb-holder">
-<img alt="" src="assets/images/blank.gif.pagespeed.ce.2JdGiI2i2V.gif" data-echo="assets/images/products/product-small-02.jpg" pagespeed_url_hash="3686187641" data-pagespeed-onload="pagespeed.CriticalImages.checkImageForCriticality(this);" onload="var elem=this;if (this==window) elem=document.body;elem.setAttribute('data-pagespeed-loaded', 1)"/>
-</a>
-</div>
-</div>
-</li>
-<li>
-<div class="row">
-<div class="col-xs-12 col-sm-9 no-margin">
-<a href="index.php?page=single-product">PowerShot Elph 115 16MP Digital Camera</a>
-<div class="price">
-<div class="price-prev">$2000</div>
-<div class="price-current">$1873</div>
-</div>
-</div>
-<div class="col-xs-12 col-sm-3 no-margin">
-<a href="#" class="thumb-holder">
-<img alt="" src="assets/images/blank.gif.pagespeed.ce.2JdGiI2i2V.gif" data-echo="assets/images/products/product-small-03.jpg" pagespeed_url_hash="3686187641" data-pagespeed-onload="pagespeed.CriticalImages.checkImageForCriticality(this);" onload="var elem=this;if (this==window) elem=document.body;elem.setAttribute('data-pagespeed-loaded', 1)"/>
-</a>
-</div>
-</div>
-</li>
-</ul>
-</div><!-- /.body -->
-</div> <!-- /.widget -->
-<!-- ============================================================= FEATURED PRODUCTS : END ============================================================= --> </div><!-- /.col -->
-<div class="col-xs-12 col-sm-4 ">
-<!-- ============================================================= ON SALE PRODUCTS ============================================================= -->
-<div class="widget">
-<h2>On-Sale Products</h2>
-<div class="body">
-<ul>
-<li>
-<div class="row">
-<div class="col-xs-12 col-sm-9 no-margin">
-<a href="index.php?page=single-product">HP Scanner 2910P</a>
-<div class="price">
-<div class="price-prev">$2000</div>
-<div class="price-current">$1873</div>
-</div>
-</div>
-<div class="col-xs-12 col-sm-3 no-margin">
-<a href="#" class="thumb-holder">
-<img alt="" src="assets/images/blank.gif.pagespeed.ce.2JdGiI2i2V.gif" data-echo="assets/images/products/product-small-04.jpg" pagespeed_url_hash="3686187641" data-pagespeed-onload="pagespeed.CriticalImages.checkImageForCriticality(this);" onload="var elem=this;if (this==window) elem=document.body;elem.setAttribute('data-pagespeed-loaded', 1)"/>
-</a>
-</div>
-</div>
-</li>
-<li>
-<div class="row">
-<div class="col-xs-12 col-sm-9 no-margin">
-<a href="index.php?page=single-product">Galaxy Tab 3 GT-P5210 16GB, Wi-Fi, 10.1in - White</a>
-<div class="price">
-<div class="price-prev">$2000</div>
-<div class="price-current">$1873</div>
-</div>
-</div>
-<div class="col-xs-12 col-sm-3 no-margin">
-<a href="#" class="thumb-holder">
-<img alt="" src="assets/images/blank.gif.pagespeed.ce.2JdGiI2i2V.gif" data-echo="assets/images/products/product-small-05.jpg" pagespeed_url_hash="3686187641" data-pagespeed-onload="pagespeed.CriticalImages.checkImageForCriticality(this);" onload="var elem=this;if (this==window) elem=document.body;elem.setAttribute('data-pagespeed-loaded', 1)"/>
-</a>
-</div>
-</div>
-</li>
-<li>
-<div class="row">
-<div class="col-xs-12 col-sm-9 no-margin">
-<a href="index.php?page=single-product">PowerShot Elph 115 16MP Digital Camera</a>
-<div class="price">
-<div class="price-prev">$2000</div>
-<div class="price-current">$1873</div>
-</div>
-</div>
-<div class="col-xs-12 col-sm-3 no-margin">
-<a href="#" class="thumb-holder">
-<img alt="" src="assets/images/blank.gif.pagespeed.ce.2JdGiI2i2V.gif" data-echo="assets/images/products/product-small-06.jpg" pagespeed_url_hash="3686187641" data-pagespeed-onload="pagespeed.CriticalImages.checkImageForCriticality(this);" onload="var elem=this;if (this==window) elem=document.body;elem.setAttribute('data-pagespeed-loaded', 1)"/>
-</a>
-</div>
-</div>
-</li>
-</ul>
-</div><!-- /.body -->
-</div> <!-- /.widget -->
-<!-- ============================================================= ON SALE PRODUCTS : END ============================================================= --> </div><!-- /.col -->
-<div class="col-xs-12 col-sm-4 ">
-<!-- ============================================================= TOP RATED PRODUCTS ============================================================= -->
-<div class="widget">
-<h2>Top Rated Products</h2>
-<div class="body">
-<ul>
-<li>
-<div class="row">
-<div class="col-xs-12 col-sm-9 no-margin">
-<a href="index.php?page=single-product">Galaxy Tab GT-P5210, 10" 16GB Wi-Fi</a>
-<div class="price">
-<div class="price-prev">$2000</div>
-<div class="price-current">$1873</div>
-</div>
-</div>
-<div class="col-xs-12 col-sm-3 no-margin">
-<a href="#" class="thumb-holder">
-<img alt="" src="assets/images/blank.gif.pagespeed.ce.2JdGiI2i2V.gif" data-echo="assets/images/products/product-small-07.jpg" pagespeed_url_hash="3686187641" data-pagespeed-onload="pagespeed.CriticalImages.checkImageForCriticality(this);" onload="var elem=this;if (this==window) elem=document.body;elem.setAttribute('data-pagespeed-loaded', 1)"/>
-</a>
-</div>
-</div>
-</li>
-<li>
-<div class="row">
-<div class="col-xs-12 col-sm-9 no-margin">
-<a href="index.php?page=single-product">PowerShot Elph 115 16MP Digital Camera</a>
-<div class="price">
-<div class="price-prev">$2000</div>
-<div class="price-current">$1873</div>
-</div>
-</div>
-<div class="col-xs-12 col-sm-3 no-margin">
-<a href="#" class="thumb-holder">
-<img alt="" src="assets/images/blank.gif.pagespeed.ce.2JdGiI2i2V.gif" data-echo="assets/images/products/product-small-08.jpg" pagespeed_url_hash="3686187641" data-pagespeed-onload="pagespeed.CriticalImages.checkImageForCriticality(this);" onload="var elem=this;if (this==window) elem=document.body;elem.setAttribute('data-pagespeed-loaded', 1)"/>
-</a>
-</div>
-</div>
-</li>
-<li>
-<div class="row">
-<div class="col-xs-12 col-sm-9 no-margin">
-<a href="index.php?page=single-product">Surface RT 64GB, Wi-Fi, 10.6in - Dark Titanium</a>
-<div class="price">
-<div class="price-prev">$2000</div>
-<div class="price-current">$1873</div>
-</div>
-</div>
-<div class="col-xs-12 col-sm-3 no-margin">
-<a href="#" class="thumb-holder">
-<img alt="" src="assets/images/blank.gif.pagespeed.ce.2JdGiI2i2V.gif" data-echo="assets/images/products/product-small-09.jpg" pagespeed_url_hash="3686187641" data-pagespeed-onload="pagespeed.CriticalImages.checkImageForCriticality(this);" onload="var elem=this;if (this==window) elem=document.body;elem.setAttribute('data-pagespeed-loaded', 1)"/>
-</a>
-</div>
-</div>
-</li>
-</ul>
-</div><!-- /.body -->
-</div><!-- /.widget -->
-<!-- ============================================================= TOP RATED PRODUCTS : END ============================================================= --> </div><!-- /.col -->
-</div><!-- /.widgets-row-->
-</div><!-- /.container --></div>
 {% endblock %}

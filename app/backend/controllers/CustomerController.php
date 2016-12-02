@@ -61,7 +61,8 @@ class CustomerController extends BaseController{
             "search_query"  => $this->_searchQuery,
             "paginator"     => $paginator->getPaginate(), 
             "customers"     => $queryBuilt->getQuery()->execute(),
-            "offset"    => ($this->_currentPage - 1) * self::LIMIT
+            "offset"        => ($this->_currentPage - 1) * self::LIMIT,
+            "customerClass" => $this
         ));
         $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
         return;
@@ -102,6 +103,21 @@ class CustomerController extends BaseController{
         $this->view->setVar('phones', $register->toArray());
     }
     
+    public function detailAction(){
+        if($this->request->isAjax()){
+            $response   = new \Phalcon\Http\Response();
+            $customer   = Register::findFirstByRegister_id(
+                    $this->request->getPost('register_id'));
+            if($customer != false){
+                $response->setHeader('Content-Type','application/json');
+                $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
+                $response->setJsonContent(array('data' => $customer));
+                $response->send(); exit();
+            }
+        }
+    }
+
+
     public function showAction(){
         $config = array(
             "host"  => "localhost",
@@ -130,5 +146,12 @@ class CustomerController extends BaseController{
         }
         $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
         return;
+    }
+    
+    public function __getTimeRegister($date){
+        $now    = time();
+        $former = strtotime($date);
+        $dateDiffer = $now - $date;
+        return ceil($dateDiffer / (60 * 60 * 24));
     }
 }

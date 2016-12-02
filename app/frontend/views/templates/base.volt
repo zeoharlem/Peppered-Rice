@@ -131,7 +131,7 @@
                 <div class="total-price-basket"> 
                     <span class="lbl">your cart:</span>
                     <span class="total-price">
-                        <span class="sign">$</span><span class="value">0</span>
+                        <span class="sign">&#8358;</span><span class="value">0</span>
                     </span>
                 </div>
             </a>

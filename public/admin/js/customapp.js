@@ -207,6 +207,16 @@
             //"sDom": "t" // just show table, no other controls
         });
         
+        //Click to Remove From cart
+        
+        $('#customerView tbody').on('click', 'button.view', function(){
+            var dataRow = customerView.row($(this).parents('tr')).data();
+            $.post('http://localhost/peprice/backend/customer/detail/',{register_id:dataRow[5]}, function(data){
+                var stringJSON  = $.parseJSON(JSON.stringify(data));
+                alert(stringJSON);
+            })
+        });
+        
         //Customer Controller System
         var getCustomer    = $('#getCustomers').DataTable({
             responsive: true,
