@@ -8,7 +8,7 @@
 
 <section id="gaming">
     <div class="grid-list-products">
-        <h2 class="section-title">{{catName.category_name | capitalize}}</h2>
+        <h2 class="section-title"><?php echo isset($_GET['cat']) ? $catName->category_name : 'Everything'; ?></h2>
         
         <div class="control-bar">
             
@@ -23,14 +23,14 @@
 
             <div class="grid-list-buttons">
                 <ul>
-                    <li class="grid-list-button-item active"><a data-toggle="tab" href="#grid-view"><i class="fa fa-th-large"></i> Grid</a></li>
-                    <li class="grid-list-button-item "><a data-toggle="tab" href="#list-view"><i class="fa fa-th-list"></i> List</a></li>
+                    <li class="grid-list-button-item"><a data-toggle="tab" href="#grid-view"><i class="fa fa-th-large"></i> Grid</a></li>
+                    <li class="grid-list-button-item active"><a data-toggle="tab" href="#list-view"><i class="fa fa-th-list"></i> List</a></li>
                 </ul>
             </div>
         </div><!-- /.control-bar -->
                                 
         <div class="tab-content">
-            <div id="grid-view" class="products-grid fade tab-pane in active">
+            <div id="grid-view" class="products-grid fade tab-pane">
                 
                 <div class="product-grid-holder">
                     <div class="row no-margin">
@@ -53,8 +53,8 @@
                                     <div class="brand">Peppered Rice</div>
                                 </div>
                                 <div class="prices">
-                                    <div class="price-prev">$0.00</div>
-                                    <div class="price-current pull-right">${{values.sale_price}}</div>
+                                    <div class="price-prev">&#8358;0.00</div>
+                                    <div class="price-current pull-right">&#8358;{{values.sale_price}}</div>
                                 </div>
                                 <div class="hover-area">
                                     <div class="add-cart-button">
@@ -77,7 +77,7 @@
 
             </div><!-- /.products-grid #grid-view -->
 
-            <div id="list-view" class="products-grid fade tab-pane ">
+            <div id="list-view" class="products-grid fade tab-pane in active">
                 <div class="products-list">
                     {% for keys,values in pager.getPaginate().items %}
                     <div class="product-item product-item-holder">
@@ -108,8 +108,8 @@
                             </div><!-- /.body-holder -->
                             <div class="no-margin col-xs-12 col-sm-3 price-area">
                                 <div class="right-clmn">
-                                    <div class="price-current">${{values.sale_price}}</div>
-                                    <div class="price-prev">$0.00</div>
+                                    <div class="price-current">&#8358;{{values.sale_price}}</div>
+                                    <div class="price-prev">&#8358;0.00</div>
                                     <div class="availability"><label>availability:</label><span class="available">  in stock</span></div>
                                     <a href="javascript:void(0)" class="le-button addToCart" id="item{{keys+1}}">add to cart</a>
                                     

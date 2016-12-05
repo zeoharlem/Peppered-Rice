@@ -41,13 +41,13 @@
 
                     <div class="col-xs-12 col-sm-1 no-margin sPrice">
                         <div class="price">
-                            ${{values['price']}}
+                            &#8358;{{values['price']}}
                         </div>
                     </div>
 
                     <div class="col-xs-12 col-sm-2 no-margin pricer">
                         <div class="price">
-                            ${{values['price']*values['qty']}}.00
+                            &#8358;{{values['price']*values['qty']}}.00
                         </div>
                         <a class="close-btn cancel_tr" href="#" id="{{values['id']}}"></a>
                     </div>
@@ -69,18 +69,18 @@
                     <ul class="tabled-data no-border inverse-bold">
                         <li>
                             <label>cart subtotal</label>
-                            <div class="value pull-right">${{grandTotal}}.00</div>
+                            <div class="value pull-right">&#8358;{{grandTotal}}.00</div>
                         </li>
                         
                     </ul>
                     <ul id="total-price" class="tabled-data inverse-bold no-border">
                         <li>
                             <label>order total</label>
-                            <div class="value pull-right">${{grandTotal}}.00</div>
+                            <div class="value pull-right">&#8358;{{grandTotal}}.00</div>
                         </li>
                     </ul>
                     <div class="buttons-holder">
-                        <a class="le-button big" href="{{url('dashboard?token=')}}" >checkout</a>
+                        <a class="le-button big" href="{{url('dashboard?token=')}}" >Order Now</a>
                         <a class="simple-link block" href="{{url('category')}}" >continue shopping</a>
                     </div>
                 </div>

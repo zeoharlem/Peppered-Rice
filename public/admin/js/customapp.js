@@ -64,13 +64,19 @@
         //control click on the button on the exampleFixedHeader
         $('#examplePageHeader tbody').on('click', 'button.editorn', function(ev){
             var clickData   = tablePage.row($(this).parents('tr')).data();
-            alert(clickData[5]);
+            window.location.href    = 'http://localhost/peprice/backend/products/viewProduct/'+clickData[5]
         })
         
         //control click on the button on the exampleFixedHeader
         $('#examplePageHeader tbody').on('click', 'button.delete', function(ev){
+            var tableStack  = $(this).closest('tr');
             var clickData   = tablePage.row($(this).parents('tr')).data();
-            alert(clickData[5]);
+            $.post('http://localhost/peprice/backend/products/deletePro',{product_id:clickData[5]}, function(data){
+                var stringJSON  = $.parseJSON(JSON.stringify(data));
+                if(stringJSON.status == 'OK'){
+                    tableStack.remove();
+                }
+            })
         })
         
         //Place order for customers who called agents or cashier
@@ -154,12 +160,36 @@
         
         var tableCategory = $('#exampleCategory, #exampleSubCategory').DataTable({
           responsive: true,
-          "columnDefs": [{
-                "targets": -1,
-                "data": null,
-                "defaultContent": "<div class='btn-group'><button class='btn'>View</button><button class='btn'>Edit</button><button class='btn'>Delete</button></div>"
-            }]
           //"sDom": "t" // just show table, no other controls
+        });
+        
+        $('#exampleCategory tbody').on('click', 'button.edit', function(){
+            var dataRow = tableCategory.row($(this).parents('tr')).data();
+            //alert("transaction _id is:" + dataRow[5]);
+            dataRowTrans_id = parseInt($(this).attr('id'));
+            $.post('http://localhost/peprice/backend/products/view',{category_id:dataRowTrans_id}, function(data){
+                var stringJSON  = $.parseJSON(JSON.stringify(data));
+                if(stringJSON.status == 'OK'){
+                    $('#editCategoryModal').modal('show');
+                    $('#editCategoryModal').on('shown.bs.modal', function (event) {
+                        var thisTask    = $(this);
+                        var button  = $(event.relatedTarget);
+                        thisTask.find('.category_id').val(stringJSON.data.category_id);
+                        thisTask.find('.category_name').val(stringJSON.data.category_name);
+                        thisTask.find('.description').val(stringJSON.data.description);
+                        thisTask.find('#editcat').on('click', function(ev){
+                            ev.preventDefault();
+                            var formSerial  = thisTask.find('form').serialize();
+                            $.post('http://localhost/peprice/backend/products/editPost',formSerial, function(data){
+                                var editJSON    = $.parseJSON(JSON.stringify(data));
+                                if(editJSON.status == "OK"){
+                                    window.location.reload();
+                                }
+                            })
+                        })
+                    });
+                }
+            });
         });
         
         var tableOrder = $('#exampleOrder').DataTable({
@@ -211,10 +241,23 @@
         
         $('#customerView tbody').on('click', 'button.view', function(){
             var dataRow = customerView.row($(this).parents('tr')).data();
-            $.post('http://localhost/peprice/backend/customer/detail/',{register_id:dataRow[5]}, function(data){
+            window.location.href    = 'http://localhost/peprice/backend/customer/detail/'
+                    +dataRow[5]+'?task=view';
+        });
+        
+        
+        $('#customerView tbody').on('click', 'button.delete', function(){
+            var tdRow   = $(this).closest('tr');
+            var dataRow = customerView.row($(this).parents('tr')).data();
+            $.post('http://localhost/peprice/backend/customer/delete/',{register_id:dataRow[5]}, function(data){
                 var stringJSON  = $.parseJSON(JSON.stringify(data));
-                alert(stringJSON);
-            })
+                if(stringJSON.status == "OK"){
+                    tdRow.remove();
+                }
+                else{
+                    alert('Unable to Delete!'+stringJSON.status);
+                }
+            });
         });
         
         //Customer Controller System

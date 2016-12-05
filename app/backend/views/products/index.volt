@@ -7,7 +7,7 @@
       <div class="panel">
         <header class="panel-heading">
           <div class="panel-actions"></div>
-          <h3 class="panel-title"><strong>Manage Products</strong> <button class='btn btn-primary'>Add To Product</button></h3>
+          <h3 class="panel-title"><strong>Manage Products</strong> <a href="{{url('backend/products/show')}}" class='btn btn-primary'>Add To Product</a></h3>
         </header>
         <div class="panel-body">
           <table class="table table-hover dataTable table-striped width-full" data-plugin="dataTable" id="examplePageHeader">

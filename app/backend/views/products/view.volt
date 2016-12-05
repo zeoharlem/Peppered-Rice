@@ -54,7 +54,7 @@
                 <td>{{keys + 1}}</td>
                 <td>{{values['category_name']}}</td>
                 <td>{{values['description']}}</td>
-                <td><div class='btn-group'><button class='btn view' id="{{values['category_id']}}">View</button><button class='btn edit' id="{{values['category_id']}}">Edit</button><button id="{{values['category_id']}}" class='btn delete'>Delete</button></div></td>
+                <td>$553,536</td>
               </tr>
               {% endfor %}
             </tbody>
@@ -66,36 +66,4 @@
       </div>
       <!-- End Panel Inline Form -->
 
-<!-- Modal -->
-                  <div class="modal fade" id="editCategoryModal" aria-hidden="false" aria-labelledby="editCategoryModalLabel"
-                  role="dialog" tabindex="-1">
-                    <div class="modal-dialog">
-                      <form class="modal-content" method="post" id="editCategory">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                          </button>
-                          <h4 class="modal-title" id="editCategoryModalLabel">Edit Category</h4>
-                        </div>
-                        <div class="modal-body">
-                          <div class="row">
-                            <div class="col-lg-6 form-group">
-                              <label>First Name</label>
-                              <input type="hidden" class="form-control category_id" name="category_id">
-                              <input type="text" class="form-control category_name" name="category_name">
-                            </div>
-                            
-                            <div class="col-lg-12 form-group">
-                              <textarea class="form-control description" name="description"></textarea>
-                            </div>
-                            
-                            <div class="col-sm-12 pull-right">
-                              <button class="btn btn-primary btn-outline" type="button" id="editcat">Edit Category</button>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  <!-- End Modal -->
 {% endblock %}

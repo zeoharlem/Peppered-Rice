@@ -24,6 +24,7 @@ class ProductsController extends BaseController{
     const LIMIT = 20;
     private $_currentPage;
     private $_role, $_vendor_id;
+    const UPLOAD_FOLDER = '../public/assets/uploads/';
     
     public function initialize() {
         parent::initialize();
@@ -61,10 +62,69 @@ class ProductsController extends BaseController{
                 return;
             }
         }
-        $this->view->setVar('categories',Category::find(array(
-                    'order' => 'category_id DESC'))->toArray());
+        $this->view->setVar('categories',Category::find(
+                        array('order' => 'category_id DESC'))->toArray());
         $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
         return;
+    }
+    
+    public function viewAction(){
+        //var_dump($this->request->getPost());
+        $response   = new \Phalcon\Http\Response();
+        if($this->request->isAjax() && $this->request->isPost()){
+            $category   = Category::findFirstByCategory_id(
+                           $this->request->getPost('category_id'));
+            if($category != false){
+                $response->setJsonContent(array('status'=>'OK','data'=>$category));
+                $response->setHeader('Content-Type','application/json');
+            }
+            $response->send();            exit();
+            return;
+        }
+        $this->view->disable();
+        return;
+    }
+    
+    public function deleteProAction(){
+        if($this->request->isAjax()){
+            $response   = new \Phalcon\Http\Response();
+            $products   = Products::findFirstByProduct_id(
+                    $this->request->getPost('product_id'));
+            if($products != false){
+                if($products->delete()){
+                    
+                    unlink(self::UPLOAD_FOLDER . $products->front_image);
+                    $response->setHeader('Content-Type','application/json');
+                    $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
+                    $response->setJsonContent(array('status' => 'OK'));
+                    $response->send(); exit();
+                }
+                else{
+                    $response->setHeader('Content-Type','application/json');
+                    $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
+                    $response->setJsonContent(array('status' => 'ERROR'));
+                    $response->send(); exit();
+                }
+            }
+        }
+    }
+
+    
+    public function editPostAction(){
+        $response   = new \Phalcon\Http\Response();
+        if($this->request->isPost() && $this->request->isAjax()){
+            $category   = Category::findFirstByCategory_id(
+                        $this->request->getPost('category_id'));
+            if($category){
+                if($category->update($this->request->getPost())){
+                    $response->setHeader('Content-Type','application/json');
+                    $response->setJsonContent(array('status' => 'OK'));
+                    $response->send(); exit();
+                    return;
+                }
+            }
+        }
+        $this->view->disable();
     }
     
     public function subcategoryAction(){

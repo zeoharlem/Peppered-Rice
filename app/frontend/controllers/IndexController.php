@@ -54,6 +54,18 @@ class IndexController extends BaseController{
         
     }
     
+    public function getProducts(){
+        return Products::find(array('limit' => 3));
+    }
+    
+    public function getHighestSales(){
+        
+    }
+    
+    public function getBreakFast(){
+        return Products::find(array('category=4', array('limit'=>3)));
+    }
+    
     private function __getAgents($limit=''){
         return !empty($limit) ? Admin::find(array(
             'limit' => $limit, 'order' => 'RAND()'))->toArray() : 

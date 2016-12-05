@@ -76,10 +76,18 @@ class Products extends BaseModel{
         $limit  = $params['limit'] ?: 4;
         
         //Create the builder paging query
+        if($params['cat']){
         $builder    = \Phalcon\Di::getDefault()
                 ->getModelsManager()->createBuilder()
                 ->from(array('r' => 'Multiple\Frontend\Models\Products'))
                 ->where('r.category = '.$params['cat'])->orderBy("$sort $order");
+        }
+        else{
+            $builder    = \Phalcon\Di::getDefault()
+                ->getModelsManager()->createBuilder()
+                ->from(array('r' => 'Multiple\Frontend\Models\Products'))
+                ->orderBy("$sort $order");
+        }
         $paginator  = new PaginatorQueryBuilder(array(
             'builder' => $builder, 'limit' => $limit, 'page' => $page));
         return $paginator;

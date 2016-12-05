@@ -98,21 +98,41 @@ class CustomerController extends BaseController{
     }
     
     public function getphoneAction(){
-        $register   = Register::find(array('group' => 'phonenumbers'));
-        $register->setHydrateMode(\Phalcon\Mvc\Model\Resultset::HYDRATE_ARRAYS);
+        $register   = Register::find(
+                array('group' => 'phonenumbers'));
+        $register->setHydrateMode(
+                \Phalcon\Mvc\Model\Resultset::HYDRATE_ARRAYS);
         $this->view->setVar('phones', $register->toArray());
     }
     
-    public function detailAction(){
+    public function detailAction($id){
+        $register   = Register::findFirstByRegister_id($id);
+        if($register != false){
+            $this->view->setRenderLevel(
+                    \Phalcon\Mvc\View::LEVEL_ACTION_VIEW);
+            $this->view->setVar('custDetail', $register);
+            return;
+        }
+    }
+    
+    public function deleteAction(){
         if($this->request->isAjax()){
             $response   = new \Phalcon\Http\Response();
             $customer   = Register::findFirstByRegister_id(
                     $this->request->getPost('register_id'));
             if($customer != false){
-                $response->setHeader('Content-Type','application/json');
-                $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
-                $response->setJsonContent(array('data' => $customer));
-                $response->send(); exit();
+                if($customer->delete()){
+                    $response->setHeader('Content-Type','application/json');
+                    $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
+                    $response->setJsonContent(array('status' => 'OK'));
+                    $response->send(); exit();
+                }
+                else{
+                    $response->setHeader('Content-Type','application/json');
+                    $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
+                    $response->setJsonContent(array('status' => 'ERROR'));
+                    $response->send(); exit();
+                }
             }
         }
     }

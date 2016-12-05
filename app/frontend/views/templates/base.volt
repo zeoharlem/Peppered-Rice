@@ -206,46 +206,6 @@
 
 {% block content %}{% endblock %}
 
-
-<!-- ========================================= TOP BRANDS ========================================= -->
-<section id="recently-reviewd" class="wow fadeInUp">
-	<div class="container">
-		<div class="carousel-holder hover">
-			
-			<div class="title-nav">
-				<h2 class="h1">Dispatchers &amp; Team</h2>
-				<div class="nav-holder">
-					<a href="#prev" data-target="#owl-recently-viewed" class="slider-prev btn-prev fa fa-angle-left"></a>
-					<a href="#next" data-target="#owl-recently-viewed" class="slider-next btn-next fa fa-angle-right"></a>
-				</div>
-			</div><!-- /.title-nav -->
-
-			<div id="owl-recently-viewed" class="owl-carousel product-grid-holder">
-                                {% for keys, values in taskAgents %}
-				<div class="no-margin carousel-item  size-small hover" style="border:1px solid #ccc; padding:15px;">
-					<div class="product-item">
-						
-						
-						<div class="body">
-							<div class="title">
-								<a href="#">{{values.firstname | capitalize}} {{values.lastname | capitalize}}</a>
-							</div>
-							<div class="brand" style="text-transform:lowercase !important;"><small>{{values.email}}</small></div>
-						</div>
-						<div class="prices">
-							<div class="price-current text-right"><small><strong>{{values.phone}}</strong></small></div>
-						</div>
-					</div><!-- /.product-item -->
-				</div><!-- /.product-item-holder -->
-                                {% endfor %}
-                                
-			</div><!-- /#recently-carousel -->
-
-		</div><!-- /.carousel-holder -->
-	</div><!-- /.container -->
-</section><!-- /#recently-reviewd -->
-<!-- ========================================= TOP BRANDS : END ========================================= -->
-
 <footer id="footer" class="color-bg">
     
     <!-- /.container -->
