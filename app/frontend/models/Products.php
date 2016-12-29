@@ -20,10 +20,10 @@ class Products extends BaseModel{
     //put your code here
     public function initialize() {
         $this->belongsTo(
-                "product_id", 
-                "Categories", 
-                "product_id",
-                array('reusable' => true));
+                "category", 
+                "Multiple\\Frontend\\Models\\Category", 
+                "category_id",
+                array('reusable' => true, 'alias' => 'productCat'));
     }
     
     /**
@@ -42,8 +42,8 @@ class Products extends BaseModel{
     }
     
     //A fix for the namespacing attributes
-    public function getCategories(){
-        return $this->getRelated('Multiple\Frontend\Models\Categories');
+    public function getCategory(){
+        return $this->getRelated('Multiple\Frontend\Models\Category');
     }
     
     /**

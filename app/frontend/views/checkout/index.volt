@@ -54,7 +54,7 @@
                 </div><!-- /.cart-item -->
             {% endfor %}
 <p>&nbsp;</p>
-        <button class="le-button big" id="updateShoppingCart" >Update Shopping Cart</button>
+        <button class="le-button big" id="updateShoppingCart" >Update Shopping Tray</button>
         </div>
         <!-- ========================================= CONTENT : END ========================================= -->
 
@@ -63,7 +63,7 @@
         <div class="col-xs-12 col-md-3 no-margin sidebar ">
             <div style="height:30px;"></div>
             <div class="widget cart-summary">
-                <h1 class="border">shopping cart</h1>
+                <h1 class="border">shopping Tray</h1>
                 <div class="body">
                 <div style="height:30px;"></div>
                     <ul class="tabled-data no-border inverse-bold">
@@ -81,7 +81,7 @@
                     </ul>
                     <div class="buttons-holder">
                         <a class="le-button big" href="{{url('dashboard?token=')}}" >Order Now</a>
-                        <a class="simple-link block" href="{{url('category')}}" >continue shopping</a>
+                        <a class="simple-link block" href="{{url('category')}}" >View More</a>
                     </div>
                 </div>
             </div><!-- /.widget -->

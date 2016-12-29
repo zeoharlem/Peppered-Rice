@@ -18,9 +18,14 @@ class Category extends BaseModel{
     
     public function initialize() {
         $this->belongsTo(
-                "product_id", 
-                "Products", 
-                "product_id",
-                array('reusable' => true));
+                "category_id", 
+                "Multiple\\Frontend\\Models\\Products", 
+                "category",
+                array('reusable' => true, 'alias' => 'categoryPro'));
+    }
+    
+    //A fix for the namespacing attributes
+    public function getCategory(){
+        return $this->getRelated("Multiple\Frontend\Models\Category");
     }
 }

@@ -259,14 +259,9 @@
     <div class="widget">
         <h3>Find it fast</h3>
         <ul>
-            <li><a href="category-grid.html">Peppered Rice Jollof</a></li>
-            <li><a href="category-grid.html">Peppered Rice White</a></li>
-            <li><a href="category-grid.html">Fried Rice</a></li>
-            <li><a href="category-grid.html">Peppered Beans</a></li>
-            <li><a href="category-grid.html">Porridge</a></li>
-            <li><a href="category-grid.html">Spaghetti</a></li>
-            <li><a href="category-grid.html">Beef</a></li>
-            <li><a href="category-grid.html">Fish</a></li>
+            {% for keys,values in category %}
+            <li><a href="{{url('category/?cat='~values['category_id'])}}">{{values['category_name'] | capitalize}}</a></li>
+            {% endfor %}
         </ul>
     </div><!-- /.widget -->
 </div><!-- /.link-widget -->
@@ -275,14 +270,10 @@
     <div class="widget">
         <h3>Information</h3>
         <ul>
-            <li><a href="category-grid.html">Find a Store</a></li>
-            <li><a href="category-grid.html">About Us</a></li>
-            <li><a href="category-grid.html">Contact Us</a></li>
-            <li><a href="category-grid.html">Weekly Deals</a></li>
-            <li><a href="category-grid.html">Gift Cards</a></li>
-            <li><a href="category-grid.html">Recycling Program</a></li>
-            <li><a href="category-grid.html">Community</a></li>
-            <li><a href="category-grid.html">Careers</a></li>
+            <li><a href="#">Find a Store</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Careers</a></li>
 
         </ul>
     </div><!-- /.widget -->
@@ -292,14 +283,10 @@
     <div class="widget">
         <h3>Information</h3>
         <ul>
-            <li><a href="category-grid.html">My Account</a></li>
-            <li><a href="category-grid.html">Order Tracking</a></li>
-            <li><a href="category-grid.html">Wish List</a></li>
-            <li><a href="category-grid.html">Customer Service</a></li>
-            <li><a href="category-grid.html">Returns / Exchange</a></li>
-            <li><a href="category-grid.html">FAQs</a></li>
-            <li><a href="category-grid.html">Product Support</a></li>
-            <li><a href="category-grid.html">Extended Service Plans</a></li>
+            <li><a href="#">My Account</a></li>
+            <li><a href="#">Order Tracking</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Sign In</a></li>
         </ul>
     </div><!-- /.widget -->
 </div><!-- /.link-widget -->
@@ -414,7 +401,7 @@
                 }, 0);
                 
                 //update footer
-                $(api.column(3).footer()).html(pageTotal+' $('+total+' Total)');
+                $(api.column(3).footer()).html(pageTotal+' &#8358;('+total+' Total)');
             }
         });
         

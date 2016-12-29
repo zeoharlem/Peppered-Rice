@@ -30,18 +30,16 @@ class IndexController extends BaseController{
     public function indexAction(){
         $category   = Category::find()->toArray();
         $available  = Products::find(array(
-            'limit'=>8,'order' => 'RAND()'));
+            'category'=>2,'limit'=>8,'order' => 'RAND()'))->toArray();
         $builders   = $this->modelsManager->createBuilder();
         $builders->from('Multiple\Frontend\Models\Products')
-                ->notInWhere('Multiple\Frontend\Models\Products.category', array(7));
-        
+                ->notInWhere('Multiple\Frontend\Models\Products.category', array(2));
         //var_dump($builders->getQuery()->execute()); exit;
         $this->view->setVars(array(
             'category'      => $category,
             'available'     => $available,
             'helper'        => $this->component->helper,
             'products'      => $builders->getQuery()->execute(),
-            'general'       => $available
         ));
         $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_LAYOUT);
         return;

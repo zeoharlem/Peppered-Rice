@@ -89,12 +89,12 @@
                         </div>
 
                         <div class="col-xs-12 col-sm-9 ">
-                            <div class="title"><a href="#">{{values['name']}}</a> <small> (${{values['price']}}.00)</small></div>
+                            <div class="title"><a href="#">{{values['name']}}</a> <small> (&#8358;{{values['price']}}.00)</small></div>
                             <div class="brand">peppered rice</div>
                         </div>
 
                         <div class="col-xs-12 col-sm-2 no-margin">
-                            <div class="price">${{values['price']*values['qty']}}.00</div>
+                            <div class="price">&#8358;{{values['price']*values['qty']}}.00</div>
                         </div>
                     </div><!-- /.order-item -->
                     {% endfor %}
@@ -108,34 +108,13 @@
                         <ul id="total-field" class="tabled-data inverse-bold ">
                             <li>
                                 <label>order total</label>
-                                <div class="value">${{grandTotal}}.00</div>
+                                <div class="value">&#8358;{{grandTotal}}.00</div>
                             </li>
                         </ul><!-- /.tabled-data -->
 
                     </div><!-- /#subtotal-holder -->
                 </div><!-- /.col -->
             </div><!-- /#total-area -->
-
-            <div id="payment-method-options">
-                <form>
-                    <div class="payment-method-option">
-                        <input class="le-radio" type="radio" name="group2" value="Direct">
-                        <div class="radio-label bold ">Direct Bank Transfer<br>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rutrum tempus elit, vestibulum vestibulum erat ornare id.</p>
-                        </div>
-                    </div><!-- /.payment-method-option -->
-                    
-                    <div class="payment-method-option">
-                        <input class="le-radio" type="radio" name="group2" value="cheque">
-                        <div class="radio-label bold ">cheque payment</div>
-                    </div><!-- /.payment-method-option -->
-                    
-                    <div class="payment-method-option">
-                        <input class="le-radio" type="radio" name="group2" value="paypal">
-                        <div class="radio-label bold ">paypal system</div>
-                    </div><!-- /.payment-method-option -->
-                </form>
-            </div><!-- /#payment-method-options -->
             
             <div class="place-order-button">
                 <button class="le-button big" id="place-order" type="button">place order</button>

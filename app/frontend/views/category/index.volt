@@ -38,7 +38,7 @@
                         {% for keys,values in pager.getPaginate().items %}
                         <div class="col-xs-12 col-sm-4 no-margin product-item-holder hover">
                             <div class="product-item">
-                                <div class="ribbon red"><span>sale</span></div> 
+                                <div class="ribbon green"><span>{{values.productCat.category_name}}</span></div> 
                                 <div class="image">
                                     <img alt="" id="item{{keys+1}}_img" src="{{url('assets/images/blank.gif')}}" data-echo="{{url('assets/uploads/'~values.front_image)}}" />
                                     <input type="hidden" id="item{{keys+1}}_name" value="{{values.title | capitalize}}">
@@ -81,7 +81,7 @@
                 <div class="products-list">
                     {% for keys,values in pager.getPaginate().items %}
                     <div class="product-item product-item-holder">
-                        <div class="ribbon red"><span>selling</span></div> 
+                        <div class="ribbon green"><span>{{values.productCat.category_name}}</span></div> 
                         <div class="row">
                             <div class="no-margin col-xs-12 col-sm-4 image-holder">
                                 <div class="image">
@@ -111,6 +111,7 @@
                                     <div class="price-current">&#8358;{{values.sale_price}}</div>
                                     <div class="price-prev">&#8358;0.00</div>
                                     <div class="availability"><label>availability:</label><span class="available">  in stock</span></div>
+                                    
                                     <a href="javascript:void(0)" class="le-button addToCart" id="item{{keys+1}}">add to cart</a>
                                     
                                 </div>

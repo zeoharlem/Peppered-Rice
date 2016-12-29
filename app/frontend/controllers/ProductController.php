@@ -61,15 +61,15 @@ class ProductController extends BaseController{
                     </div>
                 </li>';
             }
-            $stringBuilt    .= '<hr>
+            $stringBuilt    .= '
                 <li class="checkout">
                     <div class="basket-item">
                         <div class="row">
                             <div class="col-xs-12 col-sm-6">
-                                <a href="http://localhost/peprice/checkout" class="le-button inverse">View cart</a>
+                                <a href="http://localhost/peprice/checkout" class="le-button inverse"><strong><small>View cart</small></strong></a>
                             </div>
                             <div class="col-xs-12 col-sm-6">
-                                <a href="http://localhost/peprice/checkout/process" class="le-button">Checkout</a>
+                                <a href="http://localhost/peprice/checkout/process" class="le-button"><small>Order Now</small></a>
                             </div>
                         </div>
                     </div>
